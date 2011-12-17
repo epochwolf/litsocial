@@ -98,3 +98,32 @@ ActiveAdmin.setup do |config|
   # To load a javascript file:
   #   config.register_javascript 'my_javascript.js'
 end
+
+class ActiveAdmin::DSL
+  include Controllers::AdminDslExtensions
+end
+
+class ActiveAdmin::Views::HeaderRenderer < ActiveAdmin::Renderer 
+  def title
+    content_tag 'h1', :id => 'site_title' do
+      content_tag :a, :href => "/" do
+        active_admin_application.site_title
+      end
+    end
+  end
+end
+
+module ActiveAdmin
+  class FormBuilder < ::Formtastic::SemanticFormBuilder
+    def html_input(method, options)
+      form_helper_method = :text_area
+      type = :text
+      html_options = options.delete(:input_html) || {}
+      html_options = default_string_options(method, type).merge(html_options)
+      html_options[:"data-widget"] = "ckeditor"
+
+      self.label(method, options_for_label(options)) << "<div class=\"rich-text-field\">".html_safe <<
+      self.send(form_helper_method, method, html_options) << "</div>".html_safe
+    end
+  end
+end

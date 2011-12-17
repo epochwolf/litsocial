@@ -16,4 +16,9 @@ ActiveAdmin.register Literature do
   #     link_to("Edit", [:edit, :admin, f], :class => "member_link")
   #   end
   # end
+  
+  # set the user for this model
+  after_build do |currm|
+    currm.user = current_admin_user
+  end
 end

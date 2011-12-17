@@ -1,0 +1,8 @@
+:ruby 
+  def active_for(*actions)
+    actions.any?{|action| params[:action] == action } ? "active" : nil
+  end
+%h2.pull-left{:style => 'padding-right: 1em'}=@user.name
+%ul.tabs
+  %li{:class => active_for("show")}=link_to "Profile", user_path(@user)
+  %li{:class => active_for("literatures")}=link_to "Literature", literatures_user_path(@user)

@@ -1,0 +1,27 @@
+!!!
+%html{lang: "en"}
+  %head=render 'layouts/head'
+  %body
+    .topbar=render 'layouts/top_bar'
+    -if flash[:alert] || flash[:notice]
+      .container
+        .content
+          .row
+            .span16
+              -if flash[:alert] 
+                .alert-message.error{"data-alert" => "alert"}
+                  %a.close{:href => '#'} x
+                  %p=flash[:alert]
+              
+              -if flash[:notice] 
+                .alert-message.success{"data-alert" => "alert"}
+                  %a.close{:href => '#'} x
+                  %p=flash[:notice]
+      
+    .container
+      .content
+        .row
+          .span16=yield
+      %footer
+        Lit Social, Copyright 2011 epochwolf
+        =debug params

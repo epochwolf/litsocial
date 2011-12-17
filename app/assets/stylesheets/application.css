@@ -1,0 +1,31 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require twitter/bootstrap
+ *= require_vendor
+*/
+
+html body {
+  /*padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
+}
+
+/* Fix placeholders in chrome */
+html textarea, html input {
+  -webkit-transform-style: flat;
+}
+
+/* Make text in form fields not look disabled */
+html input, html textarea, html select, html .uneditable-input {
+  color: #444;
+}
+
+html .topbar {
+  position: static;
+  padding-bottom: 10px;
+}
+
+html .topbar p{
+  color: white;
+}

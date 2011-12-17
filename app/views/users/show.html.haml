@@ -1,0 +1,8 @@
+=render 'nav'
+.row
+  .span12.biography=h @user.biography
+  .span4.recent-literature
+    %h3 Recent Literature
+    %ul.unstyled
+      -@user.literatures.recent(5).each do |l|
+        %li=link_to l.title, l

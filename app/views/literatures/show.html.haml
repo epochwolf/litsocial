@@ -1,0 +1,16 @@
+.row
+  .span12
+    %h1
+      =h @literature.title
+      %small 
+        by #{user_link @literature.user} on #{dt(@literature.created_at)}
+  .span4
+    -if owner?(@literature)  
+      .pull-right
+        =link_to "update", [:edit, @literature], :class => 'btn small'
+        =link_to "delete", @literature, :method => :delete, :confirm => "Are you sure you want to delete '#{h @literature.title}'?", :class => 'btn small danger'
+%hr{:style => 'margin-top: 0px;'}
+-unless @literature.visible?
+  .alert-message.warning
+    This submission is hidden
+.rich=rich @literature.contents

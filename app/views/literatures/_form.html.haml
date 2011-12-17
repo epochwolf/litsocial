@@ -1,0 +1,7 @@
+=tb_form_for @literature do |f|
+  =f.inputs do
+    =f.text_field :title
+    =f.text_area :contents
+  =f.actions do
+    =f.submit @literature.new_record? ? "Create" : "Update"
+    =link_to "Cancel", return_path(literatures_account_path(current_user)), :class => "btn"

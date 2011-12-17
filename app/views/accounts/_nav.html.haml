@@ -1,0 +1,11 @@
+:ruby 
+  def active_for(*actions)
+    actions.any?{|action| params[:action] == action } ? "active" : nil
+  end
+%h1 Your Account
+-if params[:action] == "literatures"
+  =link_to "New Literature", [:new, :literature], :class => "btn success pull-right" 
+%ul.tabs
+  %li{:class => active_for("show")}=link_to "Overview", account_path(@user)
+  %li{:class => active_for("literatures")}=link_to "Literature", literatures_account_path(@user)
+  %li{:class => active_for("edit", "update")}=link_to "Settings", edit_account_path(@user)

@@ -1,0 +1,30 @@
+=render 'nav'
+
+=tb_form_for @user, :url => account_path(@user) do |f|
+  -if @user.invalid?
+    .alert-message.error{"data-alert" => "alert"}
+      %a.close{:href => '#'} x
+      %p There was an error saving changes.
+  =f.inputs "Your Profile" do
+    =f.text_field :name, :hint => "Your name on the site." do
+      %span.help-block This is how you will be identified to other users.
+    =f.select :gender, "Gender", [["Male", "male"], ["Female", "female"], ["Don't Show", ""]]
+    =f.text_area :biography, "About Me", :class => 'xxlarge', :rows => '5'
+  =f.inputs "Account Details" do
+    =f.toggles "Facebook" do
+      =f.check_box :sync_with_facebook, "Keep my profile information synced with facebook"
+      =f.check_box :autopost_to_facebook, "Automatically add new posts to my wall" do
+        %span.help-block You may be prompted to allow us to access your account.
+      %p=link_to "Unlink my account from facebook", '/'
+    =f.email_field :email, :hint => "Not displayed, used for logging in or to recover your account." do
+      %span.help-block Never displayed on your profile, used only for login or recovering your account.
+    =f.password_field :password do
+      %span.help-block Leave blank if you don't want to update your password.
+    =f.password_field :password_confirmation
+  =f.actions do
+    =f.submit "Update"
+    =link_to "Cancel", return_path('/'), :class => "btn"
+
+
+%h3 Debug Info
+=debug @user

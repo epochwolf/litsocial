@@ -9,6 +9,8 @@ class Literature < ActiveRecord::Base
   validates_presence_of :contents
   validates_presence_of :user_id
   
+  attr_accessible :title, :contents
+  
   def visible?
   	!deleted
   end

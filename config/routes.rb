@@ -1,10 +1,13 @@
 LitSocial::Application.routes.draw do
+
   ActiveAdmin.routes(self)
+
+  post "convert/word_doc" => 'convert#word_doc', :as => :convert_word_doc
   
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :literatures
-  resources :accounts, :only => [:show, :edit, :update] do
+  resources :accounts, :only => [:index, :show, :edit, :update] do
     member do
       get :literatures
     end

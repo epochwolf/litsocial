@@ -8,7 +8,8 @@
     =link_to "Lit Social", root_url, :class => 'brand'
     %ul.nav
       %li{:class => active_for_controller("literatures")}=link_to "Literature", literatures_path
-      %li{:class => active_for_controller("accounts")}=link_to "Account", account_path(current_user)
+      -if user_signed_in?
+        %li{:class => active_for_controller("accounts")}=link_to "My Account", account_path(current_user)
     .pull-right
       %p
         -if user_signed_in?

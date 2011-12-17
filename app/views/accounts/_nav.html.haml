@@ -2,7 +2,7 @@
   def active_for(*actions)
     actions.any?{|action| params[:action] == action } ? "active" : nil
   end
-%h1 Your Account
+%h1 My Account
 -if params[:action] == "literatures"
   =link_to "New Literature", [:new, :literature], :class => "btn success pull-right" 
 %ul.tabs

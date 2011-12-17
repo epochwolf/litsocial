@@ -1,7 +1,25 @@
 =tb_form_for @literature do |f|
   =f.inputs do
     =f.text_field :title
-    =f.text_area :contents
+    =f.text_area :contents do
+      %span.help-inline
+        =link_to "Upload an MS Word or OpenOffice Writer document", '#', :data => {"controls-modal" => 'word_doc_uploader'}
   =f.actions do
     =f.submit @literature.new_record? ? "Create" : "Update"
     =link_to "Cancel", return_path(literatures_account_path(current_user)), :class => "btn"
+    
+
+#word_doc_uploader.modal.hide
+  .modal-header
+    =link_to 'x', '#', :class => "close"
+    %h3 Upload MS Word/OpenOffice Writer document
+  =form_tag convert_word_doc_path, :multipart => true, :onsubmit => "$('#word_doc_uploader').modal('hide');start_modal_spinner();", :target => 'iframe-of-unlimited-doom' do
+    .modal-body
+      %label{:for => 'word_doc'} Document:
+      =file_field_tag "word_doc"
+    .modal-footer
+      =submit_tag 'Upload', :class => 'btn primary'
+      =link_to 'Cancel', '#', :onclick => "$('#word_doc_uploader').modal('hide');", :class => 'btn secondary'
+
+
+%iframe#iframe-of-unlimited-doom{:style => 'display:none;'}

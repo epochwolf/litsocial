@@ -8,4 +8,22 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 
-$(".alert-message").alert()
+$(document).ready(function(){
+  $(".alert-message").alert();
+  $('.modal').modal({show: false, keyboard: true, backdrop: true});
+})
+
+function start_modal_spinner(){
+  $('#please_wait').modal('show');
+}
+
+function stop_modal_spinner(){
+  $('#please_wait').modal('hide');
+}
+
+
+function copy_text_from_iframe(target, text_to_copy){
+  console.log("copy_text_from_iframe('"+target+"', '"+text_to_copy+"')");
+  stop_modal_spinner();
+  $(target).val(text_to_copy);
+}

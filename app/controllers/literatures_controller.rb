@@ -1,4 +1,5 @@
 class LiteraturesController < ApplicationController
+  before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :find_literature, :except => [:index, :new, :create]
   before_filter :new_literature, :only => [:new, :create]
   before_filter :check_permissions, :only => [:edit, :update, :destroy]
@@ -16,7 +17,7 @@ class LiteraturesController < ApplicationController
   
   def create
     if @literature.save
-      redirect account_path(current_user)
+      redirect @literature
     else
       render :new
     end
@@ -27,7 +28,7 @@ class LiteraturesController < ApplicationController
   
   def update
     if @literature.update_attributes(params[:literature])
-      redirect account_path(current_user)
+      redirect @literature
     else
       render :edit
     end

@@ -4,8 +4,33 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+one: 
+  id: 1
+  name: epochwolf
+  email: epochwolf@example.com
+  gender: male
+  biography: I am the admin
+  admin: true
+  created_at: <%=Time.now %>
+  updated_at: <%=Time.now %>
+
+two: 
+  id: 2
+  name: A Member
+  email: member@example.com
+  gender: female
+  biography: I am the token member
+  admin: false
+  created_at: <%=Time.now %>
+  updated_at: <%=Time.now %>
+  
+  
+two: 
+  id: 3
+  name: A Member
+  email: member2@example.com
+  gender: male
+  biography: I am the token member
+  admin: false
+  created_at: <%=Time.now %>
+  updated_at: <%=Time.now %>

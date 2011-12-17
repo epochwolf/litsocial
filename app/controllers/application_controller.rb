@@ -7,6 +7,6 @@ class ApplicationController < ActionController::Base
   helper_method :return_path, :here
   
   def show403(message="This page is currently unavailable.")
-    render :template => 'errors/403', :layout => nil, :locals => {:message => message}
+    render :template => 'errors/403', :layout => nil, :status => 403, :locals => {:message => message}
   end
 end

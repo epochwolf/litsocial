@@ -1,21 +1,38 @@
+require 'nokogiri'
+
 class WordConverter
+  attr_reader :raw_html, :html
+  
   def initialize(raw_html)
+    puts raw_html
     @raw_html = raw_html
   end
   
-  def self.html_from_file(file)
-    `unoconv "#{file}"`
-  end
-  
-  attr_reader :raw_html, :processed_html
   
   def to_html()
     return @html if defined? @html
-    @html = extract_body()
+    @html = self.class.extract_body(@raw_html)
+    @html = self.class.cleanse_html(@html)
   end
   
-  protected
-  def extract_body()
+  class << self
+    def html_from_file(filename)
+      html = `unoconv "#{filename}"`
+      WordConverter.new(html).to_html
+    end
+  
+    def extract_body(html)
+      if doc = Nokogiri::HTML::Document.parse(html)
+        if body = doc.xpath('/html/body')
+          return doc.xpath("//html/body").children.to_html
+        end
+      end
+      return html
+    end
     
+    def cleanse_html(html)
+      MyHtmlSanitizer.clean(html)
+    end
   end
+  
 end

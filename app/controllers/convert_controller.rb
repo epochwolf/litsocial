@@ -7,11 +7,10 @@ class ConvertController < ApplicationController
         file = File.join(Rails.root, "tmp", params[:word_doc].original_filename)
         begin
           FileUtils.cp(params[:word_doc].tempfile.path, file)
-          @text = WordConverter.new(file).to_html
+          @text = WordConverter.html_from_file(file)
         ensure
           FileUtils.rm(file)
         end
-        file = params[:word_doc].tempfile
       else
         @text = params.inspect
       end

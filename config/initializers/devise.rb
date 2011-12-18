@@ -198,7 +198,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   require "omniauth-facebook"
-  config.omniauth :facebook, "319445971401748", "4cfafa37843cbdd806c22b11f2b85dba", :scope => 'email'
+  config.omniauth :facebook, LitSocial::FACEBOOK_APP_ID, LitSocial::FACEBOOK_APP_SECRET, :scope => 'email'
   #config.omniauth :open_id, :store => OpenID::Store::Filesystem.new('/tmp'), :require => 'omniauth-openid'
 
   # ==> Warden configuration

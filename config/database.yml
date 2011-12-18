@@ -44,5 +44,5 @@ production:
   pool: 5
   host: localhost
   port: 5432
-  username: singleforest
-  password:
+  username: <%=LitSocial::DB_USER %>
+  password: <%=LitSocial::DB_PASSWORD %>

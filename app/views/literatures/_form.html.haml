@@ -34,4 +34,11 @@
       =link_to 'Cancel', '#', :onclick => "$('#word_doc_uploader').modal('hide');", :class => 'btn secondary'
 
 
+#please_wait.modal.hide
+  .modal-header
+    %h3 Please wait
+  .modal-body
+    %p Your request will be processed in the order it was recieved.
+  .modal-footer
+
 %iframe#iframe-of-unlimited-doom{:style => 'display:none;'}

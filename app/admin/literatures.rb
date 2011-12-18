@@ -17,8 +17,17 @@ ActiveAdmin.register Literature do
   #   end
   # end
   
+  form do |f|
+    f.inputs "Content" do
+      f.input :user
+      f.input :title
+      f.input :contents, :as => :html
+    end
+    f.buttons
+  end
+  
   # set the user for this model
-  after_build do |currm|
-    currm.user = current_admin_user
+  before_build do |currm|
+    currm.user = current_user
   end
 end

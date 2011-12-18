@@ -1,20 +1,32 @@
+%p 
+  If you don't want to deal with copying and pasting your story, you can 
+  =link_to "upload an MS Word or OpenOffice Writer document", '#', :data => {"controls-modal" => 'word_doc_uploader'}
+  and we'll copy and paste the text for you.
 =tb_form_for @literature do |f|
   =f.inputs do
     =f.text_field :title
-    =f.text_area :contents do
-      %span.help-inline
-        =link_to "Upload an MS Word or OpenOffice Writer document", '#', :data => {"controls-modal" => 'word_doc_uploader'}
+    =f.text_area :contents, :data => {:widget => 'ckeditor'}
   =f.actions do
     =f.submit @literature.new_record? ? "Create" : "Update"
     =link_to "Cancel", return_path(literatures_account_path(current_user)), :class => "btn"
     
+-if params[:action] == 'new'
+  :javascript
+    $(document).ready(function(){ $('#word_doc_uploader').modal('show'); });
 
 #word_doc_uploader.modal.hide
   .modal-header
     =link_to 'x', '#', :class => "close"
-    %h3 Upload MS Word/OpenOffice Writer document
+    %h3 Upload a MS Word/OpenOffice Writer document
   =form_tag convert_word_doc_path, :multipart => true, :onsubmit => "$('#word_doc_uploader').modal('hide');start_modal_spinner();", :target => 'iframe-of-unlimited-doom' do
     .modal-body
+      %p Supported Document Formats:
+      %ul
+        %li Microsoft Word 2007/2010 (docx) 
+        %li Microsoft Word 2003-97 (doc)
+        %li Open Office/LibreOffice documents (odf)
+        %li Rich Text Format (rtf)
+        
       %label{:for => 'word_doc'} Document:
       =file_field_tag "word_doc"
     .modal-footer

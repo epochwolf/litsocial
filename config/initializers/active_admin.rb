@@ -97,10 +97,8 @@ ActiveAdmin.setup do |config|
   #
   # To load a javascript file:
   #   config.register_javascript 'my_javascript.js'
-end
-
-class ActiveAdmin::DSL
-  include Controllers::AdminDslExtensions
+  config.register_javascript 'admin_editor.js'
+  config.register_stylesheet 'admin_editor.css'
 end
 
 class ActiveAdmin::Views::HeaderRenderer < ActiveAdmin::Renderer 

@@ -1,0 +1,5 @@
+form.formtastic fieldset > ol > li.html > div.rich-text-field {
+  width: 76%;
+  float: left;
+  padding: 8px 10px 7px;
+}

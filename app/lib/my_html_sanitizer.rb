@@ -59,6 +59,9 @@ class MyHtmlSanitizer
         "ol"=>["start", "type"], 
         "th"=>["abbr", "axis", "colspan", "rowspan", "scope", "width"]
       },
+      :add_attributes => {
+        'a' => {'rel' => 'nofollow'},
+      },
       :transformers => [p_style_attribute]
     }
   

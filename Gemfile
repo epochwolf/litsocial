@@ -40,7 +40,7 @@ gem 'squeel'
 
 #ActiveAdmin
 gem 'meta_search', '>= 1.1.0.pre'
-gem 'activeadmin', :git => "https://github.com/gregbell/active_admin.git", :tag => 'v0.3.1' #:branch => 'master'
+gem 'activeadmin', :git => "https://github.com/gregbell/active_admin.git", :tag => 'v0.3.4' #:branch => 'master'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'

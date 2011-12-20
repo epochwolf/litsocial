@@ -17,7 +17,7 @@ class WordConverter
   
   class << self
     def html_from_file(filename)
-      html = `tx"#{filename}"`
+      html = `/opt/bin/convert_docx_to_html "#{filename}"`
       WordConverter.new(html).to_html
     end
   

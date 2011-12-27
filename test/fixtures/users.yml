@@ -8,6 +8,7 @@ one:
   id: 1
   name: epochwolf
   email: epochwolf@example.com
+  encrypted_password: <%= ::BCrypt::Password.create("Password",  :cost => 1) %>
   gender: male
   biography: I am the admin
   admin: true
@@ -18,6 +19,7 @@ two:
   id: 2
   name: A Member
   email: member@example.com
+  encrypted_password: <%= ::BCrypt::Password.create("Password",  :cost => 1) %>
   gender: female
   biography: I am the token member
   admin: false
@@ -29,6 +31,7 @@ two:
   id: 3
   name: A Member
   email: member2@example.com
+  encrypted_password: <%= ::BCrypt::Password.create("Password",  :cost => 1) %>
   gender: male
   biography: I am the token member
   admin: false

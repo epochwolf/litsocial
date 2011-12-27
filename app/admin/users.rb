@@ -7,8 +7,13 @@ ActiveAdmin.register User do
     end
     column :gender
     column :current_sign_in_at
-    column "Sync w/FB", :sync_with_facebook do |u| u.sync_with_facebook? ? "Yes" : "No" end
-    column "Autopost", :autopost_to_facebook do |u| u.autopost_to_facebook? ? "Yes" : "No" end
+    column "FB Profile" do |u|
+      if u.linked_to_facebook?
+        link_to u.facebook_name, u.facebook_profile
+      else
+        em "No"
+      end
+    end
     column "TZ", :timezone
     column :admin do |u| u.admin? ? "Yes" : "No" end
     

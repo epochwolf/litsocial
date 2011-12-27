@@ -11,19 +11,35 @@
     =f.select :gender, "Gender", [["Male", "male"], ["Female", "female"], ["Don't Show", ""]]
     =f.text_area :biography, "About Me", :class => 'xxlarge', :rows => '5'
   =f.inputs "Account Details" do
-    =f.toggles "Facebook" do
-      =f.check_box :sync_with_facebook, "Keep my profile information synced with facebook"
-      =f.check_box :autopost_to_facebook, "Automatically add new posts to my wall" do
-        %span.help-block You may be prompted to allow us to access your account.
-      %p=link_to "Unlink my account from facebook", '/'
     =f.email_field :email, :hint => "Not displayed, used for logging in or to recover your account." do
       %span.help-block Never displayed on your profile, used only for login or recovering your account.
+    .clearfix
+      %label Facebook Profile
+      .input
+        -if @user.linked_to_facebook?
+          %p
+            #{link_to @user.facebook_name, @user.facebook_profile}
+        -else
+          %p 
+            %em Not connected.
+            =link_to "Connect my profile"
+        %span.help-block Never displayed on your profile, used only for login.
+        
     =f.password_field :password do
       %span.help-block Leave blank if you don't want to update your password.
     =f.password_field :password_confirmation
   =f.actions do
     =f.submit "Update"
     =link_to "Cancel", return_path('/'), :class => "btn"
+    
+.well
+  %h4 Canceling your account
+  %p 
+    We can't cancel accounts yet. If you want to close your account please delete all literature in your account and 
+    change your name to "Closed Account". An administrator will permanently delete your account at a 
+    later date.
+  %h4 Disconnecting your account from facebook
+  %p Please email an administrator at help@litsocial.com and they can manually unlink your account from facebook.
 
 
 %h3 Debug Info

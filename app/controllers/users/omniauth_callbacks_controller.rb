@@ -1,14 +1,14 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   
   def facebook
-    request_time = Time.now
-    # You need to implement the method below in your model
     @user = User.find_for_facebook_oauth(request.env["omniauth.auth"], current_user)  
     if @user.persisted?
-      if @user.created_at < request_time #user is a new user
-        flash[:notice] = "Welcome, #{@user.name}! An account has been created for you."
+      if @user.new_from_facebook 
+        flash[:notice] = "Welcome, #{@user.name}! An account has been created for you. You can review your account details by clicking the My Account link at the top of your screen."
+      elsif @user.just_linked_to_facebook
+        flash[:notice] = "Welcome back, #{@user.name}. Your account has been linked to your facebook profile"
       else
-        flash[:notice] = "Welcome, #{@user.name}!"
+        flash[:notice] = "Welcome back, #{@user.name}."
       end
       sign_in_and_redirect @user, :event => :authentication
     else

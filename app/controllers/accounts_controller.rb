@@ -24,6 +24,13 @@ class AccountsController < ApplicationController
     sign_in(@user, :bypass => true)
   end
   
+  # Unlinking an account from facebook removes it's primary login method.
+  # We need to make sure the user has a valid password before doing this.
+  # Perhaps we don't allow users to unlink accounts that were created with facebook.
+  def unlink_facebook
+    raise "Not Implemented" # TODO: write method
+  end
+  
   protected
   def find_account
     if current_user.id.to_s != params[:id].to_s

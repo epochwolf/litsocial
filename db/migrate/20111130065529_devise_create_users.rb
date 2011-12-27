@@ -8,8 +8,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.text :biography,                :null => false, :default => ''
       t.text :facebook_data
       t.boolean :never_set_password,    :null => false,  :default => false
-      t.boolean :autopost_to_facebook,  :null => false,  :default => false
-      t.boolean :sync_with_facebook,    :null => false,  :default => true
     
       t.database_authenticatable :null => false
       t.string :facebook_token

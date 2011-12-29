@@ -4,6 +4,7 @@ class CreateLiteratures < ActiveRecord::Migration
       t.string :title,      :null => false
       t.integer :user_id,   :null => false
       t.text :contents,     :null => false
+      t.text :deleted_reason, :null => false, :default => ""
       t.boolean :deleted,   :null => false, :default => false
 
       t.timestamps

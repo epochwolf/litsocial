@@ -22,7 +22,7 @@
         -else
           %p 
             %em Not connected.
-            =link_to "Connect my profile"
+            =link_to "Connect my profile", omniauth_authorize_path(:user, "facebook")
         %span.help-block Never displayed on your profile, used only for login.
         
     =f.password_field :password do

@@ -11,7 +11,11 @@ module Controllers::Paged
     per_page = params[:per_page] || options[:per_page]
     #sort = params[:sort] || options[:sort]
     #direction = params[:sort_desc] || options[:sort_desc]
-    paginator = where
+    paginator = if where.respond_to? :sorted
+      where.sorted
+    else
+      where
+    end
     #paginator = paginator.default_sort if where.respond_to?(:default_sort)
     #if where.sortable_columns.include?(sort.to_s)
     #  direction = sort.to_sym.send(Sorting.asc?(direction) ? :asc : :desc)

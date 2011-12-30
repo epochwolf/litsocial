@@ -64,3 +64,8 @@ group :test do
   # Pretty printed test output
   gem 'turn', '0.8.2', :require => false
 end
+
+group :production do
+  gem 'unicorn'
+end
+

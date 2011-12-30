@@ -4,6 +4,7 @@ class Literature < ActiveRecord::Base
   
   scope :recent, ->(number=5){ limit(number) }
   scope :visible, where(:deleted.not_eq => true)
+  scope :sorted, order(:id.desc)
 
   validates_presence_of :title
   validates_presence_of :contents

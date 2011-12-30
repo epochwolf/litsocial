@@ -7,6 +7,7 @@ LitSocial::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :literatures
+  resources :comments, :only => [:create, :update, :destroy]
   resources :accounts, :only => [:index, :show, :edit, :update] do
     member do
       get :literatures

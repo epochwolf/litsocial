@@ -7,10 +7,39 @@
   .span4
     -if owner?(@literature)  
       .pull-right
+        =link_to "admin", [:edit, :admin, @literature], :class => 'btn small primary' if current_user.admin?
         =link_to "update", [:edit, @literature], :class => 'btn small'
         =link_to "delete", @literature, :method => :delete, :confirm => "Are you sure you want to delete '#{h @literature.title}'?", :class => 'btn small danger'
-%hr{:style => 'margin-top: 0px;'}
+%hr.slim
 -unless @literature.visible?
   .alert-message.warning
     This submission is hidden
 .rich=rich @literature.contents
+%hr.slim
+%h2 Comments
+-@comments.try :each do |comment|
+  .row
+    .span8
+      %h5
+        =comment.user.name
+        %small=dt comment.created_at
+      .rich=rich comment.contents
+    .span4  
+      =link_to "admin", [:edit, :admin, comment], :class => 'btn small primary' if current_user.admin?
+      =link_to "delete", comment, :method => :delete, :confirm => "Are you sure you want to delete your comment?", :class => 'btn small danger'
+    
+  -if comment.children?
+    -comment.children.each do |comment|
+      .row
+        .span8.offset2
+          %h5
+            =comment.user.name
+            %small=dt comment.created_at
+          .rich=rich comment.contents
+        .span4  
+          =link_to "admin", [:edit, :admin, comment], :class => 'btn small primary' if current_user.admin?
+          =link_to "delete", comment, :method => :delete, :confirm => "Are you sure you want to delete your comment?", :class => 'btn small danger'
+      
+    
+    
+=debug current_user

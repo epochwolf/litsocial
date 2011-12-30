@@ -1,4 +1,5 @@
 class Literature < ActiveRecord::Base
+  has_many :comments, :as => :commentable, :conditions => {:parent_id => nil}, :order => :id.asc
   belongs_to :user
   default_scope order(:id.desc)
   

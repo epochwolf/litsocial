@@ -10,6 +10,7 @@ class LiteraturesController < ApplicationController
   
   def show
     return show403 "This post has been removed by the author, sorry. :(" unless @literature.visible? || @literature.user == current_user
+    @comments = paged(@literature.comments.top_levels.includes(:user, {:children => :user}))
   end
   
   def new

@@ -1,4 +1,5 @@
 module Controllers::Paged  
+  
   # see sort_link in application helper
   def paged(where, options={})
     options = {

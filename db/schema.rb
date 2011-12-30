@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111216213129) do
+ActiveRecord::Schema.define(:version => 20111229233948) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -27,6 +27,25 @@ ActiveRecord::Schema.define(:version => 20111216213129) do
   add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
   add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
+
+  create_table "comments", :force => true do |t|
+    t.string   "commentable_type"
+    t.integer  "commentable_id"
+    t.integer  "position"
+    t.integer  "parent_id"
+    t.integer  "reply_count"
+    t.integer  "user_id"
+    t.text     "contents"
+    t.boolean  "edited"
+    t.boolean  "deleted"
+    t.text     "deleted_reason"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["commentable_type", "commentable_id", "deleted"], :name => "index_comments_on_commentable"
+  add_index "comments", ["parent_id", "position"], :name => "index_comments_on_parent_id_and_position"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "literatures", :force => true do |t|
     t.string   "title"

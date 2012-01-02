@@ -2,6 +2,9 @@ class Comment < ActiveRecord::Base
   belongs_to :commentable, :polymorphic => true
   belongs_to :user
   
+  # List all classes that allow comments. This is used for both validation and filtering in the controller. 
+  COMMENTABLES = ["Literature"]
+  
   acts_as_list :scope => :parent
   belongs_to :parent, :class_name => "Comment", :counter_cache => :reply_count
   has_many :children, :class_name => "Comment", :foreign_key => 'parent_id', :order => 'position ASC'
@@ -16,6 +19,12 @@ class Comment < ActiveRecord::Base
   before_save :prevent_save_if_parent_is_reply
   
   validates :contents, :commentable_type, :commentable_id, :user_id, :presence => true
+  validates_inclusion_of :commentable_type, :in => COMMENTABLES
+  attr_accessible :parent_id, :contents
+  
+  def reply?
+    parent_id ? true : false
+  end
   
   def children?
     reply_count > 0
@@ -23,6 +32,6 @@ class Comment < ActiveRecord::Base
   
   protected
   def prevent_save_if_parent_is_reply
-    parent.try(:parent_id) ? false : true
+    parent.try(:parent_id) ? false : true # returning false aborts the save.
   end
 end

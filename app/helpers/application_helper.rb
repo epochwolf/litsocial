@@ -15,12 +15,6 @@ module ApplicationHelper
     end
   end
   
-  def owner?(object)
-    if user_signed_in? && object.respond_to?(:user)
-      object.user && object.user == current_user
-    end
-  end
-  
   def rich(html)
     sanitize(html)
   end

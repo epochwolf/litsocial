@@ -170,6 +170,10 @@ GEM
       fastthread (>= 1.0.1)
       rack
       rake (>= 0.8.1)
+    pg (0.11.0)
+    pg_search (0.3.4)
+      activerecord (>= 3)
+      activesupport (>= 3)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
@@ -227,7 +231,6 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sqlite3 (1.3.4)
     squeel (0.9.3)
       activerecord (~> 3.0)
       activesupport (~> 3.0)
@@ -274,13 +277,14 @@ DEPENDENCIES
   meta_search (>= 1.1.0.pre)
   omniauth-facebook
   passenger
+  pg
+  pg_search
   rails (= 3.1.3)
   rails-dev-tweaks (~> 0.5.1)
   ruby-debug19
   rvm
   sanitize
   sass-rails (~> 3.1.5)
-  sqlite3
   squeel
   turn (= 0.8.2)
   twitter-bootstrap-rails!

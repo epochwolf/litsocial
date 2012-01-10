@@ -12,12 +12,15 @@
 #   port: 5432
 #   username: singleforest
 #   password:
+  
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: lit_social_development
   pool: 5
-  timeout: 5000
-
+  host: localhost
+  port: 5432
+  
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
@@ -32,10 +35,12 @@ development:
 #   password:
 
 test:
-  adapter: sqlite3
-  database: db/test.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: lit_social_test
   pool: 5
-  timeout: 5000
+  host: localhost
+  port: 5432
 
 production:
   adapter: postgresql

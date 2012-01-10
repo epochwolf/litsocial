@@ -48,13 +48,17 @@ ActiveRecord::Schema.define(:version => 20111229233948) do
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "literatures", :force => true do |t|
-    t.string   "title"
-    t.integer  "user_id"
-    t.text     "contents"
-    t.boolean  "deleted"
+    t.string   "title",                             :null => false
+    t.integer  "user_id",                           :null => false
+    t.text     "contents",                          :null => false
+    t.text     "deleted_reason", :default => "",    :null => false
+    t.boolean  "deleted",        :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "literatures", ["deleted", "id"], :name => "index_literatures_on_deleted_and_id"
+  add_index "literatures", ["user_id"], :name => "index_literatures_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name",                                                     :null => false
@@ -63,8 +67,7 @@ ActiveRecord::Schema.define(:version => 20111229233948) do
     t.boolean  "admin",                                 :default => false, :null => false
     t.text     "biography",                             :default => "",    :null => false
     t.text     "facebook_data"
-    t.boolean  "autopost_to_facebook",                  :default => false
-    t.boolean  "sync_with_facebook",                    :default => true
+    t.boolean  "never_set_password",                    :default => false, :null => false
     t.string   "email",                                 :default => "",    :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "",    :null => false
     t.string   "facebook_token"

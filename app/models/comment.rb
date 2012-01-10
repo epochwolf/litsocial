@@ -20,14 +20,20 @@ class Comment < ActiveRecord::Base
   
   validates :contents, :commentable_type, :commentable_id, :user_id, :presence => true
   validates_inclusion_of :commentable_type, :in => COMMENTABLES
+  
   attr_accessible :parent_id, :contents
+  attr_protected :as => :admin
+
+  def parent_id=(int)
+    self[:parent_id] = int if new_record?
+  end
   
   def reply?
     parent_id ? true : false
   end
   
   def children?
-    reply_count > 0
+    (reply_count || 0) > 0
   end
   
   protected

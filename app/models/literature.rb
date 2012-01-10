@@ -12,6 +12,7 @@ class Literature < ActiveRecord::Base
   validates_presence_of :user_id
   
   attr_accessible :title, :contents
+  attr_protected :as => :admin
   
   def visible?
   	!deleted

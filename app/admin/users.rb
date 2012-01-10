@@ -21,4 +21,5 @@ ActiveAdmin.register User do
       link_to("Edit", [:edit, :admin, f], :class => "member_link")
     end
   end
+  
 end

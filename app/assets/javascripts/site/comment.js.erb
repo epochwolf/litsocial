@@ -1,0 +1,98 @@
+Comment = {
+  new: function(link){
+    $('#comment_form_reply').html("");
+    $('#comment_form_action').val("create");
+    $('#comment_form_id').val("");
+    $('#comment_form_parent_id').val("");
+    $('#comment_form_contents').val("");
+    
+    $('#comment_dialog_title').html("New Comment");
+    $('#comment_dialog').modal('show');
+  },
+  reply: function(parent_id, link){
+    $('#comment_form_reply').html($('#comment-'+parent_id).html());
+    $('#comment_form_action').val("create");
+    $('#comment_form_id').val("");
+    $('#comment_form_parent_id').val(parent_id);
+    $('#comment_form_contents').val("");
+    
+    $('#comment_dialog_title').html("New Reply");
+    $('#comment_dialog').modal('show');
+  },
+  create: function(form, data){
+    var url = "/comments/";  
+    var parent = data["comments[parent_id]"];
+    var callback = function(data, status, xhr){
+      stop_modal_spinner();
+      if(data["success"]){
+        if(parent == ""){
+          $("#comments").append(data["html"])
+        }else{
+          $("#comment-container-"+parent).append(data["html"])
+        }
+      }else{
+        alert("There was an error updating your comment: "+data["errors"]);
+      }
+    };
+    $.post(url, data, callback, 'json');
+  },
+  edit: function(comment_id, link){
+    $('#comment_form_reply').html("");
+    $('#comment_form_action').val("update");
+    $('#comment_form_id').val(comment_id);
+    $('#comment_form_parent_id').val("");
+    $('#comment_form_contents').val(Comment.get_body(comment_id));
+    
+    $('#comment_dialog_title').html("Edit Comment");
+    $('#comment_dialog').modal('show');
+  },
+  update: function(form, data){    
+    data['_method'] = 'put';
+    var comment_id = data['id']
+    var url = "/comments/"+comment_id;  
+    var callback = function(data, status, xhr){
+      stop_modal_spinner();
+      if(data["success"]){
+        $("#comment-"+comment_id).replaceWith(data["html"])
+      }else{
+        alert("There was an error updating your comment: "+data["errors"]);
+      }
+    };
+    $.post(url, data, callback, 'json');
+  },
+  
+  destroy_prompt: function(comment_id, link){
+    if(confirm("Are you sure you want to delete this comment?")){
+      Comment.destroy(comment_id, link);
+    }
+  },
+  destroy: function(comment_id, link){
+    var url = "/comments/"+comment_id;
+    var data = {"_method": "delete"};
+    var callback = function(data, status, xhr){
+      if(data["success"]){
+        $("#comment-"+comment_id).replaceWith(data["html"])
+      }else{
+        alert("There was an error deleting your comment.");
+      }
+    };
+    $.post(url, data, callback, 'json');
+  },
+  form_submit:function(form_dom){
+    $('#comment_dialog').modal('hide');
+    start_modal_spinner();
+    var form = $(form_dom);
+    var data = flatten_serialized_array(form.serializeArray());
+    
+    var func = Comment[data["action"]];
+    console.log(data);
+    func(form_dom, data);
+    
+  },
+  get_body: function(comment_id){
+    return $('#comment-'+comment_id+" .comment_body").html();
+  },
+  set_form: function(hash){
+    
+  },
+}

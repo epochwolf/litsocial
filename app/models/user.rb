@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :biography, :password, :password_confirmation, :remember_me
+  attr_protected :as => :admin
   attr_accessor :new_from_facebook, :just_linked_to_facebook # used to inform the UI that we just created or linked a user
   
   def linked_to_facebook?

@@ -1,0 +1,25 @@
+.row{:id => "comment-#{comment.id}"}
+  .span9{:class => comment.reply? ? "offset2" : "" }
+    .row
+      .span9.comment_header
+        %h5{:style => "display: inline;"}
+          =user_link comment.user
+          %small=dt comment.created_at
+        %span{:style => "padding-left: .5em;"}  
+          -if comment.edited?
+            %span.label Edited
+          -if current_user.admin?
+            =link_to "admin", edit_admin_user_comment_path(comment), :class => ''
+          -if owner?(comment) && !comment.deleted?
+            =link_to "edit", '#', :class => '', :onclick => "Comment.edit('#{comment.id}', this);return false;"
+            =link_to "delete", '#', :class => '', :onclick => "Comment.destroy_prompt('#{comment.id}', this);return false;"
+    -unless comment.deleted?
+      .row
+        .span9.well.comment_body=rich comment.contents    
+    -else
+      .row
+        .span9.not-well
+          %a.label{:href => '#', :rel => 'popover', :title => "Reason for Removal", :data => {:placement => 'below', :content => (comment.deleted_reason.presence || "Removed by user")}} Removed
+    -unless comment.deleted? || comment.reply? # the reply part is also enforced in the comments model
+      .row
+        .span9=link_to "Reply", '#', :onclick => "Comment.reply('#{comment.id}', this); return false;"

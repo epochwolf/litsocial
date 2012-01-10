@@ -1,0 +1,50 @@
+-#required: comments, commentable
+=link_to "Leave a comment", '#', :class => 'btn small success', :onclick => "Comment.new(this); return false;"
+
+#comments{:style => "margin-top: 20px"}
+  -comments.try :each do |comment|
+    %div{:id => "comment-container-#{comment.id}"}
+      .comment{:id => "comment-#{comment.id}"}
+        =render "comments/body", :comment => comment
+        .comment-metadata
+          %h5
+            =user_link comment.user
+            %small=dt comment.created_at
+            =render "comments/edit_links", :comment => comment
+        .comment-reply-link
+          =link_to "Reply to this comment", '#', :class => "", :onclick => "Comment.reply('#{comment.id}', this); return false;"
+      -if comment.children?
+        .comment-replies
+          
+          -comment.children.each do |comment|
+            .comment-reply{:id => "comment-#{comment.id}"}
+              =render "comments/body", :comment => comment
+              .reply-metadata
+                =user_link comment.user
+                =dt comment.created_at
+                =render "comments/edit_links", :comment => comment
+
+
+#comment_dialog.modal.hide
+  .modal-header
+    =link_to 'x', '#', :class => "close"
+    %h3#comment_dialog_title New Comment
+  =form_tag '#', :onsubmit => "Comment.form_submit(this);return false;", :id => "comment_form" do
+    =hidden_field_tag "action", "create", :id => "comment_form_action"
+    =hidden_field_tag 'id', nil, :id => "comment_form_id"
+    =hidden_field_tag 'comments[commentable_type]', commentable.class.name
+    =hidden_field_tag 'comments[commentable_id]', commentable.id
+    =hidden_field_tag 'comments[parent_id]', nil, :id => "comment_form_parent_id"
+    .modal-body
+      .row#comment_form_reply
+      =text_area_tag 'comments[contents]', "", :id => "comment_form_contents", :class => 'span9'
+    .modal-footer
+      =submit_tag 'Submit', :class => 'btn primary'
+      =link_to 'Cancel', '#', :onclick => "$('#comment_dialog').modal('hide');", :class => 'btn secondary'
+
+#please_wait.modal.hide
+  .modal-header
+    %h3 Please wait
+  .modal-body
+    %p Your request will be processed in the order it was recieved.
+  .modal-footer

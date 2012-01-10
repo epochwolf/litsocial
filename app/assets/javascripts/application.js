@@ -7,6 +7,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require_tree ./site
 
 $(document).ready(function(){
   //Activate html editor
@@ -15,6 +16,7 @@ $(document).ready(function(){
   // Bootstrap stuff
   $(".alert-message").alert();
   $('.modal').modal({show: false, keyboard: true, backdrop: true});
+  $('a[rel=popover]').popover();
   
 })
 
@@ -27,8 +29,10 @@ function stop_modal_spinner(){
 }
 
 
-function copy_text_from_iframe(target, text_to_copy){
-  console.log("copy_text_from_iframe('"+target+"', '"+text_to_copy+"')");
-  stop_modal_spinner();
-  $(target).val(text_to_copy);
+function flatten_serialized_array(arr){
+  var r = {};
+  $.each(arr, function(index, value){
+    r[value.name] = value.value
+  })
+  return r
 }

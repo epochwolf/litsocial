@@ -4,25 +4,10 @@
 #comments{:style => "margin-top: 20px"}
   -comments.try :each do |comment|
     %div{:id => "comment-container-#{comment.id}"}
-      .comment{:id => "comment-#{comment.id}"}
-        =render "comments/body", :comment => comment
-        .comment-metadata
-          %h5
-            =user_link comment.user
-            %small=dt comment.created_at
-            =render "comments/edit_links", :comment => comment
-        .comment-reply-link
-          =link_to "Reply to this comment", '#', :class => "", :onclick => "Comment.reply('#{comment.id}', this); return false;"
+      =render 'comments/show', :comment => comment
       -if comment.children?
-        .comment-replies
-          
-          -comment.children.each do |comment|
-            .comment-reply{:id => "comment-#{comment.id}"}
-              =render "comments/body", :comment => comment
-              .reply-metadata
-                =user_link comment.user
-                =dt comment.created_at
-                =render "comments/edit_links", :comment => comment
+        -comment.children.each do |comment|
+          =render 'comments/show', :comment => comment
 
 
 #comment_dialog.modal.hide

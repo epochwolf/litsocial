@@ -56,7 +56,7 @@ gem 'capistrano'
 gem 'capistrano-ext'
 
 group :development, :test do
-  gem 'ruby-debug19', :require => 'ruby-debug'
+  #gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'rails-dev-tweaks', '~> 0.5.1'
 end
 

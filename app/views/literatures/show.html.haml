@@ -6,7 +6,7 @@
         by #{user_link @literature.user} on #{dt(@literature.created_at)}
   .span4 
     .pull-right 
-      -if current_user.admin?
+      -if admin?
         =link_to "admin", [:edit, :admin, @literature], :class => 'btn small primary' 
       -if owner?(@literature)
         =link_to "edit", [:edit, @literature], :class => 'btn small'

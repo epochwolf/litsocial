@@ -51,7 +51,6 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # Deploy with Capistrano
 gem 'exception_notification'
 gem 'rvm'
-gem 'passenger'
 gem 'capistrano'
 gem 'capistrano-ext'
 

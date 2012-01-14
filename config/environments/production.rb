@@ -47,7 +47,7 @@ LitSocial::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { :host => 'litsocial.com' }
+  config.action_mailer.default_url_options = { :host => 'litsocial.com', :default => {:from => 'Lit Social <no-reply@litsocial.com>', :reply_to => 'Epoch Wolf <epochwolf@litsocial.com>'} }
 
   # Enable threaded mode
   # config.threadsafe!

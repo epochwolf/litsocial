@@ -23,4 +23,12 @@ class ApplicationController < ActionController::Base
       object.user && object.user == current_user
     end
   end
+  
+  protected
+  def log_current_user
+    request.env["exception_notifier.exception_data"] = {
+      # names aren't unique so we do need to include the user's email in the error log.
+      :current_user => current_user.try(:attributes).try(:slice, :id, :email, :admin),
+    }
+  end
 end

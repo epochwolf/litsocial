@@ -14,7 +14,7 @@ class ActiveSupport::TestCase
   #include Devise::TestHelpers
 end
 
-class LiteraturesControllerTest < ActionController::TestCase
+class ActionController::TestCase
   include Devise::TestHelpers
 end
 

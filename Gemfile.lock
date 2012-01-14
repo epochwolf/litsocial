@@ -66,7 +66,6 @@ GEM
     acts_as_list (0.1.4)
     acts_as_tree (0.1.1)
     addressable (2.2.6)
-    ansi (1.4.1)
     arel (2.2.1)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
@@ -229,8 +228,6 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
-    turn (0.8.2)
-      ansi (>= 1.2.2)
     tzinfo (0.3.31)
     uglifier (1.1.0)
       execjs (>= 0.3.0)
@@ -271,7 +268,6 @@ DEPENDENCIES
   sanitize
   sass-rails (~> 3.1.5)
   squeel
-  turn (= 0.8.2)
   twitter-bootstrap-rails!
   twitter_bootstrap_form_for!
   uglifier (>= 1.0.3)

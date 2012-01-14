@@ -24,11 +24,15 @@ class User < ActiveRecord::Base
   def facebook_name
     return nil unless linked_to_facebook?
     facebook_data.try(:[], :name)
+  rescue TypeError # facebook_data is an array or a string?
+    "Profile ##{facebook_token} (Name unkown)"
   end
   
   def facebook_profile
     return nil unless linked_to_facebook?
     facebook_data.try(:[], :link) || "http://www.facebook.com/#{facebook_token}"
+  rescue TypeError # facebook_data is an array or a string?
+    "https://facebook.com/#{facebook_token}"
   end
   
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)

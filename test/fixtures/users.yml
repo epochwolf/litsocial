@@ -27,7 +27,7 @@ two:
   updated_at: <%=Time.now %>
   
   
-two: 
+three: 
   id: 3
   name: A Member
   email: member2@example.com
@@ -37,3 +37,18 @@ two:
   admin: false
   created_at: <%=Time.now %>
   updated_at: <%=Time.now %>
+  
+invalid_facebook_data:
+  id: 4
+  name: A Member
+  email: member3@example.com
+  encrypted_password: <%= ::BCrypt::Password.create("Password",  :cost => 1) %>
+  gender: male
+  biography: I am the token member
+  admin: false
+  created_at: <%=Time.now %>
+  updated_at: <%=Time.now %>
+  facebook_token: 4
+  facebook_data: "---\n'a string'"
+  
+  

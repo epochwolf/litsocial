@@ -46,8 +46,9 @@ production:
   adapter: postgresql
   encoding: unicode
   database: litsocial
-  pool: 5
-  host: localhost
-  port: 5432
+  # don't need things, using unix socket instead.
+  #pool: 5
+  #host: localhost
+  #port: 5432
   username: <%=LitSocial::DB_USER %>
   password: <%=LitSocial::DB_PASSWORD %>

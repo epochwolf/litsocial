@@ -45,7 +45,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: lit_social_production
+  database: litsocial
   pool: 5
   host: localhost
   port: 5432

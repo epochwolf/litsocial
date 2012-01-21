@@ -22,4 +22,8 @@ ActiveAdmin.register Comment, :as => "UserComment" do
   #   end
   # end
   
+  
+  before_save do |currm|
+    currm.assign_attributes(params[:comment], :role => :admin)
+  end
 end

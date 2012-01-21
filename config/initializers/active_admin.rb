@@ -34,7 +34,7 @@ ActiveAdmin.setup do |config|
   #
   # This setting changes the method which Active Admin calls
   # within the controller.
-  config.authentication_method = :authenticate_user!
+  config.authentication_method = :authenticate_admin!
 
 
   # == Current User
@@ -44,7 +44,7 @@ ActiveAdmin.setup do |config|
   #
   # This setting changes the method which Active Admin calls
   # to return the currently logged in user.
-  config.current_user_method = :current_user_if_admin
+  config.current_user_method = :current_user
 
 
   # == Logging Out
@@ -107,21 +107,6 @@ class ActiveAdmin::Views::HeaderRenderer < ActiveAdmin::Renderer
       content_tag :a, :href => "/" do
         active_admin_application.site_title
       end
-    end
-  end
-end
-
-module ActiveAdmin
-  class FormBuilder < ::Formtastic::SemanticFormBuilder
-    def html_input(method, options)
-      form_helper_method = :text_area
-      type = :text
-      html_options = options.delete(:input_html) || {}
-      html_options = default_string_options(method, type).merge(html_options)
-      html_options[:"data-widget"] = "ckeditor"
-
-      self.label(method, options_for_label(options)) << "<div class=\"rich-text-field\">".html_safe <<
-      self.send(form_helper_method, method, html_options) << "</div>".html_safe
     end
   end
 end

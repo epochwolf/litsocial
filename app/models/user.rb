@@ -5,14 +5,17 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, 
          :omniauthable
+         
         
   has_many :literatures
         
-  validates_inclusion_of :gender, :in => %w( male female ), :allow_blank => true
+  GENDERS =  [ "", "male", "female"]  
+  
+  validates_inclusion_of :gender, :in => GENDERS, :allow_blank => true
   validates_uniqueness_of :facebook_token, :allow_nil => true
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :biography, :password, :password_confirmation, :remember_me
+  attr_accessible :name, :gender, :email, :biography, :password, :password_confirmation, :remember_me
   attr_protected :as => :admin
   attr_accessor :new_from_facebook, :just_linked_to_facebook # used to inform the UI that we just created or linked a user
   

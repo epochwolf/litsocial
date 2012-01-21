@@ -22,4 +22,31 @@ ActiveAdmin.register User do
     end
   end
   
+  form do |f|    
+    f.inputs "Profile" do
+      f.input :name
+      f.input :email
+      f.input :gender, :as => :select, :collection => User::GENDERS
+      f.input :biography, :as => :html
+    end
+    f.inputs "Flags" do
+      f.input :admin
+      f.input :never_set_password
+      f.input :prevent_login, :hint => "The nuclear option to lock out a user completely."
+    end
+    f.inputs "Facebook Account" do
+      f.input :facebook_token
+      f.input :timezone
+    end
+    f.inputs "Failed Password Lockout" do
+      f.input :failed_attempts
+      f.input :unlock_token
+      f.input :locked_at
+    end
+    f.buttons
+  end
+  
+  before_save do |currm|
+    currm.assign_attributes(params[:user], :role => :admin)
+  end
 end

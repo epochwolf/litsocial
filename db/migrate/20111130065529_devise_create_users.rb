@@ -4,10 +4,12 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :name,                   :null => false
       t.string :gender
       t.string :timezone
-      t.boolean :admin,                 :null => false, :default => false
       t.text :biography,                :null => false, :default => ''
       t.text :facebook_data
+      
+      t.boolean :admin,                 :null => false, :default => false
       t.boolean :never_set_password,    :null => false,  :default => false
+      t.boolean :prevent_login,         :null => false, :default => false
     
       t.database_authenticatable :null => false
       t.string :facebook_token

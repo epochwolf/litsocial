@@ -30,4 +30,8 @@ ActiveAdmin.register Literature do
   before_build do |currm|
     currm.user = current_user
   end
+  
+  before_save do |currm|
+    currm.assign_attributes(params[:literature], :role => :admin)
+  end
 end

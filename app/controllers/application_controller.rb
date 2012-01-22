@@ -9,7 +9,10 @@ class ApplicationController < ActionController::Base
   before_filter :logout_banned_users
   
   helper_method :return_path, :here, :owner?, :admin?
-  
+
+  def info_for_paper_trail
+    { :ip_address => request.remote_ip, :user_agent => request.user_agent }
+  end
   
   protected
   def show403(message="This page is currently unavailable.")
@@ -35,6 +38,8 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+  
+  
   
   # FILTERS
   

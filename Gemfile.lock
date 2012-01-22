@@ -165,6 +165,8 @@ GEM
       oauth2 (~> 0.5.0)
       omniauth (~> 1.0)
     orm_adapter (0.0.6)
+    paper_trail (2.6.0)
+      rails (~> 3)
     pg (0.12.2)
     pg_search (0.4)
       activerecord (>= 3)
@@ -253,6 +255,7 @@ DEPENDENCIES
   jquery-rails
   less-rails
   omniauth-facebook
+  paper_trail
   pg
   pg_search
   rails (= 3.2.0)

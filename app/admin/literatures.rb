@@ -1,27 +1,24 @@
 ActiveAdmin.register Literature do
   
-  # index do
-  #   column :id
-  #   column :name do |u|
-  #     link_to u.name, admin_user_path(u)
-  #   end
-  #   column :gender
-  #   column :current_sign_in_at
-  #   column "Sync w/FB", :sync_with_facebook do |u| u.sync_with_facebook? ? "Yes" : "No" end
-  #   column "Autopost", :autopost_to_facebook do |u| u.autopost_to_facebook? ? "Yes" : "No" end
-  #   column "TZ", :timezone
-  #   column :admin do |u| u.admin? ? "Yes" : "No" end
-  #   
-  #   column do |f|
-  #     link_to("Edit", [:edit, :admin, f], :class => "member_link")
-  #   end
-  # end
+  index do 
+    column :id
+    column :title do |l|
+      link_to l.title, [:admin, l]
+    end
+    column :user
+    column :created_at
+    column :deleted do |l| l.deleted? ? "Yes" : "No" end
+  end
   
   form do |f|
     f.inputs "Content" do
       f.input :user
       f.input :title
       f.input :contents, :as => :html
+    end
+    f.inputs "Deletion" do
+      f.input :deleted
+      f.input :deleted_reason
     end
     f.buttons
   end
@@ -34,4 +31,15 @@ ActiveAdmin.register Literature do
   before_save do |currm|
     currm.assign_attributes(params[:literature], :role => :admin)
   end
+  
+  action_item :only => [:show, :edit] do
+    link_to "Versions", [:versions, :admin, resource]
+  end
+  
+  member_action :versions do
+    @object = Literature.find(params[:id])
+    @versions = @object.versions
+    render 'admin/paper_trail.arb'
+  end
+  
 end

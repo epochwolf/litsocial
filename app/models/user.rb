@@ -6,6 +6,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, 
          :omniauthable
          
+   # track admin modifications to users
+   has_paper_trail :only => [
+     :name, :gender, :email, :biography, # user fields
+     :admin, :never_set_password, # admin fields
+     :current_sign_in_at, :reset_password_sent_at, :locked_at # suspicious activity?
+   ]
         
   has_many :literatures
         

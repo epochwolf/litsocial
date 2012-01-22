@@ -1,5 +1,16 @@
 ActiveAdmin.register Comment, :as => "UserComment" do
   
+  actions :index, :show, :edit, :update
+  
+  form do |f|
+    f.inputs do
+      f.input :contents, :as => :html, :hint => "<br/>Do not edit a user's comment without a damn good reason.".html_safe
+      f.input :deleted
+      f.input :deleted_reason
+    end
+    f.buttons
+  end
+  
   # index do
   #   column :id
   #   column :name do |u|

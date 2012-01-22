@@ -2,6 +2,11 @@ class Comment < ActiveRecord::Base
   belongs_to :commentable, :polymorphic => true
   belongs_to :user
   
+  has_paper_trail :only => [
+    :contents,
+    :deleted, :deleted_reason
+  ]
+  
   # List all classes that allow comments. This is used for both validation and filtering in the controller. 
   COMMENTABLES = ["Literature"]
   

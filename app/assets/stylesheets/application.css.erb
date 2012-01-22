@@ -7,6 +7,9 @@
  *= require_vendor
 */
 
+/* Bootstrap overrides
+*/
+
 html body {
   /*padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
 }
@@ -21,33 +24,42 @@ html input, html textarea, html select, html .uneditable-input {
   color: #444;
 }
 
+/* Prevent topbar from staying on the top when the user scrolls. */
 html .topbar {
   position: static;
   padding-bottom: 10px;
 }
 
+/* Add site icon to the topbar title */
 html .topbar a.brand{
   background-image: url(<%=asset_path 'favicon.png' %>);
   background-repeat: no-repeat;
   background-position: left center;
 }
 
+/* Fix unlinked text color in the topbar */
 html .topbar p{
   color: white;
 }
 
+/* For when the default hr styling it too tall */
 html hr.slim {
   margin-top: 0px;
 }
 
+/* Allow labels be applied to links without looking wierd on mouseover. */
 html a.label:hover {
   color: white;
 }
 
+/* Add well padding without the background color */
 html div.not-well{
   margin-bottom: 20px;
   padding: 0 20px;
 }
+
+/* Styling for comments 
+*/
 
 .comment{
   margin-bottom: 20px;

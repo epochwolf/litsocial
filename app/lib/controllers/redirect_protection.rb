@@ -14,7 +14,7 @@ module RedirectProtection
   end
   
   def here
-    request.require_uri
+    request.url
   end
   
   def return_path(path_if_nil=nil)

@@ -12,12 +12,7 @@
 $(document).ready(function(){
   //Activate html editor
   $( 'textarea[data-widget=ckeditor]' ).ckeditor();
-  
-  // Bootstrap stuff
-  $(".alert-message").alert();
-  $('.modal').modal({show: false, keyboard: true, backdrop: true});
-  $('a[rel=popover]').popover();
-  
+
 })
 
 function start_modal_spinner(){

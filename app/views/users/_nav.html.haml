@@ -2,7 +2,8 @@
   def active_for(*actions)
     actions.any?{|action| params[:action] == action } ? "active" : nil
   end
-%h2.pull-left{:style => 'padding-right: 1em'}=@user.name
-%ul.tabs
+%h3.pull-left{:style => 'padding-right: 1em'}=@user.name
+=link_to "Send Message", new_account_message_path(@user, :to => @user.id), :class => 'btn btn-success pull-right'
+%ul.nav.nav-tabs
   %li{:class => active_for("show")}=link_to "Profile", user_path(@user)
   %li{:class => active_for("literatures")}=link_to "Literature", literatures_user_path(@user)

@@ -11,8 +11,12 @@ module ApplicationHelper
     if user.nil?
       content_tag('em', "None")
     else
-      link_to user.name, user
+      link_to(h(user.name), user) + " (#{user.id})"
     end
+  end
+  
+  def icon_link(icon, name, *args)
+    link_to("<i class='icon-#{icon}'></i> ".html_safe + h(name), *args)
   end
   
   def rich(html)

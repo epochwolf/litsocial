@@ -1,0 +1,9 @@
+%h2.page-header New Message
+=tb_form_for @message, url:account_messages_path(current_user), html:{class:'form-horizontal'} do |f|
+  =f.inputs do
+    =f.text_field :to_ids, "Account Numbers" do
+      %span.help-block You can find a user's account number on their profile page. 
+    =f.text_area :contents, rows:5
+  =f.actions do
+    =f.submit @message.new_record? ? "Create" : "Update", class:"btn btn-primary"
+    =link_to "Cancel", return_path(account_messages_path(current_user)), :class => "btn"

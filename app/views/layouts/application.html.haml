@@ -1,29 +1,13 @@
 !!!
 %html{lang: "en"}
   %head=render 'layouts/head'
+  
   %body
-    .topbar=render 'layouts/top_bar'
-    -if flash[:alert] || flash[:notice]
-      .container
-        .content
-          .row
-            .span16
-              -if flash[:alert] 
-                .alert-message.error{"data-alert" => "alert"}
-                  %a.close{:href => '#'} x
-                  %p=flash[:alert]
-              
-              -if flash[:notice] 
-                .alert-message.success{"data-alert" => "alert"}
-                  %a.close{:href => '#'} x
-                  %p=flash[:notice]
+    .container-fluid
+      =render 'layouts/init_facebook'
+      #header.row-fluid=render 'layouts/top_bar'
+      =render 'layouts/notices'
+      #contents.row-fluid
+        .span12=yield
+      #footer.row-fluid=render 'layouts/footer'
       
-    .container
-      .content
-        .row
-          .span16=yield
-      %footer
-        %p.pull-left Lit Social, Copyright 2011 epochwolf
-        / If you fork the source, please update this link to your modifications.
-        %p.pull-right Source Avaiable At: #{link_to 'https://github.com/epochwolf/litsocial', 'https://github.com/epochwolf/litsocial'}
-        

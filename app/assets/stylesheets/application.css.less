@@ -1,0 +1,18 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree ./site
+ *= require_vendor
+*/
+
+/* Add well padding without the background color */
+//@import "twitter/bootstrap/responsive.less";
+@import "twitter/bootstrap.less";
+
+#footer{
+  margin-top: 2em;
+  padding-top: 1em;
+  border-top: 1px solid #ddd;
+}

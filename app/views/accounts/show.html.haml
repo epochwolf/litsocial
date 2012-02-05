@@ -1,3 +1,35 @@
 =render 'nav'
 
-%p Welcome, #{@user.name}
+%h3 Public Information
+%table.table.table-bordered
+  %tbody
+    %tr
+      %th Account Id
+      %td=@user.id
+    %tr
+      %th Name
+      %td=@user.name
+    %tr
+      %th Gender
+      %td=@user.gender
+    %tr
+      %th About Me
+      %td=@user.biography
+      
+%h3 Private Information
+%table.table.table-bordered
+  %tbody
+    %tr
+      %th Facebook Login
+      %td
+        -if @user.linked_to_facebook?
+          =link_to @user.facebook_name, @user.facebook_profile
+        -else
+          Not connected
+    %tr
+      %th Email Login
+      %td
+        -if @user.never_set_password?
+          Not enabled, set a password to turn on email login
+        -else
+          =@user.email

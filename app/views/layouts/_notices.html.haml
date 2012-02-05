@@ -1,0 +1,9 @@
+
+-if flash[:alert] || flash[:notice]
+  #site-alerts.row-fluid
+    .span12
+      -{alert: "error", notice: "success"}.each do |type, css|
+        -if flash[type]
+          .alert{class:"alert-#{css}"}
+            %a.close{href:'#', data:{dismiss:'alert'}} x
+            %p=flash[type]

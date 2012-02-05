@@ -1,42 +1,49 @@
 =render 'nav'
 
-=tb_form_for @user, :url => account_path(@user) do |f|
+=tb_form_for @user, url:account_path(@user), html:{class:'form-horizontal'} do |f|
   -if @user.invalid?
     .alert-message.error{"data-alert" => "alert"}
       %a.close{:href => '#'} x
       %p There was an error saving changes.
+      
   =f.inputs "Your Profile" do
-    =f.text_field :name, :hint => "Your name on the site." do
-      %span.help-block This is how you will be identified to other users.
+    =f.text_field :id, "Account Id", disabled:true
+    =f.text_field :name do
+      %span.help-block This is how you will be identified to other users.  
     =f.select :gender, "Gender", [["Male", "male"], ["Female", "female"], ["Don't Show", ""]]
-    =f.text_area :biography, "About Me", :class => 'xxlarge', :rows => '5'
+    =f.text_area :biography, "About Me", class:'xxlarge', rows:5
+    
   =f.inputs "Account Details" do
-    =f.email_field :email, :hint => "Not displayed, used for logging in or to recover your account." do
-      %span.help-block Never displayed on your profile, used only for login or recovering your account.
-    .clearfix
+    %p All information in this section is private and never displayed on your profile.
+    =f.email_field :email, hint:"Not displayed, used for logging in or to recover your account." do
+      %span.help-block Used only for login or recovering your account.
+    .clearfix.control-group
       %label Facebook Profile
-      .input
+      .input.controls
         -if @user.linked_to_facebook?
-          %p
+          %p.uneditable-input
             #{link_to @user.facebook_name, @user.facebook_profile}
         -else
-          %p 
+          %p.uneditable-input
             %em Not connected.
             =link_to "Connect my profile", omniauth_authorize_path(:user, "facebook")
-        %span.help-block Never displayed on your profile, used only for login.
-        
+        %span.help-block Used only for login.
+    
     =f.password_field :password do
-      %span.help-block Leave blank if you don't want to update your password.
+      -if @user.never_set_password?
+        %span.help-block You have not set a password. Leave this blank if you don't want to set one.
+      -else
+        %span.help-block Leave blank if you don't want to update your password.
     =f.password_field :password_confirmation
+    
   =f.actions do
-    =f.submit "Update"
-    =link_to "Cancel", return_path('/'), :class => "btn"
+    =f.submit "Update", class:"btn btn-primary"
+    =link_to "Cancel", return_path(account_path(current_user)), :class => "btn"
     
 .well
-  %h4 Canceling your account
+  %h4 Permanently canceling your account
   %p 
-    We can't cancel accounts yet. If you want to close your account please delete all literature in your account and 
-    change your name to "Closed Account". An administrator will permanently delete your account at a 
-    later date.
+    We can't delete accounts yet. If you want your account removed, please delete all literature listed under "My Account" and 
+    change your name to "Closed Account". We'll permanently remove your account at a later date. 
   %h4 Disconnecting your account from facebook
-  %p Please email an administrator at help@litsocial.com and they can manually unlink your account from facebook.
+  %p Please email us at help@litsocial.com and we can manually unlink your account from facebook.

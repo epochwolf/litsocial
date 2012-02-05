@@ -9,6 +9,12 @@ LitSocial::Application.routes.draw do
   resources :literatures
   resources :comments, :only => [:create, :update, :destroy]
   resources :accounts, :only => [:index, :show, :edit, :update] do
+    resources :messages do
+      collection do
+        get :read
+        get :sent
+      end
+    end
     member do
       get :literatures
     end

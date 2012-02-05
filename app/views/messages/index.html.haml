@@ -1,0 +1,24 @@
+=render 'nav'
+#messages
+  -@messages.each do |message|
+    .message
+      .message_header
+        -if message.is_a? ReceivedMessage
+          From: #{user_link message.from}
+        -else
+          To: #{raw Array.wrap(message.to).map{|u| user_link(u) }.join(", ")}
+        %small.pull_right=dt message.created_at
+        /
+          -if message.is_a? ReceivedMessage
+            %span{:style => "padding-left: .5em;"}
+              %ul.edit-links
+                -unless message.read?
+                  %li=icon_link "check", "Read", '#'     
+                %li           
+                  -if message.flagged?
+                    %em{title: "Reporting can't be undone, sorry."} Reported
+                  -else
+                    =icon_link "flag", "Report", '#'
+                %li=icon_link "remove", "Delete", '#'
+        .span
+      .well.contents=rich message.contents

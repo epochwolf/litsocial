@@ -3,21 +3,40 @@
     controllers.any?{|controller| params[:controller] == controller } ? "active" : nil
   end
 
-.fill
-  .container
-    =link_to "Lit Social", root_url, :class => 'brand'
-    %ul.nav
-      %li{:class => active_for_controller("literatures")}=link_to "Literature", literatures_path
-      -if user_signed_in?
-        %li{:class => active_for_controller("accounts")}=link_to "My Account", account_path(current_user)
-    .pull-right
-      %p
+.navbar
+  .navbar-inner
+    .container-fluid
+      =link_to "Lit Social", root_url, :class => 'brand'
+      %ul.nav
+        %li{:class => active_for_controller("literatures")}=link_to "Literature", literatures_path
+        %li{:class => active_for_controller("forums")}=#link_to "Forum", forums_path
         -if user_signed_in?
-          Welcome,
-          =link_to current_user.name, account_path(current_user)
-          (#{link_to "Logout", destroy_user_session_path, :method => :delete})
+          %li{:class => active_for_controller("messages")}=link_to "Messages", account_messages_path(current_user)
+          %li{:class => active_for_controller("accounts")}=link_to "My Account", account_path(current_user)
+        -if admin?
+          %li=link_to "Admin Panel", "/admin"
+      .pull-right
+        -if user_signed_in?
+          %ul.nav
+            %li.dropdown 
+              %a.dropdown-toggle{href:"#", data:{toggle:"dropdown"}}
+                %i.icon-user.icon-white
+                =current_user.name
+                %b.caret
+              %ul.dropdown-menu
+                %li=link_to "My Profile", user_path(current_user)
+                %li=link_to "My Account", account_path(current_user)
+                %li.divider
+                %li=link_to "New Literature", new_literature_path
+                %li=link_to "New Message", new_account_message_path(current_user)
+                %li.divider
+                %li=link_to "Logout", destroy_user_session_path, :method => :delete
         -else
-          Sign in or sign up with
-          =link_to "Facebook", omniauth_authorize_path(:user, "facebook")
-          or 
-          =link_to "Email", new_user_session_path
+          %ul.nav
+            %li.dropdown 
+              %a.dropdown-toggle{href:"#", data:{toggle:"dropdown"}}
+                Sign In / Register
+                %b.caret
+              %ul.dropdown-menu
+                %li=link_to "With Facebook", omniauth_authorize_path(:user, "facebook")
+                %li=link_to "With My Email", new_user_session_path

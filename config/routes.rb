@@ -19,6 +19,9 @@ LitSocial::Application.routes.draw do
       get :literatures
     end
   end
+  
+  resources :news_posts, :only => [:index, :show], :path => "site_news"
+  
   resources :users, :only =>[:show] do
     member do
       get :literatures

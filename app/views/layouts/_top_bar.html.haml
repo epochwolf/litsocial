@@ -9,7 +9,7 @@
       =link_to "Lit Social", root_url, :class => 'brand'
       %ul.nav
         %li{:class => active_for_controller("literatures")}=link_to "Literature", literatures_path
-        %li{:class => active_for_controller("forums")}=#link_to "Forum", forums_path
+        %li{:class => active_for_controller("news_posts")}=link_to "Site News", news_posts_path
         -if user_signed_in?
           %li{:class => active_for_controller("messages")}=link_to "Messages", account_messages_path(current_user)
           %li{:class => active_for_controller("accounts")}=link_to "My Account", account_path(current_user)
@@ -18,8 +18,8 @@
       .pull-right
         -if user_signed_in?
           %ul.nav
-            %li.dropdown 
-              %a.dropdown-toggle{href:"#", data:{toggle:"dropdown"}}
+            %li.dropdown#navbar_profile_dropdown
+              %a.dropdown-toggle{href:"#", data:{toggle:"dropdown", target:'#navbar_profile_dropdown'}}
                 %i.icon-user.icon-white
                 =current_user.name
                 %b.caret

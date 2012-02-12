@@ -1,1 +1,17 @@
-%p Hi
+.row-fluid
+  .span6
+    %h2 Recent Literature
+    %ul.unstyled 
+      -@literatures.each do |literature|
+        %li
+          =link_to literature.title, literature
+          by
+          =user_link literature.user
+  .span6
+    %h2 Latest Site News
+    %ul.unstyled 
+      -@posts.each do |post|
+        %li
+          =link_to post.title, post
+          by
+          =user_link post.user

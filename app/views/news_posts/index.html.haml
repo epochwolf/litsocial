@@ -1,0 +1,17 @@
+-@posts.each do |post|
+  .row-fluid
+    .span10
+      %h1
+        =link_to post.title, post
+        %small 
+          by #{user_link post.user} in #{link_to "Site News", news_posts_path} on #{dt(post.created_at)}
+    .span2
+      .pull-right 
+        -if admin?
+          =link_to "admin", [:edit, :admin, post], :class => 'btn small btn-primary' 
+  
+  %hr.slim
+  .rich=rich post.contents
+  
+  
+  =paginate @posts

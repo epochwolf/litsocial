@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120121222121) do
+ActiveRecord::Schema.define(:version => 20120211012129) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -59,6 +59,42 @@ ActiveRecord::Schema.define(:version => 20120121222121) do
 
   add_index "literatures", ["deleted", "id"], :name => "index_literatures_on_deleted_and_id"
   add_index "literatures", ["user_id"], :name => "index_literatures_on_user_id"
+
+  create_table "messages", :force => true do |t|
+    t.text     "contents",                          :null => false
+    t.integer  "from_id",                           :null => false
+    t.boolean  "flagged",        :default => false, :null => false
+    t.boolean  "deleted",        :default => false, :null => false
+    t.text     "deleted_reason", :default => "",    :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
+  add_index "messages", ["deleted", "created_at"], :name => "index_messages_to_deleted"
+  add_index "messages", ["from_id", "created_at"], :name => "index_messages_on_from_id_and_created_at"
+
+  create_table "news_posts", :force => true do |t|
+    t.string   "title",                         :null => false
+    t.text     "contents",                      :null => false
+    t.integer  "user_id",                       :null => false
+    t.boolean  "published",  :default => false, :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  create_table "received_messages", :force => true do |t|
+    t.integer  "message_id",                    :null => false
+    t.integer  "to_id",                         :null => false
+    t.boolean  "read",       :default => false, :null => false
+    t.boolean  "flagged",    :default => false, :null => false
+    t.boolean  "deleted",    :default => false, :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  add_index "received_messages", ["flagged", "created_at"], :name => "index_received_messages_flagged"
+  add_index "received_messages", ["to_id", "deleted", "created_at"], :name => "index_received_messages_to_deleted"
+  add_index "received_messages", ["to_id", "read", "created_at"], :name => "index_received_messages_to_read"
 
   create_table "users", :force => true do |t|
     t.string   "name",                                                     :null => false

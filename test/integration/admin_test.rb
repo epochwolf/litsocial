@@ -6,8 +6,8 @@ class AdminTest < ActionDispatch::IntegrationTest
   test "Member can't access the admin panel" do
     sign_in(:two)
     
-    get "/admin"
-    assert_response :success
+    get_via_redirect "/admin"
+    assert_equal "/accounts/2", path
   end
   
   test "Guest can't access the admin panel" do
@@ -32,6 +32,12 @@ class AdminTest < ActionDispatch::IntegrationTest
     assert_response :success
     
     get "/admin/literatures/1"
+    assert_response :success
+    
+    get "/admin/news_posts"
+    assert_response :success
+    
+    get "/admin/news_posts/1"
     assert_response :success
   end
 end

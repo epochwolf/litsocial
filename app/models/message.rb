@@ -3,6 +3,8 @@ class Message < ActiveRecord::Base
   has_many :to,   :class_name => "User", :through => :received_messages
   belongs_to :from, :class_name => "User"
   
+  scope :sorted, order(:id.desc)
+  
   
   validates_presence_of :to, :contents, :from
   

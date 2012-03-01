@@ -1,16 +1,16 @@
-.row-fluid
-  .span10
-    %h1
-      =h @literature.title
-      %small 
-        by #{user_link @literature.user} on #{dt(@literature.created_at)}
-  .span2 
-    .pull-right 
-      -if admin?
-        =link_to "admin", [:edit, :admin, @literature], :class => 'btn small btn-primary' 
-      -if owner?(@literature)
-        =link_to "edit", [:edit, @literature], :class => 'btn small'
-        =link_to "delete", @literature, :method => :delete, :confirm => "Are you sure you want to delete '#{h @literature.title}'?", :class => 'btn small btn-danger'
+.pull-right 
+  -if admin?
+    =link_to "admin", [:edit, :admin, @literature], :class => 'btn small btn-primary' 
+  -if owner?(@literature)
+    =link_to "edit", [:edit, @literature], :class => 'btn small'
+    =link_to "delete", @literature, :method => :delete, :confirm => "Are you sure you want to delete '#{h @literature.title}'?", :class => 'btn small btn-danger'
+
+%h1
+  =h @literature.title
+%div
+  Created on #{dt(@literature.created_at)}
+  by #{user_link @literature.user} 
+
 %hr.slim
 -unless @literature.visible?
   .alert-message.warning

@@ -36,7 +36,7 @@ class MessagesController < ApplicationController
   end
   
   def update
-    if @message.update_attributes(params[:received_message])
+    if @message.update_attributes(params[:message])
       redirect account_messages_path(@user)
     else
       render :new
@@ -57,7 +57,7 @@ class MessagesController < ApplicationController
   end
   
   def find_message
-    @message = @user.received_messages.find(params[:id])
+    @message = @user.received_messages.find_by_message_id(params[:id])
   end
   
   def new_message

@@ -9,6 +9,10 @@ class ReceivedMessage < ActiveRecord::Base
   
   delegate :from, :contents, :to => :message
   
+  def js_id
+    "message-" + (new_record? ? String.random : message_id.to_s)
+  end
+  
   attr_accessible :read, :flagged, :deleted
   
   before_save :copy_flagged_to_message

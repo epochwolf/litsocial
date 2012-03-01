@@ -5,6 +5,9 @@ class Message < ActiveRecord::Base
   
   scope :sorted, order(:id.desc)
   
+  def js_id
+    "message-" + (new_record? ? String.random : id.to_s)
+  end
   
   validates_presence_of :to, :contents, :from
   

@@ -5,6 +5,7 @@ module ApplicationHelper
   end
   
   def continue_redirect
+    hidden_field_tag "return", return_path if return_path?
   end
   
   def ctag(*args, &block) 

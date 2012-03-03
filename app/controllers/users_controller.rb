@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_filter :find_user
   
   def show
+    @literatures = @user.literatures.recent(5)
   end
   
   def literatures

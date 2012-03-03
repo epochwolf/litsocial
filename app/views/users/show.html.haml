@@ -1,8 +1,13 @@
 =render 'nav'
 .row-fluid
-  .span8.biography=h @user.biography
-  .span4.recent-literature
-    %h3 Recent Literature
-    %ul.unstyled
-      -@user.literatures.recent(5).each do |l|
-        %li=link_to l.title, l
+  .span8.biography
+    -if @user.biography.blank?
+      %p #{@user.name} doesn't have a biography. 
+    -else
+      =h @user.biography
+  -unless @literatures.blank?
+    .span4.recent-literature
+      %h3 Recent Literature
+      %ul.unstyled
+        -@literatures.each do |l|
+          %li=link_to l.title, l

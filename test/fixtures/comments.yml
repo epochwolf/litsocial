@@ -2,24 +2,34 @@
 
 one:
   position: 1
-  commentable_type: MyString
+  commentable_type: Literature
   commentable_id: 1
   user_id: 1
-  parent_id: 1
   edited: false
   deleted: false
   contents: MyText
   reply_count: 1
-  deleted_reason: MyText
+
 
 two:
   position: 1
-  commentable_type: MyString
+  commentable_type: Literature
   commentable_id: 1
   user_id: 1
   parent_id: 1
   edited: false
   deleted: false
   contents: MyText
-  reply_count: 1
-  deleted_reason: MyText
+  reply_count: 0
+
+two:
+  position: 1
+  commentable_type: Literature
+  commentable_id: 1
+  user_id: 1
+  parent_id: 1
+  edited: false
+  deleted: true
+  contents: MyText
+  reply_count: 0
+  deleted_reason: Not funny

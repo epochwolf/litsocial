@@ -12,7 +12,7 @@
 
 #comment_dialog.modal.hide
   .modal-header
-    =link_to 'x', '#', :class => "close"
+    =link_to 'x', '#', :class => "close", :onclick => "$('#comment_dialog').modal('hide'); return false;"
     %h3#comment_dialog_title New Comment
   =form_tag '#', :onsubmit => "Comment.form_submit(this);return false;", :id => "comment_form" do
     =hidden_field_tag "action", "create", :id => "comment_form_action"
@@ -22,10 +22,10 @@
     =hidden_field_tag 'comments[parent_id]', nil, :id => "comment_form_parent_id"
     .modal-body
       .row#comment_form_reply
-      =text_area_tag 'comments[contents]', "", :id => "comment_form_contents", :class => 'span9'
+      =text_area_tag 'comments[contents]', "", :id => "comment_form_contents", :class => 'span9', :data => {:widget => 'ckeditor'}
     .modal-footer
       =submit_tag 'Submit', :class => 'btn primary'
-      =link_to 'Cancel', '#', :onclick => "$('#comment_dialog').modal('hide');", :class => 'btn secondary'
+      =link_to 'Cancel', '#', :onclick => "$('#comment_dialog').modal('hide'); return false;", :class => 'btn secondary'
 
 #please_wait.modal.hide
   .modal-header

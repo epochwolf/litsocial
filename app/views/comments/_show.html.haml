@@ -8,7 +8,7 @@
         %span{:style => "padding-left: .5em;"}  
           -if comment.edited?
             %span.label Edited
-          -if current_user.admin?
+          -if admin?
             =link_to "admin", edit_admin_user_comment_path(comment), :class => ''
           -if owner?(comment) && !comment.deleted?
             =link_to "edit", '#', :class => '', :onclick => "Comment.edit('#{comment.id}', this);return false;"
@@ -19,7 +19,10 @@
     -else
       .row
         .span9.not-well
-          %a.label{:href => '#', :rel => 'popover', :title => "Reason for Removal", :data => {:content => (comment.deleted_reason.presence || "Removed by user")}} Removed
-    -unless comment.deleted? || comment.reply? # the reply part is also enforced in the comments model
+          -if user_signed_in?
+            %a.label{:href => '#', :rel => 'popover', :title => "Reason for Removal", :data => {:content => (comment.deleted_reason.presence || "Removed by user")}} Removed
+          -else
+            %span.label Removed
+    -unless !user_signed_in? || comment.deleted? || comment.reply? # the reply part is also enforced in the comments model
       .row
         .span9=link_to "Reply", '#', :onclick => "Comment.reply('#{comment.id}', this); return false;"

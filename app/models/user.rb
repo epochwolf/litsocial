@@ -13,7 +13,8 @@ class User < ActiveRecord::Base
      :current_sign_in_at, :reset_password_sent_at, :locked_at # suspicious activity?
    ]
         
-  has_many :literatures
+  has_many :stories
+  has_many :poems
   has_many :sent_messages, :class_name => "Message", :foreign_key => "from_id"
   has_many :received_messages, :class_name => "ReceivedMessage", :foreign_key => "to_id", :include => [:message]
         

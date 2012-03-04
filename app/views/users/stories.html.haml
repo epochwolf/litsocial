@@ -1,10 +1,10 @@
 =render 'nav'
--unless @literatures.blank?
+-unless @stories.blank?
   %table.table.table-striped.table-bordered
     %tr
       %th Title
       %th Created
-    -@literatures.each do |l|
+    -@stories.each do |l|
       %tr
         %td=link_to l.title, l
         %td=dt l.created_at

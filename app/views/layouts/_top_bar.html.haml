@@ -8,7 +8,8 @@
     .container-fluid
       =link_to "Lit Social", root_url, :class => 'brand'
       %ul.nav
-        %li{:class => active_for_controller("literatures")}=link_to "Literature", literatures_path
+        %li{:class => active_for_controller("stories")}=link_to "Stories", stories_path
+        %li{:class => active_for_controller("poems")}=link_to "Poems", poems_path
         %li{:class => active_for_controller("news_posts")}=link_to "Site News", news_posts_path
         %li{:class => active_for_controller("pages")}=link_to "Pages", pages_path
         -if user_signed_in?
@@ -28,7 +29,8 @@
                 %li=link_to "My Profile", user_path(current_user)
                 %li=link_to "My Account", account_path(current_user)
                 %li.divider
-                %li=link_to "New Literature", new_literature_path
+                %li=link_to "New Story", new_story_path
+                %li=link_to "New Poem", new_poem_path
                 %li=link_to "New Message", new_account_message_path(current_user)
                 %li.divider
                 %li=link_to "Logout", destroy_user_session_path, :method => :delete

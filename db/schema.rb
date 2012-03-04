@@ -47,19 +47,6 @@ ActiveRecord::Schema.define(:version => 20120303061321) do
   add_index "comments", ["parent_id", "position"], :name => "index_comments_on_parent_id_and_position"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
-  create_table "literatures", :force => true do |t|
-    t.string   "title",                             :null => false
-    t.integer  "user_id",                           :null => false
-    t.text     "contents",                          :null => false
-    t.text     "deleted_reason", :default => "",    :null => false
-    t.boolean  "deleted",        :default => false, :null => false
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
-  end
-
-  add_index "literatures", ["deleted", "id"], :name => "index_literatures_on_deleted_and_id"
-  add_index "literatures", ["user_id"], :name => "index_literatures_on_user_id"
-
   create_table "messages", :force => true do |t|
     t.text     "contents",                          :null => false
     t.integer  "from_id",                           :null => false
@@ -97,6 +84,19 @@ ActiveRecord::Schema.define(:version => 20120303061321) do
   add_index "pages", ["published", "title"], :name => "index_pages_on_published_and_title"
   add_index "pages", ["url"], :name => "index_pages_on_url"
 
+  create_table "poems", :force => true do |t|
+    t.string   "title",                             :null => false
+    t.integer  "user_id",                           :null => false
+    t.text     "contents",                          :null => false
+    t.text     "deleted_reason", :default => "",    :null => false
+    t.boolean  "deleted",        :default => false, :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
+  add_index "poems", ["deleted", "id"], :name => "index_poems_on_deleted_and_id"
+  add_index "poems", ["user_id"], :name => "index_poems_on_user_id"
+
   create_table "received_messages", :force => true do |t|
     t.integer  "message_id",                    :null => false
     t.integer  "to_id",                         :null => false
@@ -110,6 +110,19 @@ ActiveRecord::Schema.define(:version => 20120303061321) do
   add_index "received_messages", ["flagged", "created_at"], :name => "index_received_messages_flagged"
   add_index "received_messages", ["to_id", "deleted", "created_at"], :name => "index_received_messages_to_deleted"
   add_index "received_messages", ["to_id", "read", "created_at"], :name => "index_received_messages_to_read"
+
+  create_table "stories", :force => true do |t|
+    t.string   "title",                             :null => false
+    t.integer  "user_id",                           :null => false
+    t.text     "contents",                          :null => false
+    t.text     "deleted_reason", :default => "",    :null => false
+    t.boolean  "deleted",        :default => false, :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
+  add_index "stories", ["deleted", "id"], :name => "index_stories_on_deleted_and_id"
+  add_index "stories", ["user_id"], :name => "index_stories_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name",                                                     :null => false

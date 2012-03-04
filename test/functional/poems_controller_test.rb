@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class LiteraturesControllerTest < ActionController::TestCase
+class PoemsControllerTest < ActionController::TestCase
 
   test "should get index if logged out" do
     sign_out :user
@@ -47,19 +47,19 @@ class LiteraturesControllerTest < ActionController::TestCase
     assert_response :success
   end
   
-  test "create should get redirected to literature if logged in" do
+  test "create should get redirected to poem if logged in" do
     sign_in users(:one)
-    assert_difference('Literature.count') do
-      post :create, :literature => {:title => "Hi", :contents => "<b>yippie!</b>"}
+    assert_difference('Poem.count') do
+      post :create, :poem => {:title => "Hi", :contents => "<b>yippie!</b>"}
     end
-    assert_redirected_to literature_path(assigns(:literature))
+    assert_redirected_to poem_path(assigns(:poem))
   end
   
   
   test "create should render edit if logged in and invalid data" do
     sign_in users(:one)
-    assert_no_difference('Literature.count') do
-      post :create, :literature => {:title => "", :contents => "<b>yippie!</b>"}
+    assert_no_difference('Poem.count') do
+      post :create, :poem => {:title => "", :contents => "<b>yippie!</b>"}
     end
     assert_response 200
   end
@@ -80,21 +80,21 @@ class LiteraturesControllerTest < ActionController::TestCase
   
   test "should get update if logged in as owner" do
     sign_in users(:one)
-    post :update, :id => 1,:literature => {:title => "Hi", :contents => "<b>yippie!</b>"}
-    assert_redirected_to literature_path(assigns(:literature))
+    post :update, :id => 1,:poem => {:title => "Hi", :contents => "<b>yippie!</b>"}
+    assert_redirected_to poem_path(assigns(:poem))
   end
   
   
   test "should get not update if logged in as owner and sends invalid data" do
     sign_in users(:one)
-    post :update, :id => 1,:literature => {:title => "", :contents => "<b>yippie!</b>"}
+    post :update, :id => 1,:poem => {:title => "", :contents => "<b>yippie!</b>"}
     assert_response 200
   end
   
   
   test "create should 403 if not owner" do
     sign_in users(:two)
-    post :update, :id => 1,:literature => {:title => "Hi", :contents => "<b>yippie!</b>"}
+    post :update, :id => 1,:poem => {:title => "Hi", :contents => "<b>yippie!</b>"}
     assert_response 403
   end
   

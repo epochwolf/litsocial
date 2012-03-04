@@ -1,0 +1,21 @@
+- @literature = @story || @poem
+.pull-right 
+  -if admin?
+    =link_to "admin", [:edit, :admin, @literature], :class => 'btn small btn-primary' 
+  -if owner?(@literature)
+    =link_to "edit", [:edit, @literature], :class => 'btn small'
+    =link_to "delete", @literature, :method => :delete, :confirm => "Are you sure you want to delete '#{h @literature.title}'?", :class => 'btn small btn-danger'
+
+%h1
+  =h @literature.title
+%div
+  Created on #{dt(@literature.created_at)}
+  by #{user_link @literature.user} 
+
+%hr.slim
+-unless @literature.visible?
+  .alert-message.warning
+    This submission is hidden
+.rich=rich @literature.contents
+%hr.slim
+=render 'comments/index', :comments => @comments, :commentable => @literature

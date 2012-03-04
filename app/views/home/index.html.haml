@@ -1,12 +1,12 @@
 .row-fluid
   .span6
-    %h2 Recent Literature
+    %h2 Recent Stories
     %ul.unstyled 
-      -@literatures.each do |literature|
+      -@stories.each do |story|
         %li
-          =link_to literature.title, literature
+          =link_to story.title, story
           by
-          =user_link literature.user
+          =user_link story.user
   .span6
     %h2 Latest Site News
     %ul.unstyled 

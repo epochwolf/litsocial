@@ -5,8 +5,12 @@ class AccountsController < ApplicationController
   def show
   end
   
-  def literatures
-    @literatures = paged(@user.literatures)
+  def stories
+    @stories = paged(@user.stories)
+  end
+  
+  def poems
+    @poems = paged(@user.poems)
   end
   
   def edit

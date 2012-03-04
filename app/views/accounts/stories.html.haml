@@ -1,0 +1,23 @@
+=render 'nav'
+-unless @literatures.blank?
+  %table.table.table-striped.table-bordered
+    %tr
+      %th Title
+      %th Created
+      %th
+    -@literatures.each do |l|
+      %tr
+        %td=link_to l.title, l
+        %td=dt l.created_at
+        %td
+          .btn-group.pull-right
+            %a.btn.dropdown-toggle{data:{toggle:"dropdown"}, href:"#"} 
+              Actions
+              %span.caret
+            %ul.dropdown-menu
+              %li=icon_link "edit", "Edit", edit_literature_path(l, :return => here)
+              %li.divider
+              %li=icon_link "remove", "Delete", l, :method => :delete, :confirm => "Are you sure you want to delete '#{h l.title}'?", :class => 'danger'
+            
+-else
+  %p You haven't submitted anything yet. 

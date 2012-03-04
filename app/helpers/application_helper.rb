@@ -38,7 +38,8 @@ module ApplicationHelper
     else
       menu = {}
       menu["Profile"] = user
-      menu["Literature"] = [:literatures, user]
+      menu["Stories"] = [:stories, user]
+      menu["Poems"] = [:poems, user]
       if user_signed_in?
         menu["0"] = :divider
         menu["Send Message"] = new_account_message_path(current_user, to:user.id)

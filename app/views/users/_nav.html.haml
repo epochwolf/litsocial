@@ -6,4 +6,5 @@
 =link_to "Send Message", new_account_message_path(@user, :to => @user.id), :class => 'btn btn-success pull-right'
 %ul.nav.nav-tabs
   %li{:class => active_for("show")}=link_to "Profile", user_path(@user)
-  %li{:class => active_for("literatures")}=link_to "Literature", literatures_user_path(@user)
+  %li{:class => active_for("stories")}=link_to "Stories", stories_user_path(@user)
+  %li{:class => active_for("poems")}=link_to "Poems", poems_user_path(@user)

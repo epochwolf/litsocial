@@ -1,4 +1,4 @@
-ActiveAdmin.register Literature do
+ActiveAdmin.register Story do
   
   index do 
     column :id
@@ -29,7 +29,7 @@ ActiveAdmin.register Literature do
   end
   
   before_save do |currm|
-    currm.assign_attributes(params[:literature], :role => :admin)
+    currm.assign_attributes(params[:story], :role => :admin)
   end
   
   action_item :only => [:show, :edit] do
@@ -37,7 +37,7 @@ ActiveAdmin.register Literature do
   end
   
   member_action :versions do
-    @object = Literature.find(params[:id])
+    @object = Story.find(params[:id])
     @versions = @object.versions
     render 'admin/paper_trail.arb'
   end

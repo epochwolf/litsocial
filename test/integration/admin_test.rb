@@ -28,16 +28,58 @@ class AdminTest < ActionDispatch::IntegrationTest
     get "/admin"
     assert_response :success
     
-    get "/admin/literatures"
+    get "/admin/stories"
     assert_response :success
     
-    get "/admin/literatures/1"
+    get "/admin/stories/1"
+    assert_response :success
+    
+    get "/admin/stories/1/edit"
+    assert_response :success
+    
+    get "/admin/poems"
+    assert_response :success
+    
+    get "/admin/poems/1"
+    assert_response :success
+    
+    get "/admin/poems/1/edit"
     assert_response :success
     
     get "/admin/news_posts"
     assert_response :success
     
+    get "/admin/news_posts/new"
+    assert_response :success
+    
     get "/admin/news_posts/1"
+    assert_response :success
+    
+    get "/admin/news_posts/1/edit"
+    assert_response :success
+    
+    get "/admin/pages"
+    assert_response :success
+    
+    get "/admin/pages/new"
+    assert_response :success
+    
+    get "/admin/pages/1"
+    assert_response :success
+    
+    get "/admin/pages/1/edit"
+    assert_response :success
+    
+    get "/admin/users"
+    assert_response :success
+    
+    get "/admin/users/new"
+    assert_response :success
+    
+    get "/admin/users/1"
+    assert_response :success
+    
+    get "/admin/users/1/edit"
     assert_response :success
   end
 end

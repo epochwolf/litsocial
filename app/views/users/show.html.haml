@@ -5,9 +5,9 @@
       %p #{@user.name} doesn't have a biography. 
     -else
       =h @user.biography
-  -unless @literatures.blank?
+  -unless @stories.blank?
     .span4.recent-literature
-      %h3 Recent Literature
+      %h3 Recent Stories
       %ul.unstyled
-        -@literatures.each do |l|
+        -@stories.each do |l|
           %li=link_to l.title, l

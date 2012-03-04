@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120211012129) do
+ActiveRecord::Schema.define(:version => 20120303061321) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -81,6 +81,21 @@ ActiveRecord::Schema.define(:version => 20120211012129) do
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
   end
+
+  create_table "pages", :force => true do |t|
+    t.string   "title",                         :null => false
+    t.text     "contents",                      :null => false
+    t.string   "url",        :default => "",    :null => false
+    t.integer  "parent_id"
+    t.integer  "user_id",                       :null => false
+    t.boolean  "published",  :default => false, :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  add_index "pages", ["parent_id"], :name => "index_pages_on_parent_id"
+  add_index "pages", ["published", "title"], :name => "index_pages_on_published_and_title"
+  add_index "pages", ["url"], :name => "index_pages_on_url"
 
   create_table "received_messages", :force => true do |t|
     t.integer  "message_id",                    :null => false

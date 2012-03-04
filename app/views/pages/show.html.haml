@@ -1,0 +1,13 @@
+-if admin?
+  .pull-right  
+    =link_to "admin", [:edit, :admin, @page], :class => 'btn small btn-primary' 
+%h1
+  =h @page.title
+%div
+  by #{user_link @page.user} in #{link_to "Pages", pages_path} on #{dt(@page.created_at)}
+
+
+
+
+%hr.slim
+.rich=rich @page.contents

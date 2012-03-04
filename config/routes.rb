@@ -21,6 +21,8 @@ LitSocial::Application.routes.draw do
   end
   
   resources :news_posts, :only => [:index, :show], :path => "site_news"
+  get "pages" => 'pages#index', :as => :pages
+  get "pages/*id" => 'pages#show', :as => :page
   
   resources :users, :only =>[:show] do
     member do

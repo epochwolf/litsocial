@@ -1,0 +1,19 @@
+.span8.offset2
+  .hero-unit
+    %h2
+      We couldn't find the item you are looking for 
+    %hr.slim
+    -if message
+      %p=message
+    -else
+      %p We aren't sure why it's gone missing. Here's a few possiblities why:
+      %ul 
+        %li It may have moved, hidden, or deleted. 
+        %li It may have never existed.
+        %li
+          -unless user_signed_in?
+            You may need to be logged in.
+          -else
+            You may be logged in to the wrong account. 
+          %sup>< *
+  %p> * Some things on the site are account specific (messages for example) and we can't find them if you aren't logged in to the proper account.

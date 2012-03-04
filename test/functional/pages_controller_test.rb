@@ -38,8 +38,7 @@ class PagesControllerTest < ActionController::TestCase
   
 
   test "should get not show if not published" do
-    assert_raises(ActiveRecord::RecordNotFound) do
-      get :show, :id => pages(:draft)
-    end 
+    get :show, :id => pages(:draft)
+    assert_response 404
   end
 end

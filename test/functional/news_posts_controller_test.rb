@@ -16,8 +16,7 @@ class NewsPostsControllerTest < ActionController::TestCase
   
   test "should get not show if not published" do
     sign_out :user
-    assert_raises(ActiveRecord::RecordNotFound) do
-      get :show, :id => news_posts(:draft)
-    end 
+    get :show, :id => news_posts(:draft)
+    assert_response 404
   end
 end

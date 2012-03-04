@@ -1,19 +1,21 @@
-!!!
-%html
-  %head
-    %title The page you were looking for can't be accessed (403)
-    :css
-      body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-      div.dialog {
-        width: 25em;
-        padding: 0 4em;
-        margin: 4em auto 0 auto;
-        border: 1px solid #ccc;
-        border-right-color: #999;
-        border-bottom-color: #999;
-      }
-      h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
-  %body
-    .dialog
-      %h1 The page you were looking for can't be accessed.
+.span8.offset2
+  .hero-unit
+    %h2 
+      We can't allow you to access this page      
+    %hr.slim
+    -if message
       %p=message
+    -else
+      %p We aren't exactly sure why you're not allowed. Here a few of the many, many possiblities.
+      %ul
+        -unless user_signed_in?
+          %li You may need to be logged in (you aren't right now)
+        %li 
+          The item you are looking for has been either
+          %ol
+            %li Locked by an administrator
+            %li Hidden by it's owner
+            %li Deleted and hasn't yet been permanently removed
+            %li Lost due to a space-time distortion thingy.
+        %li This page is only for administrators
+        %li The server's mail ferret has been chewing on cables again.

@@ -30,6 +30,8 @@ LitSocial::Application.routes.draw do
     end
   end
 
+  get 'errors/403' => 'home#four_oh_three'
+  get 'errors/404' => 'home#four_oh_four'
   root :to => 'home#index'
   
   # The priority is based upon order of creation:

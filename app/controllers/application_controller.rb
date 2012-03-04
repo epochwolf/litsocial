@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   include Controllers::Paged
   protect_from_forgery
   
+  rescue_from ActiveRecord::RecordNotFound, ActionController::RoutingError, ActionController::UnknownAction, :with => :handle_record_not_found
+  
   before_filter :log_current_user 
   before_filter :logout_banned_users
   
@@ -15,10 +17,26 @@ class ApplicationController < ActionController::Base
   end
   
   protected
-  def show403(message="This page is currently unavailable.")
-    render :template => 'errors/403', :layout => nil, :status => 403, :locals => {:message => message}
+  def handle_record_not_found
+    show404
   end
-
+  
+  def show403(message=nil)
+    respond_to do |type| 
+      type.html { render :template => 'errors/403', :status => 403, :locals => {:message => message} }
+      type.all  { render :nothing => true, :status => 403 }
+    end
+    true
+  end
+  
+  def show404(message=nil)
+    respond_to do |type| 
+      type.html { render :template => 'errors/404', :status => 404, :locals => {:message => message} }
+      type.all  { render :nothing => true, :status => 404 }
+    end
+    true
+  end
+  
   def admin?
     user_signed_in? && current_user.admin?
   end

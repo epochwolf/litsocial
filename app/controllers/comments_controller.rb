@@ -4,13 +4,13 @@ class CommentsController < ApplicationController
   
   def create
     # guards to prevent evil from happening
-    return render render_error("Bad input") unless params[:comments].is_a? Hash
-    return render render_error("Unknown commentable_type") unless Comment::COMMENTABLES.include? params[:comments][:commentable_type]
+    return render_error("Bad input") unless params[:comments].is_a? Hash
+    return render_error("Unknown commentable_type") unless Comment::COMMENTABLES.include? params[:comments][:commentable_type]
     type = params[:comments][:commentable_type]
     id = params[:comments][:commentable_id]
     commentable = type.constantize.find_by_id(id)
-    return render render_error("Can't find parent record") unless commentable
-    return render render_error("Access denied. Parent record is not visible.") unless commentable.visible?
+    return render_error("Can't find parent record") unless commentable
+    return render_error("Access denied. Parent record is not visible.") unless commentable.visible?
     
     @comment = Comment.new(params[:comments])
     @comment.commentable = commentable
@@ -48,7 +48,7 @@ class CommentsController < ApplicationController
   
   def render_success
     html = render_to_string :partial => "comments/show.html.haml", :locals => {:comment => @comment}
-    render :json =>  {:success => true, :html => html}
+    render :json =>  {:success => true, :html => html, :id => @comment.id}
   end
   
   def render_error(string_or_hash)

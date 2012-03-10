@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   include Controllers::Paged
   protect_from_forgery
   
-  rescue_from ActiveRecord::RecordNotFound, ActionController::RoutingError, ActionController::UnknownAction, :with => :handle_record_not_found
+  rescue_from ActiveRecord::RecordNotFound, ActionController::RoutingError, :with => :handle_record_not_found
   
   before_filter :log_current_user 
   before_filter :logout_banned_users

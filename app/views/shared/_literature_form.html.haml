@@ -3,9 +3,10 @@
   =link_to "upload an MS Word or OpenOffice Writer document", '#', data:{target:'#word_doc_uploader', toggle:'modal'}
   and we'll copy and paste the text for you.
 =tb_form_for literature, html:{class:'form-horizontal'} do |f|
+  =continue_redirect
   =f.inputs do
     =f.text_field :title
-    =f.text_area :contents, :data => {:widget => 'ckeditor'}
+    =f.text_area :contents, :data => {:widget => 'ckeditor'}, :id => 'literature_contents'
   =f.actions do
     =f.submit literature.new_record? ? "Create" : "Update", :class => 'btn btn-primary'
     =link_to "Cancel", return_path(literature.class == Story ? poems_account_path(current_user) : stories_account_path(current_user)), :class => "btn"

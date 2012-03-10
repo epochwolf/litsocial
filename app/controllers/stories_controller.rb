@@ -5,7 +5,7 @@ class StoriesController < ApplicationController
   before_filter :check_permissions, :only => [:edit, :update, :destroy]
   
   def index
-    @storys = paged(Story.includes(:user))
+    @stories = paged(Story.includes(:user))
   end
   
   def show

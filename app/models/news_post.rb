@@ -5,5 +5,10 @@ class NewsPost < ActiveRecord::Base
   scope :visible, where(:published => true)
   scope :sorted, order(:id.desc)
   
+  
+  def visible?
+    published?
+  end
+  
   validates :title, :contents, :user_id, :presence => true
 end

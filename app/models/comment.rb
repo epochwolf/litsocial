@@ -8,7 +8,7 @@ class Comment < ActiveRecord::Base
   ]
   
   # List all classes that allow comments. This is used for both validation and filtering in the controller. 
-  COMMENTABLES = ["Literature"]
+  COMMENTABLES = ["Story", "Poem", "NewsPost"]
   
   acts_as_list :scope => :parent
   belongs_to :parent, :class_name => "Comment", :counter_cache => :reply_count

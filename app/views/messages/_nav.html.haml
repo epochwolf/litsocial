@@ -2,8 +2,8 @@
   def active_for(*actions)
     actions.any?{|action| params[:action] == action } ? "active" : nil
   end
-=link_to "New Message", new_account_message_path(@user), :class => 'btn btn-success pull-right'
+=icon_link "envelope icon-white", "New Message", new_account_message_path(@user), :class => 'btn btn-success pull-right'
 %ul.nav.nav-tabs
-  %li{:class => active_for("index")}=link_to "Received", account_messages_path(@user)
-  %li{:class => active_for("read")}=link_to "Read", read_account_messages_path(@user)
-  %li{:class => active_for("sent")}=link_to "Sent", sent_account_messages_path(@user)
+  %li{:class => active_for("index")}=icon_link "inbox", "Received", account_messages_path(@user)
+  %li{:class => active_for("read")}=icon_link "check", "Read", read_account_messages_path(@user)
+  %li{:class => active_for("sent")}=icon_link "envelope", "Sent", sent_account_messages_path(@user)

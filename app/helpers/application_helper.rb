@@ -37,19 +37,23 @@ module ApplicationHelper
       ctag('em', "None")
     else
       menu = {}
-      menu["Profile"] = user
-      menu["Stories"] = [:stories, user]
-      menu["Poems"] = [:poems, user]
+      menu[["user", "Profile"]] = user
+      menu[["book", "Stories"]] = [:stories, user]
+      menu[["glass", "Poems"]] = [:poems, user]
       if user_signed_in?
         menu["0"] = :divider
-        menu["Send Message"] = new_account_message_path(current_user, to:user.id)
+        menu[["envelope", "Send Message"]] = new_account_message_path(current_user, to:user.id)
       end 
       dropdown_menu(user.name, menu)
     end 
   end
   
-  def icon_link(icon, name, *args)
-    link_to("<i class='icon-#{icon}'></i> ".html_safe + h(name), *args)
+  def icon(name)
+    "<i class='icon-#{name}'></i> ".html_safe
+  end
+  
+  def icon_link(icon_name, name, *args)
+    link_to(icon(icon_name) + h(name), *args)
   end
   
   def rich(html)

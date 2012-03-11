@@ -7,7 +7,7 @@
       %th Author
     -@poems.each do |p|
       %tr
-        %td=link_to p.title, p
+        %td=icon_link "glass", p.title, p
         %td=dt p.created_at
         %td=user_link p.user
         

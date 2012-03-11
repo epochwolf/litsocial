@@ -9,7 +9,7 @@
 //= require twitter/bootstrap
 //= require_tree ./site
 
-$(document).ready(function(){
+$(function(){
   //Activate html editor
   $( 'textarea[data-widget=ckeditor]' ).ckeditor();
   $('a[rel=popover]').popover()

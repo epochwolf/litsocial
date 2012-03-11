@@ -3,19 +3,21 @@
     .row
       .span9.comment_header
         %h5{:style => "display: inline;"}
+          =icon "comment"
           =user_link comment.user
           %small=dt comment.created_at
-        %span{:style => "padding-left: .5em;"}  
+        %ul.btn-list.inline{:style => "padding-left: .5em;"}  
           -if comment.edited?
-            %span.label Edited
+            %li
+              %span.label Edited
           -if admin?
-            =link_to "admin", edit_admin_user_comment_path(comment), :class => ''
+            %li=link_to "admin", edit_admin_user_comment_path(comment), :class => ''
           -if owner?(comment) && !comment.deleted?
-            =link_to "edit", '#', :class => '', :onclick => "Comment.edit('#{comment.id}', this);return false;"
-            =link_to "delete", '#', :class => '', :onclick => "Comment.destroy_prompt('#{comment.id}', this);return false;"
+            %li=icon_link "pencil", "edit", '#', :class => '', :onclick => "Comment.edit('#{comment.id}', this);return false;"
+            %li=icon_link "trash", "delete", '#', :class => '', :onclick => "Comment.destroy_prompt('#{comment.id}', this);return false;"
     -unless comment.deleted?
       .row
-        .span9.well.comment_body=rich comment.contents    
+        .span9.well.comment_body{class:(comment.parent_id.nil? ? 'parent' : '')}=rich comment.contents    
     -else
       .row
         .span9.not-well
@@ -25,4 +27,4 @@
             %span.label Removed
     -unless !user_signed_in? || comment.deleted? || comment.reply? # the reply part is also enforced in the comments model
       .row
-        .span9=link_to "Reply", '#', :onclick => "Comment.reply('#{comment.id}', this); return false;"
+        .span9=icon_link "chevron-right", "Reply", '#', :onclick => "Comment.reply('#{comment.id}', this); return false;"

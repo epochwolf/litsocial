@@ -17,6 +17,15 @@ class User < ActiveRecord::Base
   has_many :poems
   has_many :sent_messages, :class_name => "Message", :foreign_key => "from_id"
   has_many :received_messages, :class_name => "ReceivedMessage", :foreign_key => "to_id", :include => [:message]
+  
+  # This is a list of things I have watched.
+  has_many :watches
+  # I am watching these users
+  has_many :user_watches, :class_name => 'Watch', :foreign_key => "user_id", :conditions => {:watchable_type => 'User'}
+  has_many :watching, :class_name => 'User', :through => :user_watches, :foreign_key => "watchable_id"
+  # These peope are watching me
+  has_many :watcher_watches, :class_name => "Watch", :as => :watchable
+  has_many :watchers, :class_name => 'User', :through => :watcher_watches
         
   GENDERS =  [ "", "male", "female"]  
   
@@ -27,6 +36,12 @@ class User < ActiveRecord::Base
   attr_accessible :name, :gender, :email, :biography, :password, :password_confirmation, :remember_me
   attr_protected :as => :admin
   attr_accessor :new_from_facebook, :just_linked_to_facebook # used to inform the UI that we just created or linked a user
+  
+  
+  def watching?(object)
+    return nil unless object
+    watches.where(:watchable_type => object.class.name, :watchable_id => object.id).first
+  end
   
   def linked_to_facebook?
     facebook_token ? true : false

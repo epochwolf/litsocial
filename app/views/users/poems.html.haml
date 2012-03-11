@@ -6,7 +6,7 @@
       %th Created
     -@poems.each do |l|
       %tr
-        %td=link_to l.title, l
+        %td=icon_link "glass", l.title, l
         %td=dt l.created_at
 -else
   %p #{@user.name} hasn't submitted anything yet. 

@@ -7,7 +7,7 @@
       %th Author
     -@stories.each do |s|
       %tr
-        %td=link_to s.title, s
+        %td=icon_link "book", s.title, s
         %td=dt s.created_at
         %td=user_link s.user
 

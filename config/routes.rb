@@ -26,6 +26,8 @@ LitSocial::Application.routes.draw do
   get "pages" => 'pages#index', :as => :pages
   get "pages/*id" => 'pages#show', :as => :page
   
+  resources :watches, :only => [:create, :destroy]
+  
   resources :users, :only =>[:show] do
     member do
       get :stories

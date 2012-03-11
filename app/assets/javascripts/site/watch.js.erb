@@ -1,0 +1,17 @@
+Watch = {
+  create: function(js_id, klass, id){
+    var url = '/watches/';
+    var data = {watch:{watchable_type:klass, watchable_id:id}};
+    $.post(url, data, Watch.watch_callback(js_id), 'json');  
+  },
+  destroy: function(js_id, id){
+    var url = '/watches/' + id;
+    var data = {"_method":"DELETE"};
+    $.post(url, data, Watch.watch_callback(js_id), 'json');
+  },
+  watch_callback: function(js_id){
+    return function(data, status, xhr){ 
+      $(js_id).replaceWith(data["html"]);
+    }
+  }
+}

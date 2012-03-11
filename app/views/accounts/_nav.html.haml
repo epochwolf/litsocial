@@ -7,7 +7,7 @@
 -if params[:action] == "stories"
   =link_to "New Story", [:new, :story], :class => "btn btn-success btn-small pull-right" 
 %ul.nav.nav-tabs
-  %li{:class => active_for("show")}=link_to "Overview", account_path(@user)
-  %li{:class => active_for("stories")}=link_to "Stories", stories_account_path(@user)
-  %li{:class => active_for("poems")}=link_to "Poems", poems_account_path(@user)
-  %li{:class => active_for("edit", "update")}=link_to "Settings", edit_account_path(@user)
+  %li{:class => active_for("show")}=icon_link "list", "Overview", account_path(@user)
+  %li{:class => active_for("stories")}=icon_link "book", "Stories", stories_account_path(@user)
+  %li{:class => active_for("poems")}=icon_link "glass", "Poems", poems_account_path(@user)
+  %li{:class => active_for("edit", "update")}=icon_link "cog", "Settings", edit_account_path(@user)

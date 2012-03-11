@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120303061321) do
+ActiveRecord::Schema.define(:version => 20120310022116) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -169,5 +169,20 @@ ActiveRecord::Schema.define(:version => 20120303061321) do
   end
 
   add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"
+
+  create_table "watches", :force => true do |t|
+    t.integer  "user_id",                           :null => false
+    t.string   "watchable_type",                    :null => false
+    t.integer  "watchable_id",                      :null => false
+    t.boolean  "public",         :default => true,  :null => false
+    t.boolean  "stories",        :default => false, :null => false
+    t.boolean  "poems",          :default => false, :null => false
+    t.boolean  "journals",       :default => false, :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
+  add_index "watches", ["user_id", "watchable_type", "watchable_id"], :name => "idx_watch_user_watchable"
+  add_index "watches", ["watchable_type", "watchable_id"], :name => "idx_watch_watchable"
 
 end

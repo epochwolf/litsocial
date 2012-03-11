@@ -1,10 +1,12 @@
 - @literature = @story || @poem
-.pull-right 
+%ul.btn-list.pull-right 
+  -if user_signed_in?
+    %li=render 'shared/watch_link', watchable:@literature, small:true
   -if admin?
-    =link_to "admin", [:edit, :admin, @literature], :class => 'btn small btn-primary' 
+    %li=link_to "admin", [:edit, :admin, @literature], class:'btn btn-small btn-primary' 
   -if owner?(@literature)
-    =link_to "edit", [:edit, @literature], :class => 'btn small'
-    =link_to "delete", @literature, :method => :delete, :confirm => "Are you sure you want to delete '#{h @literature.title}'?", :class => 'btn small btn-danger'
+    %li=icon_link "pencil", "Edit", [:edit, @literature], class:'btn btn-small'
+    %li=icon_link "trash icon-white", "Delete", @literature, method:"delete", confirm:"Are you sure you want to delete '#{h @literature.title}'?", class:'btn small btn-danger'
 
 %h1
   =h @literature.title
@@ -18,4 +20,4 @@
     This submission is hidden
 .rich=rich @literature.contents
 %hr.slim
-=render 'comments/index', :comments => @comments, :commentable => @literature
+=render 'comments/index', comments:@comments, commentable:@literature

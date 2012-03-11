@@ -26,14 +26,14 @@
                 =current_user.name
                 %b.caret
               %ul.dropdown-menu
-                %li=link_to "My Profile", user_path(current_user)
-                %li=link_to "My Account", account_path(current_user)
+                %li=icon_link "user", "My Profile", user_path(current_user)
+                %li=icon_link "cog", "My Account", account_path(current_user)
                 %li.divider
-                %li=link_to "New Story", new_story_path
-                %li=link_to "New Poem", new_poem_path
-                %li=link_to "New Message", new_account_message_path(current_user)
+                %li=icon_link "book", "New Story", new_story_path
+                %li=icon_link "glass", "New Poem", new_poem_path
+                %li=icon_link "envelope", "New Message", new_account_message_path(current_user)
                 %li.divider
-                %li=link_to "Logout", destroy_user_session_path, :method => :delete
+                %li=icon_link "remove-circle", "Logout", destroy_user_session_path, :method => :delete
         -else
           %ul.nav
             %li.dropdown 

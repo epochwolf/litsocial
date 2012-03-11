@@ -1,0 +1,22 @@
+
+:ruby
+  #required: watchable or (@watch and @watchable)
+  #optional: small
+  small ||= false
+  watch = if @watch # In watchescontroller
+    watchable = @watchable
+    @watch.persisted? ? @watch : nil
+  elsif user_signed_in?
+    current_user.watching?(watchable)
+  end
+  js_id = String.random
+  css = small ? "btn btn-info btn-small" : "btn btn-info"
+%span{id:js_id}
+  -if user_signed_in? 
+    -if watch
+      =icon_link "eye-close icon-white", "Unwatch", '#', class:css, onclick:"Watch.destroy('##{js_id}', '#{watch.id}'); return false;"
+    -else
+      =icon_link "eye-open icon-white", "Watch", '#', class:css, onclick:"Watch.create('##{js_id}', '#{watchable.class.name}', '#{watchable.id}'); return false;"
+  -else
+    Sign in to watch
+  

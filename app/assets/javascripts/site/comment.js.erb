@@ -26,9 +26,9 @@ Comment = {
       stop_modal_spinner();
       if(data["success"]){
         if(parent == ""){
-          $("#comments").append('<div id="comment-container-' + data["id"] + '">' + data["html"] + '</div>')
+          $("#comments").append('<div id="comment-container-' + data["id"] + '">' + data["html"] + '</div>');
         }else{
-          $("#comment-container-"+parent).append()
+          $("#comment-container-"+parent).append(data["html"]);
         }
       }else{
         alert("There was an error updating your comment: "+data["errors"]);

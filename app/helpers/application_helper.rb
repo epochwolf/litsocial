@@ -57,7 +57,7 @@ module ApplicationHelper
   end
   
   def rich(html)
-    sanitize(html)
+    MyHtmlSanitizer.clean(html)
   end
   
   def b(boolean)

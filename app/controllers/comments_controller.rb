@@ -47,11 +47,11 @@ class CommentsController < ApplicationController
   end
   
   def render_success
-    html = render_to_string :partial => "comments/show.html.haml", :locals => {:comment => @comment}
+    html = render_to_string :partial => "comments/show", :locals => {:comment => @comment}
     render :json =>  {:success => true, :html => html, :id => @comment.id}
   end
   
   def render_error(string_or_hash)
-    render :json => {:success => false, :errors => (string_or_hash.is_a?(String) ? {:_ => string_or_hash} : string_or_hash) }
+    render :json => {:success => false, :errors => (string_or_hash.is_a?(String) ? {:_ => string_or_hash} : string_or_hash).inspect }
   end
 end

@@ -63,6 +63,10 @@ end
 group :test do
   # Pretty printed test output
   #gem 'turn', '0.8.2', :require => false
+  gem "capybara"
+  gem "capybara-webkit"
+  gem 'database_cleaner'
+  gem "launchy"
 end
 
 group :production do

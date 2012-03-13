@@ -60,7 +60,6 @@ Comment = {
     };
     $.post(url, data, callback, 'json');
   },
-  
   destroy_prompt: function(comment_id, link){
     if(confirm("Are you sure you want to delete this comment?")){
       Comment.destroy(comment_id, link);
@@ -85,7 +84,6 @@ Comment = {
     var data = flatten_serialized_array(form.serializeArray());
     
     var func = Comment[data["action"]];
-    console.log(data);
     func(form_dom, data);
     
   },

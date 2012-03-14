@@ -22,7 +22,7 @@ preload_app true
 
 timeout 30
 
-listen APP_ROOT + "/tmp/unicorn.sock", :backlog => 64
+listen "127.0.0.1:3000"
 
 pid APP_ROOT + "/tmp/pids/unicorn.pid"
 

@@ -6,7 +6,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       if @user.new_from_facebook 
         flash[:notice] = "Welcome, #{@user.name}! An account has been created for you. You can review your account details by clicking the My Account link at the top of your screen."
       elsif @user.just_linked_to_facebook
-        flash[:notice] = "Welcome back, #{@user.name}. Your account has been linked to your facebook profile"
+        flash[:notice] = "Welcome back, #{@user.name}. Your account has been linked to your facebook profile."
       else
         flash[:notice] = "Welcome back, #{@user.name}."
       end

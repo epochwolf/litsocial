@@ -12,8 +12,17 @@
 $(function(){
   //Activate html editor
   $( 'textarea[data-widget=ckeditor]' ).ckeditor();
-  $('a[rel=popover]').popover()
+  $('a[rel=popover]').popover();
 })
+
+
+
+function replace_callback(selector){
+  return function(data, status, xhr){ 
+    $(selector).replaceWith(data["html"]);
+  }
+}
+
 
 function start_modal_spinner(){
   $('#please_wait').modal('show');

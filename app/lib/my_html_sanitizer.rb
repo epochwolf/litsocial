@@ -39,12 +39,18 @@ class MyHtmlSanitizer
     end
   end
   
+  remove_empty_tags = proc do |env|
+    node = env[:node]
+    node.remove if node.inner_text.strip.empty?
+  end
+  
   p_style_attribute = transformer_cleanse_attribute(
     /\Ap|div\Z/, 
     "style",
     /\A(\s*(text-align:\s+(center|right|left|justify)|margin-left:\s+(40|80|120|160)px);\s*)+\Z/
     )
   
+
   div_to_p = convert_node('div', 'p')
   
   CONFIG = {
@@ -73,7 +79,7 @@ class MyHtmlSanitizer
       :add_attributes => {
         'a' => {'rel' => 'nofollow'},
       },
-      :transformers => [p_style_attribute, div_to_p]
+      :transformers => [p_style_attribute, div_to_p, remove_empty_tags]
     }
   
 end

@@ -10,16 +10,15 @@
   =f.actions do
     =f.submit literature.new_record? ? "Create" : "Update", :class => 'btn btn-primary'
     =link_to "Cancel", return_path(literature.class == Story ? poems_account_path(current_user) : stories_account_path(current_user)), :class => "btn"
-    
--if params[:action] == 'new'
-  :javascript
-    $(document).ready(function(){ $('#word_doc_uploader').modal('show'); });
 
 #word_doc_uploader.modal.hide
   .modal-header
     =link_to 'x', '#', class:"close", data:{dismiss:"modal"}
     %h3 Upload a MS Word/OpenOffice Writer document
-  =form_tag convert_word_doc_path, :multipart => true, :onsubmit => "$('#word_doc_uploader').modal('hide');start_modal_spinner();", :target => 'iframe-of-unlimited-doom' do
+  -# This posts the form and has iframe-of-unlimited-doom load the resulting page. 
+  -# It's a dirty, dirty hack to do file uploads with javascript.
+  -# See assets/convert.js for wireup
+  =form_tag convert_word_doc_path, :multipart => true, :target => 'iframe-of-unlimited-doom' do
     .modal-body
       %p Supported Document Formats:
       %ul

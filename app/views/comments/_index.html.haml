@@ -27,10 +27,3 @@
       .modal-footer
         =submit_tag 'Submit', :class => 'btn primary'
         =link_to 'Cancel', '#', :onclick => "$('#comment_dialog').modal('hide'); return false;", :class => 'btn secondary'
-  
-  #please_wait.modal.hide
-    .modal-header
-      %h3 Please wait
-    .modal-body
-      %p Your request will be processed in the order it was recieved.
-    .modal-footer

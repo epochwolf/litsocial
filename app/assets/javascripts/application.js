@@ -23,15 +23,28 @@ function replace_callback(selector){
   }
 }
 
-
-function start_modal_spinner(){
-  $('#please_wait').modal('show');
+function modal_message(title, message){
+  var html = $('<div id="modal_message" class="modal hide">' + 
+    '<div class="modal-header"><h3>' + title + '</h3></div>'+
+    '<div class="modal-body">'+ message +'</div>'+
+    '<div class="modal-footer"></div>'+
+    '</div>');
+  $(document).append(html)
+  html.modal('show');
 }
 
-function stop_modal_spinner(){
-  $('#please_wait').modal('hide');
+function update_modal_message(title, message){
+  if(title != null){
+    $('#modal_message div.modal-header h3').html(title);
+  }
+  if(message != null){
+    $('#modal_message div.modal-body').html(message);
+  }
 }
 
+function dismiss_modal_message(){
+  $('#modal_message').modal('hide').remove();
+}
 
 function flatten_serialized_array(arr){
   var r = {};

@@ -23,7 +23,7 @@ Comment = {
     var url = "/comments/";  
     var parent = data["comments[parent_id]"];
     var callback = function(data, status, xhr){
-      stop_modal_spinner();
+      dismiss_modal_message();
       if(data["success"]){
         if(parent == ""){
           $("#comments").append('<div id="comment-container-' + data["id"] + '">' + data["html"] + '</div>');
@@ -51,7 +51,7 @@ Comment = {
     var comment_id = data['id']
     var url = "/comments/"+comment_id;  
     var callback = function(data, status, xhr){
-      stop_modal_spinner();
+      dismiss_modal_message();
       if(data["success"]){
         $("#comment-"+comment_id).replaceWith(data["html"])
       }else{
@@ -79,7 +79,7 @@ Comment = {
   },
   form_submit:function(form_dom){
     $('#comment_dialog').modal('hide');
-    start_modal_spinner();
+    modal_message("Please wait", "Submitting your comment.");
     var form = $(form_dom);
     var data = flatten_serialized_array(form.serializeArray());
     

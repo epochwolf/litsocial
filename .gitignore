@@ -4,10 +4,12 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile ~/.gitignore_global
 .DS_Store
+.tags
 
 # Ignore bundler config
 /.bundle
 /.tags
+
 
 # Ignore the default SQLite database.
 /db/*.sqlite3

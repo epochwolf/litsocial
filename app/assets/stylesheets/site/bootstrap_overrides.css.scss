@@ -1,7 +1,3 @@
-@import "twitter/bootstrap/variables";
-@import "twitter/bootstrap/mixins";
-
-
 body {
   //background-color: @successBackground;
 }
@@ -47,4 +43,16 @@ html hr.slim {
 /* Allow labels be applied to links without looking wierd on mouseover. */
 html a.label:hover {
   color: white;
+}
+
+/* Make the margin on comment bodies smaller */
+.well.comment_body.parent{
+  margin-bottom: 3px;
+}
+
+
+#footer{
+  margin-top: 2em;
+  padding-top: 1em;
+  border-top: 1px solid #ddd;
 }

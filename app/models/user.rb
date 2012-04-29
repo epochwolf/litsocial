@@ -62,6 +62,15 @@ class User < ActiveRecord::Base
     "https://facebook.com/#{facebook_token}"
   end
   
+  def self.search(name, options={})
+    options = {
+      :limit => 20,
+      :current_user => nil,
+    }.update options
+
+    where(:name.like => "%#{name}").order("name ASC").limit(options[:limit])
+  end
+
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     data = access_token.extra.raw_info.to_hash
     data.symbolize_keys!

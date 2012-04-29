@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/anjlab/bootstrap-rails.git
+  revision: 573f6527fab36de4f6014c71401f1c40635cb499
+  specs:
+    anjlab-bootstrap-rails (2.0.3.2)
+      railties (>= 3.0)
+      sass
+
+GIT
   remote: https://github.com/gregbell/active_admin.git
   revision: f92c7fec7a4a86f25b0495576518e1e4462711a7
   branch: master
@@ -14,14 +22,6 @@ GIT
       meta_search (>= 0.9.2)
       rails (>= 3.0.0)
       sass (>= 3.1.0)
-
-GIT
-  remote: https://github.com/tzeskimo/twitter_bootstrap_form_for.git
-  revision: 9f47480a809e1e61c4d2fad8e5cbe879cb454569
-  specs:
-    twitter_bootstrap_form_for (1.0.5)
-      actionpack (~> 3)
-      railties (~> 3)
 
 GEM
   remote: http://rubygems.org/
@@ -88,8 +88,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.2.0)
-    commonjs (0.2.0)
-      therubyracer (~> 0.9.9)
     database_cleaner (0.7.1)
     devise (1.5.3)
       bcrypt-ruby (~> 3.0)
@@ -129,15 +127,6 @@ GEM
     kgio (2.7.2)
     launchy (2.0.5)
       addressable (~> 2.2.6)
-    less (2.0.10)
-      commonjs (~> 0.2.0)
-      therubyracer (~> 0.9.9)
-    less-rails (2.1.7)
-      actionpack (>= 3.1)
-      less (~> 2.0.7)
-    less-rails-bootstrap (2.0.8)
-      less-rails (~> 2.1.0)
-    libv8 (3.3.10.4)
     macaddr (1.5.0)
       systemu (>= 2.4.0)
     mail (2.4.1)
@@ -223,6 +212,9 @@ GEM
       ffi (~> 1.0)
       multi_json (~> 1.0)
       rubyzip
+    simple_form (2.0.1)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
     sprockets (2.1.2)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -232,8 +224,6 @@ GEM
       activesupport (~> 3.0)
       polyamorous (~> 0.5.0)
     systemu (2.4.2)
-    therubyracer (0.9.10)
-      libv8 (~> 3.3.10)
     thor (0.14.6)
     tilt (1.3.3)
     treetop (1.4.10)
@@ -261,6 +251,7 @@ DEPENDENCIES
   activeadmin!
   acts_as_list
   acts_as_tree
+  anjlab-bootstrap-rails!
   bcrypt-ruby (~> 3.0.0)
   capistrano
   capistrano-ext
@@ -273,7 +264,6 @@ DEPENDENCIES
   haml
   jquery-rails
   launchy
-  less-rails-bootstrap
   omniauth-facebook
   paper_trail
   pg
@@ -282,8 +272,8 @@ DEPENDENCIES
   rvm
   sanitize
   sass-rails (~> 3.2.3)
+  simple_form
   squeel
-  twitter_bootstrap_form_for!
   uglifier (>= 1.0.3)
   unicorn
   uuid

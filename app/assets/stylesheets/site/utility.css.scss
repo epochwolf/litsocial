@@ -16,3 +16,17 @@ ul.edit-links li{
   display: inline;
   padding-left: 0.3em
 }
+
+ul.inline{
+  display: inline;
+}
+
+ul.btn-list{
+  margin: 0;
+  list-style: none;
+}
+
+ul.btn-list li{
+  padding: 0 2px; 
+  display: inline;
+}

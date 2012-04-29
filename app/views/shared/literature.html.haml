@@ -8,6 +8,7 @@
     %li=icon_link "pencil", "Edit", [:edit, @literature], class:'btn btn-small'
     %li=icon_link "trash icon-white", "Delete", @literature, method:"delete", confirm:"Are you sure you want to delete '#{h @literature.title}'?", class:'btn small btn-danger'
 
+
 %h1
   =h @literature.title
 %div

@@ -3,11 +3,10 @@
   %head=render 'layouts/head'
   
   %body
-    .container-fluid
-      =#render 'layouts/init_facebook'
-      #header.row-fluid=render 'layouts/top_bar'
-      =render 'layouts/notices'
-      #contents.row-fluid
+    #header=render 'layouts/top_bar'
+    #contents.container
+      .row
+        .span12=render 'layouts/notices'
         .span12=yield
-      #footer.row-fluid=render 'layouts/footer'
+    #footer=render 'layouts/footer'
       

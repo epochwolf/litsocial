@@ -22,10 +22,8 @@ gem 'jquery-rails'
 
 # View stuff.
 gem 'uuid'
-gem 'less-rails-bootstrap'
-#gem 'less-rails'
-#gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
-gem 'twitter_bootstrap_form_for', :git => 'https://github.com/tzeskimo/twitter_bootstrap_form_for.git'
+gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails', :git => 'git://github.com/anjlab/bootstrap-rails.git'
+gem 'simple_form'
 gem 'haml'
 gem 'sanitize'
 gem 'devise'

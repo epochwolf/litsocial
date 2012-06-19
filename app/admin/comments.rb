@@ -4,7 +4,7 @@ ActiveAdmin.register Comment, :as => "UserComment" do
   
   form do |f|
     f.inputs do
-      f.input :contents, :as => :html, :hint => "<br/>Do not edit a user's comment without a damn good reason.".html_safe
+      f.input :contents, :as => :admin_html, :hint => "<br/>Do not edit a user's comment without a damn good reason.".html_safe
       f.input :deleted
       f.input :deleted_reason
     end
@@ -36,5 +36,15 @@ ActiveAdmin.register Comment, :as => "UserComment" do
   
   before_save do |currm|
     currm.assign_attributes(params[:comment], :role => :admin)
+  end
+
+  action_item :only => [:show, :edit] do
+    link_to "Versions", versions_admin_user_comment_path(resource)
+  end
+  
+  member_action :versions do
+    @object = Comment.find(params[:id])
+    @versions = @object.versions
+    render 'admin/paper_trail.arb'
   end
 end

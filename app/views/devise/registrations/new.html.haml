@@ -2,17 +2,14 @@
   Sign up via email
   %small=link_to "or use your Facebook account", omniauth_authorize_path(resource_name, "facebook")
 
-=tb_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| 
-  =f.inputs do
-    =f.text_field :name, "Name", :required => true, :placeholder => "Jonathan Jeremiah Doe", :size => 50 do
-      %span.help-inline=link_to "Fill in from your facebook account?", omniauth_authorize_path(resource_name, "facebook")
-      %span.help-block This is the name that will show up on your profile.
-    =f.email_field :email, "Email", :required => true, :placeholder => "jonathan.doe@example.com" do
-      %span.help-inline=link_to "Already have an account with us?", new_session_path(resource_name)
-      %span.help-block Only used for login. We hate spam just as much as you do.
-    =f.password_field :password, "Password", :required => true do
-      %span.help-block Must be at least six characters
-    =f.password_field :password_confirmation, "Confirm Password", :required => true
+=simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| 
+  .form-horizontal
+    -hint = 'This is the name that will show up on your profile. <br/>' + link_to("Fill in from your facebook account?", omniauth_authorize_path(resource_name, "facebook")) 
+    =f.input :name, placeholder: "Jonathan Jeremiah Doe", hint: hint
+    =f.input :email, placeholder: "jonathan.doe@example.com", hint: "Only used for login. We hate spam just as much as you do."
+    =f.input :password, hint: "Must be at least six characters"
+    =f.input :password_confirmation, label: "Confirm Password"
       
-  =f.actions do
-    =f.submit "Sign up"
+    .form-actions
+      =f.button :submit, "Sign up"
+      =link_to "Already have an account with us?", new_session_path(resource_name)

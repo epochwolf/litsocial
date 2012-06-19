@@ -14,7 +14,7 @@ ActiveAdmin.register Story do
     f.inputs "Content" do
       f.input :user
       f.input :title
-      f.input :contents, :as => :html
+      f.input :contents, :as => :admin_html
     end
     f.inputs "Deletion" do
       f.input :deleted

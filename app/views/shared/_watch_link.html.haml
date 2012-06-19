@@ -10,7 +10,7 @@
     current_user.watching?(watchable)
   end
   js_id = String.random
-  css = small ? "btn btn-info btn-small" : "btn btn-info"
+  css = "btn btn-info btn-mini"
 %span{id:js_id}
   -if user_signed_in? 
     -if watch

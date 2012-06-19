@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.0'
+gem 'rails', '3.2.6'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -39,6 +39,8 @@ gem 'pg_search'
 
 
 #ActiveAdmin
+
+#gem 'activeadmin', :git => "https://github.com/gregbell/active_admin.git", :ref => 'f92c7fec7a4a86f25b0495576518e1e4462711a7'
 gem 'activeadmin', :git => "https://github.com/gregbell/active_admin.git", :branch => 'master'
 
 # To use ActiveModel has_secure_password

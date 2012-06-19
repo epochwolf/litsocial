@@ -10,8 +10,7 @@ class StoriesController < ApplicationController
   
   def show
     return show403 "This post has been removed by the author, sorry. :(" unless @story.visible? || @story.user == current_user
-    @comments = paged(@story.comments.top_levels.includes(:user, {:children => :user}))
-    render :template => "shared/literature"
+    @comments = paged(@story.comments.top_levels.includes(:user, {:children => :user})) 
   end
   
   def new

@@ -1,9 +1,5 @@
 module ApplicationHelper
   
-  def tb_form_for(*args, &block)
-    twitter_bootstrap_form_for(*args, &block)
-  end
-  
   def continue_redirect
     hidden_field_tag "return", return_path if return_path?
   end
@@ -39,7 +35,6 @@ module ApplicationHelper
       menu = {}
       menu[["user", "Profile"]] = user
       menu[["book", "Stories"]] = [:stories, user]
-      menu[["glass", "Poems"]] = [:poems, user]
       if user_signed_in?
         menu["0"] = :divider
         menu[["envelope", "Send Message"]] = new_account_message_path(current_user, to:user.id)

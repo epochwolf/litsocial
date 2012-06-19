@@ -9,7 +9,6 @@
       =link_to "Lit Social", root_url, :class => 'brand'
       %ul.nav
         %li{:class => active_for_controller("stories")}=link_to "Stories", stories_path
-        %li{:class => active_for_controller("poems")}=link_to "Poems", poems_path
         %li{:class => active_for_controller("news_posts")}=link_to "Site News", news_posts_path
         %li{:class => active_for_controller("pages")}=link_to "Pages", pages_path
         -if user_signed_in?
@@ -30,7 +29,6 @@
                 %li=icon_link "cog", "My Account", account_path(current_user)
                 %li.divider
                 %li=icon_link "book", "New Story", new_story_path
-                %li=icon_link "glass", "New Poem", new_poem_path
                 %li=icon_link "envelope", "New Message", new_account_message_path(current_user)
                 %li.divider
                 %li=icon_link "remove-circle", "Logout", destroy_user_session_path, :method => :delete

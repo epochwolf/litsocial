@@ -1,5 +1,7 @@
 LitSocial::Application.routes.draw do
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
+
   ActiveAdmin.routes(self)
 
   post "convert/word_doc" => 'convert#word_doc', :as => :convert_word_doc
@@ -7,9 +9,10 @@ LitSocial::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :stories
-  resources :poems
-  resources :comments, :only => [:create, :update, :destroy]
-  resources :accounts, :only => [:index, :show, :edit, :update] do
+  resources :categories, only: [:index, :show]
+  resources :series, only: [:index, :show]
+  resources :comments, only: [:create, :update, :destroy]
+  resources :accounts, only: [:index, :show, :edit, :update] do
     resources :messages do
       collection do
         get :read
@@ -18,20 +21,19 @@ LitSocial::Application.routes.draw do
     end
     member do
       get :stories
-      get :poems
     end
   end
   
-  resources :news_posts, :only => [:index, :show], :path => "site_news"
-  get "pages" => 'pages#index', :as => :pages
-  get "pages/*id" => 'pages#show', :as => :page
+  resources :news_posts, only: [:index, :show], path: "site_news"
+  get "pages" => 'pages#index', as: :pages
+  get "pages/*id" => 'pages#show', as: :page
   
-  resources :watches, :only => [:create, :destroy]
+  resources :watches, only: [:create, :destroy]
   
-  resources :users, :only =>[:show] do
+  resources :users, only: [:show] do
     member do
+      get :series
       get :stories
-      get :poems
     end
   end
 

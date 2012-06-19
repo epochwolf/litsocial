@@ -2,12 +2,9 @@
   def active_for(*actions)
     actions.any?{|action| params[:action] == action } ? "active" : nil
   end
--if params[:action] == "poems"
-  =link_to "New Poem", [:new, :poem], :class => "btn btn-success btn-small pull-right" 
 -if params[:action] == "stories"
-  =link_to "New Story", [:new, :story], :class => "btn btn-success btn-small pull-right" 
+  =link_to "New Story", [:new, :story], :class => "btn btn-success btn-mini pull-right" 
 %ul.nav.nav-tabs
   %li{:class => active_for("show")}=icon_link "list", "Overview", account_path(@user)
   %li{:class => active_for("stories")}=icon_link "book", "Stories", stories_account_path(@user)
-  %li{:class => active_for("poems")}=icon_link "glass", "Poems", poems_account_path(@user)
   %li{:class => active_for("edit", "update")}=icon_link "cog", "Settings", edit_account_path(@user)

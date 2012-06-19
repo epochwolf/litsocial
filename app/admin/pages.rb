@@ -9,7 +9,7 @@ ActiveAdmin.register Page do
   form do |f|
     f.inputs "Content" do
       f.input :title
-      f.input :contents, :as => :html
+      f.input :contents, :as => :admin_html
     end
     f.inputs "Publishing" do
       f.input :url, :hint => "The part after /page/"

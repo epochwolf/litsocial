@@ -1,5 +1,5 @@
 # Add a Formtastic input field for html
-class HtmlInput < Formtastic::Inputs::TextInput
+class AdminHtmlInput < Formtastic::Inputs::TextInput
   
   def to_html
     input_wrapping do

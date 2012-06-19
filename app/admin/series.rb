@@ -1,4 +1,4 @@
-ActiveAdmin.register Poem do
+ActiveAdmin.register Series do
   
   index do 
     column :id
@@ -14,7 +14,7 @@ ActiveAdmin.register Poem do
     f.inputs "Content" do
       f.input :user
       f.input :title
-      f.input :contents, :as => :html
+      f.input :description, :as => :admin_html
     end
     f.inputs "Deletion" do
       f.input :deleted
@@ -29,7 +29,7 @@ ActiveAdmin.register Poem do
   end
   
   before_save do |currm|
-    currm.assign_attributes(params[:poem], :role => :admin)
+    currm.assign_attributes(params[:story], :role => :admin)
   end
   
   action_item :only => [:show, :edit] do
@@ -37,7 +37,7 @@ ActiveAdmin.register Poem do
   end
   
   member_action :versions do
-    @object = Poem.find(params[:id])
+    @object = Story.find(params[:id])
     @versions = @object.versions
     render 'admin/paper_trail.arb'
   end

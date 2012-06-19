@@ -27,7 +27,7 @@ ActiveAdmin.register User do
       f.input :name
       f.input :email
       f.input :gender, :as => :select, :collection => User::GENDERS
-      f.input :biography, :as => :html
+      f.input :biography, :as => :admin_html
     end
     f.inputs "Flags" do
       f.input :admin

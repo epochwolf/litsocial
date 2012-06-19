@@ -1,0 +1,3 @@
+- Remove poems
+- Change watch/edit/delete to mini buttons
+- make text background higher contrast

@@ -1,42 +1,36 @@
 =render 'nav'
+:ruby
+  password_hint = if @user.never_set_password?
+    "You have not set a password. Leave this blank if you don't want to set one."
+  else
+    "Leave blank if you don't want to update your password."
+  end
 
-=tb_form_for @user, url:account_path(@user), html:{class:'form-horizontal'} do |f|
+=simple_form_for @user, url:account_path(@user), html:{class:'form-horizontal'} do |f|
   -if @user.invalid?
     .alert-message.error{"data-alert" => "alert"}
       %a.close{:href => '#'} x
       %p There was an error saving changes.
       
-  =f.inputs "Your Profile" do
-    =f.text_field :id, "Account Id", disabled:true
-    =f.text_field :name do
-      %span.help-block This is how you will be identified to other users.  
-    =f.select :gender, "Gender", [["Male", "male"], ["Female", "female"], ["Don't Show", ""]]
-    =f.text_area :biography, "About Me", class:'xxlarge', rows:5
-    
-  =f.inputs "Account Details" do
-    %p All information in this section is private and never displayed on your profile.
-    =f.email_field :email, hint:"Not displayed, used for logging in or to recover your account." do
-      %span.help-block Used only for login or recovering your account.
-    .clearfix.control-group
-      %label Facebook Profile
-      .input.controls
-        -if @user.linked_to_facebook?
-          %p.uneditable-input
-            #{link_to @user.facebook_name, @user.facebook_profile}
-        -else
-          %p.uneditable-input
-            %em Not connected.
-            =link_to "Connect my profile", omniauth_authorize_path(:user, "facebook")
-        %span.help-block Used only for login.
-    
-    =f.password_field :password do
-      -if @user.never_set_password?
-        %span.help-block You have not set a password. Leave this blank if you don't want to set one.
+  =f.input :name, hint: "This is how you will be identified to other users."
+  =f.input :gender, as: :select, label: "Gender", collection:[["Male", "male"], ["Female", "female"], ["Don't Show", ""]]
+  =f.input :biography, as: :text, label: "About Me", input_html:{class:'xxlarge', rows:5}
+  =f.input :email, hint:"Not displayed, used for logging in or to recover your account."
+  .control-group
+    %label.control-label Facebook Profile
+    .input.controls
+      -if @user.linked_to_facebook?
+        %p.uneditable-input
+          #{link_to @user.facebook_name, @user.facebook_profile}
       -else
-        %span.help-block Leave blank if you don't want to update your password.
-    =f.password_field :password_confirmation
+        %p.uneditable-input
+          %em Not connected.
+          =link_to "Connect my profile", omniauth_authorize_path(:user, "facebook")
+      %span.help-block Used only for login.
+  =f.input :password, hint: password_hint
+  =f.input :password_confirmation
     
-  =f.actions do
+  .form-actions
     =f.submit "Update", class:"btn btn-primary"
     =link_to "Cancel", return_path(account_path(current_user)), :class => "btn"
     

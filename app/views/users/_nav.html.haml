@@ -5,8 +5,7 @@
 %h3.pull-left{:style => 'padding-right: 1em'}=@user.name
 %ul.pull-right.btn-list
   %li=render "shared/watch_link", :watchable => @user
-  %li=icon_link "envelope icon-white", "Message", new_account_message_path(@user, :to => @user.id), :class => 'btn btn-success'
+  %li=icon_link "envelope icon-white", "Message", new_account_message_path(@user, :to => @user.id), :class => 'btn btn-success btn-mini'
 %ul.nav.nav-tabs
   %li{:class => active_for("show")}=icon_link "user", "Profile", user_path(@user)
   %li{:class => active_for("stories")}=icon_link "book", "Stories", stories_user_path(@user)
-  %li{:class => active_for("poems")}=icon_link "glass", "Poems", poems_user_path(@user)

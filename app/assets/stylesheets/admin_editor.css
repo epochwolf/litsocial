@@ -1,5 +1,10 @@
-form.formtastic fieldset > ol > li.html > div.rich-text-field {
+
+form.formtastic fieldset > ol > li.admin_html > div.rich-text-field {
   width: 76%;
   float: left;
   padding: 8px 10px 7px;
+}
+
+form fieldset > ol > li p.inline-hints{
+  clear: left;
 }

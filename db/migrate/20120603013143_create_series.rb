@@ -1,6 +1,7 @@
 class CreateSeries < ActiveRecord::Migration
   def change
     create_table :series do |t|
+      t.references :user, :null => false
       t.string :title,        :null => false
       t.text :description
       t.text :story_list_cache

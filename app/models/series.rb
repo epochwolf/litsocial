@@ -4,4 +4,7 @@ class Series < ActiveRecord::Base
     :title, :description,
     :deleted, :deleted_reason
   ]
+
+  belongs_to :user
+  has_many :stories, order: 'series_position'
 end

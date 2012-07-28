@@ -112,10 +112,14 @@ ActiveRecord::Schema.define(:version => 20120603013143) do
   add_index "received_messages", ["to_id", "read", "created_at"], :name => "index_received_messages_to_read"
 
   create_table "series", :force => true do |t|
-    t.string   "title"
+    t.integer  "user_id",                             :null => false
+    t.string   "title",                               :null => false
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.text     "story_list_cache"
+    t.boolean  "deleted",          :default => false, :null => false
+    t.text     "deleted_reason",   :default => "",    :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
   end
 
   create_table "stories", :force => true do |t|

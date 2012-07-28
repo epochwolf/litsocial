@@ -7,7 +7,8 @@
   =f.input :title
   =f.input :contents, as: :html, input_html: {id: 'literature_contents'}
   =f.association :categories, as: :check_boxes
-  =f.association :series
+  =f.association :series, include_blank: "Create New Series"
+  =f.input :series_title, input_html:{id:'story_series_title'} 
   .form-actions
     =f.button :submit, class: 'btn btn-primary'
     =link_to "Cancel", return_path(account_path(current_user)), :class => "btn"

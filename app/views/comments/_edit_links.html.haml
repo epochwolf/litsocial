@@ -1,8 +1,0 @@
-%span{:style => "padding-left: .5em;"}  
-  -if comment.edited?
-    %span.label Edited
-  -if current_user.admin?
-    =link_to "admin", edit_admin_user_comment_path(comment), :class => ''
-  -if owner?(comment) && !comment.deleted?
-    =link_to "edit", '#', :class => '', :onclick => "Comment.edit('#{comment.id}', this);return false;"
-    =link_to "delete", '#', :class => '', :onclick => "Comment.destroy_prompt('#{comment.id}', this);return false;"

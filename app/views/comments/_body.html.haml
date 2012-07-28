@@ -1,5 +1,0 @@
--unless comment.deleted?
-  .rich.comment_body=rich comment.contents
--else 
-  .rich
-    %a.label{:href => '#', :rel => 'popover', :title => "Reason for Removal", :data => {:placement => 'below', :content => (comment.deleted_reason.presence || "Removed by user")}} Removed

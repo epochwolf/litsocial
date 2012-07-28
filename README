@@ -1,20 +1,7 @@
 # About
 Lit Social is a literature website that integrates with facebook.
 
-# Dependencies
-## Config File
-Application requires a config file in the user's home folder. 
-The config file needs to define the following constants: 
-
-* LitSocial::DB_USER
-* LitSocial::DB_PASSWORD
-* LitSocial::FACEBOOK_APP_ID
-* LitSocial::FACEBOOK_APP_SECRET
-* LitSocial::APP_SECRET
-
-## Word Document Converter
-The word document converter is an external script called `/opt/bin/convert_docx_to_html`. 
-The script should accept a filename as the sole argument and return html or an error message.
+[Previous Version of the Code](https://github.com/epochwolf/litsocial/tree/f33cd05128d7a416d595392d7c404dbfd6edfcb8) 
 
 # Licensing
 All parts of this application is licensed under the GNU Affero General Public License version 3 

@@ -1,5 +1,0 @@
-=render 'nav'
-#messages
-  -@messages.each do |message|
-    .message{id: message.js_id}=render "show", :message => message
-  =paginate(@messages)

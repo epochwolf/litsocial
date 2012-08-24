@@ -1,0 +1,11 @@
+!!!
+%html{lang: "en"}
+  %head=render 'layouts/head'
+  
+  %body
+    #header=render 'layouts/top_bar'
+    #contents.container
+      .row
+        .span12=render 'layouts/notices'
+        .span12=yield
+    #footer=render 'layouts/footer'

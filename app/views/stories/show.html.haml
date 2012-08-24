@@ -1,0 +1,13 @@
+.row
+  .span8.offset2
+    %h1
+      =h @story.title
+    %div
+      Created on #{dt(@story.created_at)}
+      by #{link_to @story.user.name, @story.user} 
+
+    %hr.slim
+    -unless @story.visible?
+      .alert-message.warning
+        This submission is hidden
+    .rich=rich @story.contents

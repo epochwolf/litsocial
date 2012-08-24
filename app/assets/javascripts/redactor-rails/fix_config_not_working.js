@@ -1,0 +1,3 @@
+// For some reason, the asset pipeline doesn't allow me to override one file...
+//=require redactor-rails/redactor.min
+//=require ./config

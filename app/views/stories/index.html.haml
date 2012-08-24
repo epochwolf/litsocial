@@ -1,0 +1,22 @@
+%h2 Stories
+-if @stories
+  %table.table.table-striped
+    %tr
+      %th Title
+      %th Series
+      %th Created
+      %th Author
+    -@stories.each do |s|
+      %tr
+        %td=icon_link "book", s.title, s
+        %td
+          -if s.series
+            \##{s.series_position} of #{link_to s.series.title, s.series}
+          -else
+            %em None
+        %td=dt s.created_at
+        %td=link_to s.user.name, s.user
+
+  =paginate @stories
+-else
+  %p Nothing has been submitted yet.

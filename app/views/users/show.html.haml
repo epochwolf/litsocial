@@ -1,0 +1,15 @@
+%h2 #{@user.name}
+%hr.slim
+
+.span8
+  %h3 Stories
+  %ul
+    -@user.stories.each do |series|
+      %li=link_to series.title, series
+.span4
+  %h3 Series
+  %ul
+    -@user.series.each do |series|
+      %li=link_to series.title, series
+  
+

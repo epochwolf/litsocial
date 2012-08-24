@@ -18,6 +18,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'redactor-rails'
 
 
 # View stuff.
@@ -28,6 +29,7 @@ gem 'haml'
 gem 'sanitize'
 gem 'devise'
 gem "omniauth-facebook"
+#gem "rack-mini-profiler"
 
 
 # Active Record

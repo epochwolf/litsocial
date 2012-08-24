@@ -1,0 +1,53 @@
+class ApplicationController < ActionController::Base
+  include Controllers::RedirectProtection
+  include Controllers::OverrideDevise
+  #include Controllers::SaveRecord
+  include Controllers::Paged
+  protect_from_forgery
+  rescue_from ActiveRecord::RecordNotFound, ActionController::RoutingError, :with => :handle_record_not_found
+
+
+  
+  helper_method :return_path, :here, :owner?, :admin?
+
+  protected
+  def handle_record_not_found
+    show404
+  end
+  
+  def show403(message=nil)
+    respond_to do |type| 
+      type.html { render :template => 'errors/403', :status => 403, :locals => {:message => message} }
+      type.all  { render :nothing => true, :status => 403 }
+    end
+    true
+  end
+  
+  def show404(message=nil)
+    respond_to do |type| 
+      type.html { render :template => 'errors/404', :status => 404, :locals => {:message => message} }
+      type.all  { render :nothing => true, :status => 404 }
+    end
+    true
+  end
+
+  def admin?
+    user_signed_in? && current_user.admin?
+  end
+  
+  def owner?(object)
+    if user_signed_in? && object.respond_to?(:user)
+      object.user && object.user == current_user
+    end
+  end
+  
+  def authenticate_admin!
+    unless admin?
+      if user_signed_in?
+        redirect_to account_path(current_user), :notice => "You don't have permission to access the admin panel."
+      else
+        redirect_to new_user_session_path, :notice => "Please log in to access the admin panel."
+      end
+    end
+  end
+end

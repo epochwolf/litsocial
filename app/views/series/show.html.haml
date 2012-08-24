@@ -1,0 +1,12 @@
+%h1=h @series.title
+%div By #{link_to @series.user.name, @series.user}   
+%table.table.table-striped
+  %tr
+    %th
+    %th Title
+    %th Created
+  -@series.stories.each do |s|
+    %tr
+      %td=s.series_position
+      %td=icon_link "book", s.title, s
+      %td=dt s.created_at

@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  contents: MyString
+  user_id: MyString
+  series_id: 1
+  series_position: 1
+  locked_at: MyString
+  datetime: MyString
+  locked_reason: MyText
+  deleted: false
+
+two:
+  title: MyString
+  contents: MyString
+  user_id: MyString
+  series_id: 1
+  series_position: 1
+  locked_at: MyString
+  datetime: MyString
+  locked_reason: MyText
+  deleted: false

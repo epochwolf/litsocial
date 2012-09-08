@@ -35,7 +35,7 @@ ActiveAdmin.register Story do
 
     f.inputs "Series" do
       f.input :series
-      #f.input :series_position
+      f.input :series_position
     end
 
     f.inputs "Admin" do

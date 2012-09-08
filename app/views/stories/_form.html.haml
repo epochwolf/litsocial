@@ -1,0 +1,8 @@
+=simple_form_for @story, html:{class:'form-horizontal'}  do |f|
+  =f.input :title
+  =f.input :contents, input_html:{class: 'redactor'}
+  =f.association :series
+  =f.input :series_title
+  .form-actions
+    =f.submit class: 'btn btn-primary'
+    =link_to "Cancel", return_path(account_path(current_user)), class: 'btn'

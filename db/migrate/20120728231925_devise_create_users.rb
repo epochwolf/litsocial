@@ -2,8 +2,10 @@ class DeviseCreateUsers < ActiveRecord::Migration
   def change
     create_table(:users) do |t|
       t.string :name,               :null => false
+      t.string :tagline
+      t.text :biography
       t.boolean :admin
-      t.boolean :banned_at
+      t.datetime :banned_at
       t.text :banned_reason
       
       ## Database authenticatable

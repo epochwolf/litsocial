@@ -51,8 +51,10 @@ ActiveRecord::Schema.define(:version => 20120819202644) do
 
   create_table "users", :force => true do |t|
     t.string   "name",                                   :null => false
+    t.string   "tagline"
+    t.text     "biography"
     t.boolean  "admin"
-    t.boolean  "banned_at"
+    t.datetime "banned_at"
     t.text     "banned_reason"
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false

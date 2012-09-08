@@ -1,0 +1,18 @@
+:ruby
+  # required: @story or [series, current_story]
+  if @story
+    series = @story.series
+    current_story = story
+  end
+
+%h3
+  %small Series:
+  =link_to series.title, series
+%ol
+  -series.stories.each do |story|
+    %li
+      -if current_story == story
+        %strong=link_to story.title, story
+      -else
+        =link_to story.title, story
+

@@ -1,13 +1,21 @@
-.row
+.article.row
   .span8.offset2
     %h1
       =h @story.title
-    %div
+    .meta-data
       Created on #{dt(@story.created_at)}
       by #{link_to @story.user.name, @story.user} 
-
-    %hr.slim
-    -unless @story.visible?
-      .alert-message.warning
-        This submission is hidden
+      -if owner? @story
+        .pull-right
+          =link_to "edit", edit_story_path(@story, return: here), class:'btn btn-mini' 
+      -unless @story.visible?
+        .alert-message.warning
+          This submission is hidden
+    /     
+      .author-comments
+        %h3 Author Comments
+        Things are what they are.
+    -if @story.series?    
+      .series-list
+        =render 'series_list', story: @story
     .rich=rich @story.contents

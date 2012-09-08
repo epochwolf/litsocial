@@ -4,13 +4,17 @@ class ApplicationController < ActionController::Base
   #include Controllers::SaveRecord
   include Controllers::Paged
   protect_from_forgery
-  rescue_from ActiveRecord::RecordNotFound, ActionController::RoutingError, :with => :handle_record_not_found
+  #rescue_from ActiveRecord::RecordNotFound, ActionController::RoutingError, :with => :handle_record_not_found
 
 
   
   helper_method :return_path, :here, :owner?, :admin?
 
   protected
+  def self.require_login(*args)
+    before_filter :authenticate_user!, *args
+  end
+
   def handle_record_not_found
     show404
   end
@@ -24,6 +28,7 @@ class ApplicationController < ActionController::Base
   end
   
   def show404(message=nil)
+    begin; raise; rescue; @trace = $!.backtrace.join("\n"); end
     respond_to do |type| 
       type.html { render :template => 'errors/404', :status => 404, :locals => {:message => message} }
       type.all  { render :nothing => true, :status => 404 }

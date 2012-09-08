@@ -1,5 +1,12 @@
 %h1=h @series.title
-%div By #{link_to @series.user.name, @series.user}   
+%div 
+  By #{link_to @series.user.name, @series.user}
+
+  -if owner? @series
+    .pull-right
+      =link_to "add a story", new_story_path(series: @series.id, return: here), class: 'btn btn-mini btn-success'
+      &nbsp;
+      =link_to "edit series", edit_series_path(@series, return: here), class:'btn btn-mini'
 %table.table.table-striped
   %tr
     %th

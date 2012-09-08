@@ -1,0 +1,9 @@
+=render 'nav'
+
+=simple_form_for(@user, url: account_path,  html:{class:'form-horizontal'}) do |f|
+  =f.input :name
+  =f.input :email, hint: "Used to reset your password."
+  =f.input :tagline, hint: "Shows up next to your name on your profile"
+  =f.input :biography, input_html:{class: 'redactor'}
+  .form-actions
+    =f.button :submit, "Save Changes"

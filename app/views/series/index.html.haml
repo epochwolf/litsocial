@@ -1,4 +1,8 @@
-%h2 Series
+%h2 
+  Series
+  -if user_signed_in?
+    .pull-right
+      =link_to "New Series", new_series_path, class:'btn btn-success btn-mini'
 -if @series
   %table.table.table-striped
     %tr
@@ -8,7 +12,7 @@
       %th Author
     -@series.each do |s|
       %tr
-        %td=icon_link "book", s.title, s
+        %td=icon_link "list", s.title, s
         %td=s.stories_count
         %td=dt s.created_at
         %td=link_to s.user.name, s.user

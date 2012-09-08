@@ -1,0 +1,9 @@
+:ruby
+  def active_for_action(*actions)
+    actions.any?{|action| params[:action] == action } ? "active" : nil
+  end
+
+%ul.nav.nav-tabs
+  %li{class: active_for_action("show")}=link_to "Overview", account_path
+  %li{class: active_for_action("stories")}=link_to "Series & Stories", stories_account_path
+  %li{class: active_for_action("edit", "update")}=link_to "Edit Profile", edit_account_path

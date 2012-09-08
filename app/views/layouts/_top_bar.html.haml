@@ -14,7 +14,7 @@
         %li{:class => active_for_controller("pages")}=#link_to "Pages", pages_path
         -if user_signed_in?
           %li{:class => active_for_controller("messages")}=#link_to "Messages", account_messages_path(current_user)
-          %li{:class => active_for_controller("accounts")}=#link_to "My Account", account_path(current_user)
+          %li{:class => active_for_controller("account")}=link_to "My Account", account_path
         -if admin?
           %li=link_to "Admin Panel", "/admin"
       .pull-right
@@ -26,8 +26,8 @@
                 =current_user.name
                 %b.caret
               %ul.dropdown-menu
-                %li=icon_link "user", "My Profile", user_path(current_user)
-                %li=icon_link "cog", "My Account", account_path(current_user)
+                %li=icon_link "user", "Public Profile", user_path(current_user)
+                %li=icon_link "cog", "My Account", account_path
                 %li.divider
                 %li=icon_link "book", "New Story", new_story_path
                 %li=#icon_link "envelope", "New Message", new_account_message_path(current_user)

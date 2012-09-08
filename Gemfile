@@ -23,7 +23,7 @@ gem 'redactor-rails'
 
 # View stuff.
 gem 'uuid'
-gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails', :git => 'git://github.com/anjlab/bootstrap-rails.git'
+gem 'anjlab-bootstrap-rails', '= 2.1.1.1', :require => 'bootstrap-rails'
 gem 'simple_form'
 gem 'haml'
 gem 'sanitize'

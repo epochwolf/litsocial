@@ -1,0 +1,19 @@
+=simple_form_for @series, html:{class:'form-horizontal'}  do |f|
+  =f.input :title
+
+  -unless @series.new_record?
+    .control-group
+      %label.control-label Stories
+      .controls
+        %ol
+          -@series.stories.each do |story|
+            %li
+              
+              =story.title
+              &nbsp;
+              =link_to "edit", edit_story_path(story, return:here), class:'btn btn-mini'
+              &nbsp;
+              =link_to "X", story_path(story, return:here), class: 'btn btn-mini btn-danger', method: :delete, confirm: "Are you sure?"
+  .form-actions
+    =f.submit class: 'btn btn-primary'
+    =link_to "Cancel", return_path(account_path(current_user)), class: 'btn'

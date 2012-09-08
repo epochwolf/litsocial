@@ -1,0 +1,40 @@
+=render 'nav'
+
+%p 
+  =link_to "new series", new_series_path(return: here), class: 'btn btn-mini btn-success'
+  =link_to "new story", new_story_path(return: here), class: 'btn btn-mini btn-success'
+%hr.slim
+
+-@series.each do |series|
+  %h2
+    %small Series: 
+    =link_to series.title, series
+    .pull-right
+      =link_to "add a story", new_story_path(series: series.id, return: here), class: 'btn btn-mini btn-success'
+      &nbsp;
+      =link_to "edit", edit_series_path(series, return: here), class:'btn btn-mini'
+      &nbsp;
+      =link_to "X", series_path(series, return: here), class: 'btn btn-mini btn-danger', method: :delete, confirm: "Are you sure?"
+  %table.table
+    -series.stories.each do |story|
+      %tr
+        %td=story.series_position
+        %td=link_to story.title, story
+        %td
+          .pull-right
+            =link_to "edit", edit_story_path(story, return:here), class:'btn btn-mini'
+            &nbsp;
+            =link_to "X", story_path(story, return:here), class: 'btn btn-mini btn-danger', method: :delete, confirm: "Are you sure?"
+
+-unless @stories.empty?
+  %h2 
+    Not in a Series
+  %table.table
+    -@stories.each do |story|
+      %tr
+        %td=link_to story.title, story
+        %td
+          .pull-right
+            =link_to "edit", edit_story_path(story, return:here), class:'btn btn-mini'
+            &nbsp;
+            =link_to "X", story_path(story, return:here), class: 'btn btn-mini btn-danger', method: :delete, confirm: "Are you sure?"

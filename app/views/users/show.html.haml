@@ -1,15 +1,39 @@
-%h2 #{@user.name}
-%hr.slim
+.row
+  .span12
+    %h2
+      =@user.name
+      -if @user.tagline.present?
+        %small=@user.tagline
+    .pull-right=icon_link 'envelope', "Send message", '#', class:'btn btn-small'
+    %p Joined LitSocial on #{@user.created_at} and has submitted #{@user.series.visible.count} series and #{@user.stories.visible.count} stories.
+    -if @user.admin?
+      %p Is a member of the Administration team
+    %hr.slim
+.row
+  -if @user.biography.present?
+    .span6.rich
+      %h3.title User Biography
+      =rich @user.biography
+  .span6
+    -@user.series.visible.where(:stories_count.gte => 1).includes(:stories).each do |series|
+      -next if series.stories_count == 0
+      %h3
+        %small Series: 
+        =link_to series.title, series
+      %table.table
+        -series.stories.each do |story|
+          %tr
+            %td=story.series_position
+            %td=link_to story.title, story
+            %td=story.created_at
 
-.span8
-  %h3 Stories
-  %ul
-    -@user.stories.each do |series|
-      %li=link_to series.title, series
-.span4
-  %h3 Series
-  %ul
-    -@user.series.each do |series|
-      %li=link_to series.title, series
+  .span6
+    -unless (stories = @user.stories.visible.where(series_id: nil)).count == 0
+      %h3 Stories not in a series
+      %table.table
+        -stories.each do |story|
+          %tr
+            %td=link_to story.title, story
+            %td=story.created_at
   
 

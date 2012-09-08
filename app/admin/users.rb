@@ -10,11 +10,28 @@ ActiveAdmin.register User do
     link_column :name
     column :email
     column :admin
-    #column :banned?
+    column :banned?
     column :created_at
     column :updated_at
     edit_links
   end
 
+
+  form do |f|
+    f.inputs "Profile" do 
+      f.input :name
+      f.input :tagline
+      f.input :biography, input_html:{class: 'redactor'}
+
+      f.input :email
+    end
+
+    f.inputs "Admin" do
+      f.input :banned, as: :boolean
+      f.input :banned_reason
+    end
+
+    f.buttons
+  end
   # TODO: Limit fields that are allowed. 
 end

@@ -12,8 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
+//= require jquery-ui-1.8.23.custom.min
+//= require twitter/bootstrap
 //= require redactor-rails
+//= require redactor-rails/fix_config_not_working
 //= require_tree ./site
 
 function update_modal_message(title, message){

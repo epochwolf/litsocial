@@ -23,7 +23,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Recent Series" do
           ul do 
-            Series.includes(:user).limit(5).map do |ar|
+            Series.order(:id.desc).includes(:user).limit(5).map do |ar|
               li do
                 link_to(ar.title, [:admin, ar]) + raw(" by ") + link_to(ar.user.name, [:admin, ar.user])
               end
@@ -36,7 +36,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Recent Stories" do
           ul do 
-            Story.includes(:user, :series).limit(5).map do |ar|
+            Story.order(:id.desc).includes(:user, :series).limit(5).map do |ar|
               li do
                 link_to(ar.title, [:admin, ar]) + 
                 if ar.series

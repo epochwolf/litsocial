@@ -8,9 +8,14 @@
       -if owner? @story
         .pull-right
           =link_to "edit", edit_story_path(@story, return: here), class:'btn btn-mini' 
-      -unless @story.visible?
-        .alert-message.warning
-          This submission is hidden
+      -if @story.deleted?
+        .alert.alert-warning
+          This submission has been deleted
+      -if @story.locked?
+        .alert.alert-warning
+          %p
+            %strong This submission has been locked
+          =rich @story.locked_reason
     /     
       .author-comments
         %h3 Author Comments

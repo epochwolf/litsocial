@@ -11,6 +11,7 @@ class Story < ActiveRecord::Base
   belongs_to :user
 
   validates :title, :contents, :user_id, presence: true
+  validates :locked_reason, presence: true, if: :locked?
 
   def visible?
     !(deleted? || locked?)
@@ -26,6 +27,18 @@ class Story < ActiveRecord::Base
 
   def locked?
     locked_at ? true : false
+  end
+
+  def locked
+    locked?
+  end
+
+  def locked=(bool)
+    if bool.to_i == 0
+      self.locked_at = nil
+    elsif !locked?
+      self.locked_at = DateTime.now
+    end
   end
 
   # SERIES TITLE

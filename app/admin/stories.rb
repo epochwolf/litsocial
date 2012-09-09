@@ -40,7 +40,7 @@ ActiveAdmin.register Story do
 
     f.inputs "Admin" do
       f.input :deleted
-      f.input :locked_at, as: "datepicker"
+      f.input :locked, as: :boolean
       f.input :locked_reason, input_html:{class: 'redactor'}
     end
 

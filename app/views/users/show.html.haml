@@ -21,7 +21,7 @@
         %small Series: 
         =link_to series.title, series
       %table.table
-        -series.stories.each do |story|
+        -series.stories.visible.each do |story|
           %tr
             %td=story.series_position
             %td=link_to story.title, story

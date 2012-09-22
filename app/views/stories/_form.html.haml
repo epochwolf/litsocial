@@ -1,3 +1,8 @@
+%p 
+  If you don't want to deal with copying and pasting your story, you can 
+  =link_to "upload an MS Word or OpenOffice Writer document", '#', data:{target:'#word_doc_uploader', toggle:'modal'}
+  and we'll copy and paste the text for you.
+
 =simple_form_for @story, html:{class:'form-horizontal'}  do |f|
   =f.input :title
   =f.input :contents, input_html:{class: 'redactor'}
@@ -6,3 +11,27 @@
   .form-actions
     =f.submit class: 'btn btn-primary'
     =link_to "Cancel", return_path(account_path(current_user)), class: 'btn'
+
+#word_doc_uploader.modal.hide
+  .modal-header
+    =link_to 'x', '#', class:"close", data:{dismiss:"modal"}
+    %h3 Upload a MS Word/OpenOffice Writer document
+  -# This posts the form and has iframe-of-unlimited-doom load the resulting page. 
+  -# It's a dirty, dirty hack to do file uploads with javascript.
+  -# See assets/convert.js for wireup
+  =form_tag convert_word_doc_url, :multipart => true, :target => 'iframe-of-unlimited-doom' do
+    .modal-body
+      %p Supported Document Formats:
+      %ul
+        %li Microsoft Word 2007/2010 (docx) 
+        %li Microsoft Word 2003-97 (doc)
+        %li Open Office/LibreOffice documents (odf)
+        %li Rich Text Format (rtf)
+        
+      %label{:for => 'word_doc'} Document:
+      =file_field_tag "word_doc"
+    .modal-footer
+      =submit_tag 'Upload', :class => 'btn btn-primary'
+      =link_to 'Cancel', '#', class:"btn btn-secondary", data:{dismiss:"modal"}
+
+%iframe#iframe-of-unlimited-doom{:style => 'display:none;'}

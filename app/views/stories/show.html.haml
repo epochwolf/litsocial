@@ -2,12 +2,15 @@
   .span8.offset2
     %h1
       =h @story.title
-    .meta-data
+    .meta-data.vbottom
       Created on #{dt(@story.created_at)}
       by #{link_to @story.user.name, @story.user} 
       -if owner? @story
-        .pull-right
-          =link_to "edit", edit_story_path(@story, return: here), class:'btn btn-mini' 
+        %small
+          &nbsp;
+          =icon_link 'wrench', "edit", edit_story_path(@story, return: here)
+          &nbsp;
+          =icon_link 'remove', "delete", story_path(@story), method: :delete, confirm: 'Are you sure?'
       -if @story.deleted?
         .alert.alert-warning
           This submission has been deleted

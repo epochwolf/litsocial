@@ -8,6 +8,7 @@ class CreateStories < ActiveRecord::Migration
       t.integer   :series_position
       t.datetime  :locked_at
       t.text      :locked_reason
+      t.datetime  :deleted_at
       t.boolean   :deleted,         null: false, default: false
 
       t.timestamps

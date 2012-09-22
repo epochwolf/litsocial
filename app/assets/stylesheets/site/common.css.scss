@@ -1,30 +1,18 @@
-h1.title {
-  border-bottom: 1px #ddd solid;
-  margin-bottom: 0.3em
+h1, h2, h3, h4, h5, h6{
+  &.inline{
+    display: inline;
+  }
+  &.title {
+    border-bottom: 1px #ddd solid;
+    margin-bottom: 0.3em;
+  }
 }
 
-h2.title {
-  border-bottom: 1px #ddd solid;
-  margin-bottom: 0.3em
+// because spelling is hard
+.gray, .grey{
+  color: #999;
 }
 
-h3.title {
-  border-bottom: 1px #ddd solid;
-  margin-bottom: 0.3em
+.vbottom{
+  vertical-align: bottom;
 }
-
-h4.title {
-  border-bottom: 1px #ddd solid;
-  margin-bottom: 0.3em
-}
-
-h5.title {
-  border-bottom: 1px #ddd solid;
-  margin-bottom: 0.3em
-}
-
-h6.title {
-  border-bottom: 1px #ddd solid;
-  margin-bottom: 0.3em
-}
-

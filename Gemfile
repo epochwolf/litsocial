@@ -40,8 +40,7 @@ gem 'paper_trail'
 gem 'pg_search'
 
 
-#ActiveAdmin
-
+#Engines
 #gem 'activeadmin', :git => "https://github.com/gregbell/active_admin.git", :ref => 'f92c7fec7a4a86f25b0495576518e1e4462711a7'
 gem 'activeadmin', :git => "https://github.com/gregbell/active_admin.git", :branch => 'master'
 

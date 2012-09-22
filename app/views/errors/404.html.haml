@@ -1,3 +1,5 @@
-%h1 404?
-=debug params 
-%pre=@trace
+.hero-unit
+  %h1 Page not found
+  %p= message ||= "The page you were trying to access is not available. It may have been deleted or may have never existed."
+  -if @trace
+    %pre=@trace

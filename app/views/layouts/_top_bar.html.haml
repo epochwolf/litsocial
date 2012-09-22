@@ -17,6 +17,7 @@
           %li{:class => active_for_controller("account")}=link_to "My Account", account_path
         -if admin?
           %li=link_to "Admin Panel", "/admin"
+
       .pull-right
         -if user_signed_in?
           %ul.nav
@@ -35,9 +36,5 @@
                 %li=icon_link "remove-circle", "Logout", destroy_user_session_path, :method => :delete
         -else
           %ul.nav
-            %li.dropdown 
-              %a.dropdown-toggle{href:"#", data:{toggle:"dropdown"}}
-                Sign In / Register
-                %b.caret
-              %ul.dropdown-menu
-                %li=link_to "With My Email", new_user_session_path(:return => here)
+            %li=link_to "Sign In", new_user_session_path(return: here)
+            %li=link_to "Register", new_user_registration_path(return: here)

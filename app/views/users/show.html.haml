@@ -4,10 +4,11 @@
       =@user.name
       -if @user.tagline.present?
         %small=@user.tagline
-    .pull-right=icon_link 'envelope', "Send message", '#', class:'btn btn-small'
-    %p Joined LitSocial on #{@user.created_at} and has submitted #{@user.series.visible.count} series and #{@user.stories.visible.count} stories.
-    -if @user.admin?
-      %p Is a member of the Administration team
+        .pull-right=icon_link 'envelope', "Send message", '#', class:'btn btn-small'
+    %p 
+      -if @user.admin?
+        %span.label.label-inverse Administrator 
+      Joined LitSocial on #{@user.created_at} and has submitted #{@user.series.visible.count} series and #{@user.stories.visible.count} stories.
     %hr.slim
 .row
   -if @user.biography.present?

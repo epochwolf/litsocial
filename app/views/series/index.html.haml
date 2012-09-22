@@ -12,7 +12,7 @@
       %th Author
     -@series.each do |s|
       %tr
-        %td=icon_link "list", s.title, s
+        %td=link_to s.title, s
         %td=s.stories_count
         %td=dt s.created_at
         %td=link_to s.user.name, s.user

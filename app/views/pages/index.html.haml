@@ -1,0 +1,9 @@
+%h1.title 
+  All Pages
+  %small Sorted by???
+%ul
+  -@pages.each do |page|
+    %li
+      =link_to page.title, page
+      %small.gray=dt page.updated_at
+=paginate @pages

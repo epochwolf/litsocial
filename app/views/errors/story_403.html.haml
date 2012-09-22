@@ -1,0 +1,8 @@
+.hero-unit
+  %h1 Story not available
+  -if @story.locked?
+    %p The story was removed on #{@story.locked_at}. The administration has the following to say...
+    =rich @story.locked_reason
+  -else
+    %p The story was removed by the owner on #{@story.deleted_at}. You'll have to ask them why.
+    %p Last known title: #{@story.title} 

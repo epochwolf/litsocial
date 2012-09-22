@@ -1,4 +1,6 @@
-%h1=h @series.title
+%h1
+  %small Series:
+  =h @series.title
 %div 
   By #{link_to @series.user.name, @series.user}
 
@@ -15,5 +17,5 @@
   -@series.stories.visible.each do |s|
     %tr
       %td=s.series_position
-      %td=icon_link "book", s.title, s
+      %td=link_to s.title, s
       %td=dt s.created_at

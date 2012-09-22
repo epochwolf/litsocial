@@ -35,6 +35,7 @@ Litsocial::Application.routes.draw do
 
   resources :stories
   resources :series
+  resources :pages, only: [:index, :show]
   resources :users, only: [:index, :show]
 
   get 'account'         => 'account#show',    as: :account
@@ -43,6 +44,10 @@ Litsocial::Application.routes.draw do
   put 'account'         => 'account#update'
   get 'account/cancel'  => 'account#cancel',  as: :cancel_account
   delete 'account'      => 'account#destroy'
+
+
+
+  post 'convert_word_doc' => 'home#convert_word_doc', as: :convert_word_doc
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

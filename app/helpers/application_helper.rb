@@ -1,3 +1,4 @@
+# encoding: utf-8
 module ApplicationHelper
   
   def continue_redirect
@@ -27,21 +28,25 @@ module ApplicationHelper
       link + menu
     end
   end
-  
+
   def user_link(user)
-    if user.nil?
-      ctag('em', "None")
-    else
-      menu = {}
-      menu[["user", "Profile"]] = user
-      menu[["book", "Stories"]] = [:stories, user]
-      if user_signed_in?
-        menu["0"] = :divider
-        menu[["envelope", "Send Message"]] = new_account_message_path(current_user, to:user.id)
-      end 
-      dropdown_menu(user.name, menu)
-    end 
+    content_tag(:small, '^ ') + link_to(user.name, user)
   end
+  
+  # def user_link(user)
+  #   if user.nil?
+  #     ctag('em', "None")
+  #   else
+  #     menu = {}
+  #     menu[["user", "Profile"]] = user
+  #     menu[["book", "Stories"]] = [:stories, user]
+  #     if user_signed_in?
+  #       menu["0"] = :divider
+  #       menu[["envelope", "Send Message"]] = new_account_message_path(current_user, to:user.id)
+  #     end 
+  #     dropdown_menu(user.name, menu)
+  #   end 
+  # end
   
   def icon(name)
     "<i class='icon-#{name}'></i> ".html_safe

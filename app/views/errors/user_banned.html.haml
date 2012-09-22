@@ -1,0 +1,4 @@
+.hero-unit
+  %h1 Profile not available
+  %p #{@user.name} was banned on #{dt @user.banned_at}. The administration has the following to say...
+  =rich @user.banned_reason 

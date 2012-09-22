@@ -18,6 +18,17 @@
 //= require redactor-rails/fix_config_not_working
 //= require_tree ./site
 
+function modal_message(title, message){
+  var html = $('<div id="modal_message" class="modal hide">' + 
+    '<div class="modal-header"><h3>' + title + '</h3></div>'+
+    '<div class="modal-body">'+ message +'</div>'+
+    '<div class="modal-footer"></div>'+
+    '</div>');
+  $(document).append(html)
+  html.modal('show');
+  return html;
+}
+
 function update_modal_message(title, message){
   if(title != null){
     $('#modal_message div.modal-header h3').html(title);
@@ -29,4 +40,9 @@ function update_modal_message(title, message){
 
 function dismiss_modal_message(){
   $('#modal_message').modal('hide').remove();
+}
+
+function copy_text_from_iframe(target, text_to_copy){
+  dismiss_modal_message();
+  $(target).setCode(text_to_copy);
 }

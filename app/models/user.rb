@@ -40,4 +40,8 @@ class User < ActiveRecord::Base
   def ban!
     update_column :banned_at, DateTime.now
   end
+
+  def to_s
+    name
+  end
 end

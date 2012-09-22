@@ -8,7 +8,7 @@ class StoriesController < ApplicationController
 
   def show
     if !@story.visible? && !owner?(@story)
-      show403 "Story not available"
+      render 'errors/story_403'
     end
   end
 

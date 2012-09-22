@@ -9,7 +9,7 @@
   %small Series:
   =link_to series.title, series
 %ol
-  -series.stories.each do |story|
+  -series.stories.visible.each do |story|
     %li
       -if current_story == story
         %strong=link_to story.title, story

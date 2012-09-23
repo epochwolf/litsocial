@@ -10,6 +10,8 @@
 /.bundle
 /.tags
 
+# Ignore files that shouldn't go to github
+/config/secrets.yml
 
 # Ignore the default SQLite database.
 /db/*.sqlite3

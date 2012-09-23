@@ -11,6 +11,7 @@ end
 
 module Litsocial
   class Application < Rails::Application
+    SECRETS = YAML.load_file(File.join(Rails.root, 'config/secrets.yml'))
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

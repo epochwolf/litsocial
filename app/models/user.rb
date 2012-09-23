@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  attr_accessible :name, :tagline, :biography, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :name, :tagline, :biography, :email, :banned, :banned_reason, as: :admin
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -7,14 +10,15 @@ class User < ActiveRecord::Base
 
   has_many :series
   has_many :stories
+  has_many :news_posts
+  has_many :pages
+  has_many :forum_posts
 
   NAME_REGEX = /([a-z][a-z0-9_]{2,12}[a-z0-9])/
 
   validates :name, uniqueness: true, format:{with: /\A#{NAME_REGEX}\Z/, on: :create}
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :tagline, :biography, :email, :password, :password_confirmation, :remember_me
-  attr_accessible :name, :tagline, :biography, :email, :banned, :banned_reason, as: :admin
 
 
   def self.valid_name?(name)

@@ -1,5 +1,9 @@
 class HomeController < ApplicationController
   def index
+    @stories = Story.includes(:user, :series).visible.sorted.limit(30)
+    @news_posts = NewsPost.includes(:user).visible.sorted.limit(4)
+    @forum_posts = ForumPost.includes(:user).where{sunk != true}.visible.sorted.limit(6)
+    @user = User.where(banned_at: nil).order(:id.desc).limit(15)
   end
 
   def convert_word_doc

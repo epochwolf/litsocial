@@ -6,35 +6,42 @@
 .navbar
   .navbar-inner
     .container-fluid
-      =link_to "Lit Social", root_url, :class => 'brand'
-      %ul.nav
-        %li{:class => active_for_controller("stories")}=link_to "Stories", stories_path
-        %li{:class => active_for_controller("series")}=link_to "Series", series_index_path
-        %li{:class => active_for_controller("news_posts")}=link_to "Site News", news_posts_path
-        %li{:class => active_for_controller("pages")}=#link_to "Pages", pages_path
+      .hidden-phone=link_to "Lit Social", root_url, :class => 'brand'
+      .visible-phone=link_to "LS", root_url, :class => 'brand'
+      %ul.nav.hidden-phone
+        %li{class: active_for_controller("stories")}=link_to "Stories", stories_path
+        %li{class: active_for_controller("series")}=link_to "Series", series_index_path
+        %li{class: active_for_controller("news_posts")}=link_to "Site News", news_posts_path
+        %li.visible-desktop{class: active_for_controller("forum_posts")}=link_to "The Forum", forum_posts_path
+        %li.visible-tablet{class: active_for_controller("forum_posts")}=link_to "Forum", forum_posts_path
         -if user_signed_in?
-          %li{:class => active_for_controller("messages")}=#link_to "Messages", account_messages_path(current_user)
-          %li{:class => active_for_controller("account")}=link_to "My Account", account_path
+          %li.visible-desktop{:class => active_for_controller("account")}=link_to "My Account", account_path
+          %li.visible-tablet{:class => active_for_controller("account")}=link_to "Account", account_path
         -if admin?
-          %li=link_to "Admin Panel", "/admin"
+          %li.visible-desktop=link_to "Admin Panel", "/admin"
+
+      %ul.nav.visible-phone
+        %li{class: active_for_controller("stories")}=link_to "Stories", stories_path
+        %li{class: active_for_controller("series")}=link_to "Series", series_index_path
 
       .pull-right
         -if user_signed_in?
           %ul.nav
             %li.dropdown#navbar_profile_dropdown
               %a.dropdown-toggle{href:"#", data:{toggle:"dropdown", target:'#navbar_profile_dropdown'}}
-                %i.icon-user.icon-white
+                %i.icon-user
                 =current_user.name
                 %b.caret
               %ul.dropdown-menu
                 %li=icon_link "user", "Public Profile", user_path(current_user)
                 %li=icon_link "cog", "My Account", account_path
-                %li.divider
-                %li=icon_link "book", "New Story", new_story_path
+                %li.hidden-phone=icon_link "", "Admin Panel", "/admin"
+                %li.hidden-phone.divider
+                %li.hidden-phone=icon_link "book", "New Story", new_story_path
                 %li=#icon_link "envelope", "New Message", new_account_message_path(current_user)
                 %li.divider
                 %li=icon_link "remove-circle", "Logout", destroy_user_session_path, :method => :delete
         -else
           %ul.nav
             %li=link_to "Sign In", new_user_session_path(return: here)
-            %li=link_to "Register", new_user_registration_path(return: here)
+            %li.hidden-phone=link_to "Register", new_user_registration_path(return: here)

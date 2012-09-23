@@ -39,6 +39,10 @@ Litsocial::Application.routes.draw do
   resources :news_posts, only: [:index, :show], path: 'news'
   resources :users, only: [:index, :show]
 
+  get 'forums/categories/:id' => 'forum_posts#category', as: :forum_categories
+  resources :forum_posts, path: 'forums'
+
+
   get 'account'         => 'account#show',    as: :account
   get 'account/stories' => 'account#stories', as: :stories_account
   get 'account/edit'    => 'account#edit',    as: :edit_account

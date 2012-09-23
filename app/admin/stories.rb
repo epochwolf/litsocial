@@ -30,7 +30,6 @@ ActiveAdmin.register Story do
     f.inputs "Content" do 
       f.input :title
       f.input :contents, input_html:{class: 'redactor'}
-      f.input :user
     end
 
     f.inputs "Series" do

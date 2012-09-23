@@ -1,2 +1,30 @@
-%h1 Welcome to Lit Social
-%p This is a website for you to post literature
+.row
+  .span8
+
+    %h1.title Welcome to Lit Social
+    %p This is a place to read and share your stories
+
+    %p Here's some stories that other people are sharing:
+    %ul.unstyled
+      -@stories.each do |story|
+        %li #{link_to story.title, story} by #{user_link story.user}
+      -if @stories.count > 30
+        %li #{link_to "More Stories", stories_path(per_page: 30, page: 2)}
+
+  .span4
+    %h3.title.hidden-phone Latest News
+    %h3.title.visible-phone=link_to "Latest News", news_posts_path
+    %ul.unstyled
+      -@news_posts.each do |post|
+        %li #{link_to post.title, post} by #{user_link post.user}
+
+    %h3.title.hidden-phone The Forum
+    %h3.title=link_to "The Forum", forum_posts_path
+    %ul.unstyled
+      -@forum_posts.each do |post|
+        %li #{link_to post.title, post} by #{user_link post.user}
+
+    %h3.title New Users
+    %ul.unstyled
+      -@user.each do |user|
+        %li=user_link user

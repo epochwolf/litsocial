@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120923003235) do
+ActiveRecord::Schema.define(:version => 20120923054136) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -27,6 +27,29 @@ ActiveRecord::Schema.define(:version => 20120923003235) do
   add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
   add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
+
+  create_table "forum_categories", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "forum_posts", :force => true do |t|
+    t.string   "title"
+    t.text     "contents"
+    t.integer  "forum_category_id"
+    t.integer  "user_id"
+    t.datetime "bumped_at"
+    t.boolean  "deleted"
+    t.boolean  "sunk"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "forum_posts", ["bumped_at"], :name => "index_forum_posts_on_bumped_at"
+  add_index "forum_posts", ["deleted"], :name => "index_forum_posts_on_deleted"
+  add_index "forum_posts", ["forum_category_id"], :name => "index_forum_posts_on_forum_category_id"
+  add_index "forum_posts", ["user_id"], :name => "index_forum_posts_on_user_id"
 
   create_table "news_posts", :force => true do |t|
     t.string   "title",        :null => false

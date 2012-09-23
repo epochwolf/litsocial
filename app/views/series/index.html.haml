@@ -1,21 +1,23 @@
 %h2 
   Series
   -if user_signed_in?
-    .pull-right
+    .pull-right.hidden-phone
       =link_to "New Series", new_series_path, class:'btn btn-success btn-mini'
 -if @series
   %table.table.table-striped
     %tr
       %th Title
-      %th # of Stories
-      %th Created
+      %th 
+        %span.hidden-phone # of Stories
+        %span.visible-phone # Stories
       %th Author
+      %th.hidden-phone Created
     -@series.each do |s|
       %tr
         %td=link_to s.title, s
         %td=s.stories_count
-        %td=dt s.created_at
         %td=link_to s.user.name, s.user
+        %td.hidden-phone=dt s.created_at
 
   =paginate @series
 -else

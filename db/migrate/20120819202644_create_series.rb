@@ -6,5 +6,7 @@ class CreateSeries < ActiveRecord::Migration
       t.integer :stories_count, :default => 0
       t.timestamps
     end
+    
+    add_index :series, :user_id
   end
 end

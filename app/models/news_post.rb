@@ -1,5 +1,6 @@
 class NewsPost < ActiveRecord::Base
-  attr_protected 
+  attr_accessible
+  attr_protected as: :admin
 
   scope :visible, where{ published_at != nil }
   scope :sorted, order(:published_at.desc)
@@ -7,6 +8,4 @@ class NewsPost < ActiveRecord::Base
   belongs_to :user
 
   validates :title, :contents, :user_id, presence: true
-
-
 end

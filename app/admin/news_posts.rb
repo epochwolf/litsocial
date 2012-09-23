@@ -1,11 +1,10 @@
-ActiveAdmin.register Page do
+ActiveAdmin.register NewsPost do
 
   controller do
-    defaults :finder => :find_by_id_or_url
     with_role :admin
 
     def scoped_collection
-      Page.includes(:user)
+      NewsPost.includes(:user)
     end
   end
 
@@ -21,10 +20,8 @@ ActiveAdmin.register Page do
     selectable_column
     link_column :title
     column :user
-    column :url do |o| link_to "/page/#{o.to_param}", o end
-    column :published?
+    column :published_at
     column :created_at
-    column :updated_at 
     edit_links
   end
 
@@ -34,8 +31,7 @@ ActiveAdmin.register Page do
       f.input :contents, input_html:{class: 'redactor'}
     end
     f.inputs "Publishing" do
-      f.input :url, :hint => "The part after /page/"
-      f.input :published
+      f.input :published_at, as:'datepicker', hint: "This field determines the position of the news post. If blank, the news post is hidden. Right now, future dates are visible."
     end
     f.buttons
   end

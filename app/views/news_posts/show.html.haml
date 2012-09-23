@@ -1,0 +1,9 @@
+.article.row
+  .span10.offset1
+    %h1
+      %small News
+      =@news_post.title
+    .meta-data.vbottom
+      Last updated on #{dt(@news_post.created_at)}
+      by #{user_link @news_post.user} 
+    .rich=rich @news_post.contents

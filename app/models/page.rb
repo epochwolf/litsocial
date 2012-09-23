@@ -1,6 +1,5 @@
 class Page < ActiveRecord::Base
-  attr_accessible 
-  attr_accessible :contents, :published, :title, :url, :user_id, as: :admin
+  attr_protected
 
   scope :visible, where(published: true)
   scope :sorted, order(:id.desc)

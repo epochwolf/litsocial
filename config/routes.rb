@@ -36,6 +36,7 @@ Litsocial::Application.routes.draw do
   resources :stories
   resources :series
   resources :pages, only: [:index, :show]
+  resources :news_posts, only: [:index, :show], path: 'news'
   resources :users, only: [:index, :show]
 
   get 'account'         => 'account#show',    as: :account

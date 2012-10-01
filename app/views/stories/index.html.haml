@@ -15,9 +15,7 @@
         %td=link_to s.title, s
         %td.hidden-phone
           -if s.series
-            \##{s.series_position} of 
-            %small Series:
-            #{link_to s.series.title, s.series}
+            \##{s.series_position} of #{link_to s.series.title, s.series}
           -else
             %em None
         %td=user_link s.user

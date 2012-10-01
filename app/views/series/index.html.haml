@@ -7,15 +7,13 @@
   %table.table.table-striped
     %tr
       %th Title
-      %th 
-        %span.hidden-phone # of Stories
-        %span.visible-phone # Stories
+      %th.hidden-phone # of Stories
       %th Author
       %th.hidden-phone Created
     -@series.each do |s|
       %tr
         %td=link_to s.title, s
-        %td=s.stories_count
+        %td.hidden-phone=s.stories_count
         %td=link_to s.user.name, s.user
         %td.hidden-phone=dt s.created_at
 

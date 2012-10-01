@@ -6,11 +6,13 @@
 =simple_form_for @story, html:{class:'form-horizontal'}  do |f|
   =f.input :title
   =f.input :contents, input_html:{class: 'redactor'}
-  =f.association :series
-  =f.input :series_title
+  =f.association :series, label: "Add to Series", include_blank: "(None or New Series)"
+  =f.input :series_title, label: "Title for New Series", hint: "Leave blank if you don't want to add the story to a series"
   .form-actions
     =f.submit class: 'btn btn-primary'
     =link_to "Cancel", return_path(account_path(current_user)), class: 'btn'
+    -unless @story.new_record?
+      =link_to "Delete", story_path(@story, return: return_path(account_path)), method: :delete, confirm: "Are you sure you want to delete this story?",class: 'pull-right btn btn-danger'
 
 #word_doc_uploader.modal.hide
   .modal-header

@@ -3,30 +3,27 @@
     controllers.any?{|controller| params[:controller] == controller } ? "active" : nil
   end
 
-.navbar
+.navbar.navbar-static-top
   .navbar-inner
     .container-fluid
-      .hidden-phone=link_to "Lit Social", root_url, :class => 'brand'
-      .visible-phone=link_to "LS", root_url, :class => 'brand'
-      %ul.nav.hidden-phone
-        %li{class: active_for_controller("stories")}=link_to "Stories", stories_path
-        %li{class: active_for_controller("series")}=link_to "Series", series_index_path
-        %li{class: active_for_controller("news_posts")}=link_to "Site News", news_posts_path
-        %li.visible-desktop{class: active_for_controller("forum_posts")}=link_to "The Forum", forum_posts_path
-        %li.visible-tablet{class: active_for_controller("forum_posts")}=link_to "Forum", forum_posts_path
-        -if user_signed_in?
-          %li.visible-desktop{:class => active_for_controller("account")}=link_to "My Account", account_path
-          %li.visible-tablet{:class => active_for_controller("account")}=link_to "Account", account_path
-        -if admin?
-          %li.visible-desktop=link_to "Admin Panel", "/admin"
+      =link_to "Lit Social", root_url, :class => 'brand'
+      %a.btn.btn-navbar{data:{toggle: 'collapse', target: '.nav-collapse'}}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      .nav-collapse.collapse
+        %ul.nav
+          %li{class: active_for_controller("stories")}=link_to "Stories", stories_path
+          %li{class: active_for_controller("series")}=link_to "Series", series_index_path
+          %li{class: active_for_controller("news_posts")}=link_to "Site News", news_posts_path
+          %li{class: active_for_controller("forum_posts")}=link_to "The Forum", forum_posts_path
+          -if user_signed_in?
+            %li{:class => active_for_controller("account")}=link_to "My Account", account_path
+          -if admin?
+            %li=link_to "Admin Panel", "/admin"
 
-      %ul.nav.visible-phone
-        %li{class: active_for_controller("stories")}=link_to "Stories", stories_path
-        %li{class: active_for_controller("series")}=link_to "Series", series_index_path
-
-      .pull-right
-        -if user_signed_in?
-          %ul.nav
+        %ul.nav.pull-right
+          -if user_signed_in?
             %li.dropdown#navbar_profile_dropdown
               %a.dropdown-toggle{href:"#", data:{toggle:"dropdown", target:'#navbar_profile_dropdown'}}
                 %i.icon-user
@@ -34,14 +31,14 @@
                 %b.caret
               %ul.dropdown-menu
                 %li=icon_link "user", "Public Profile", user_path(current_user)
-                %li=icon_link "cog", "My Account", account_path
-                %li.hidden-phone=icon_link "", "Admin Panel", "/admin"
+                %li=icon_link "cog", "My Stories & Series", stories_account_path
                 %li.hidden-phone.divider
                 %li.hidden-phone=icon_link "book", "New Story", new_story_path
+                -if params[:action] == "show"
+                  %li=icon_link "qrcode", "Admin This", "/admin#{request.path}"
                 %li=#icon_link "envelope", "New Message", new_account_message_path(current_user)
                 %li.divider
                 %li=icon_link "remove-circle", "Logout", destroy_user_session_path, :method => :delete
-        -else
-          %ul.nav
-            %li=link_to "Sign In", new_user_session_path(return: here)
+          -else
+            %li=link_to "Login", new_user_session_path(return: here)
             %li.hidden-phone=link_to "Register", new_user_registration_path(return: here)

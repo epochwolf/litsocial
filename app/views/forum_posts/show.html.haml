@@ -1,1 +1,13 @@
-show.html.haml
+=render 'nav', active: @forum_post.forum_category.try(:title)
+.article.row
+  .span10.offset1
+    %h1=@forum_post.title
+    .meta-data.vbottom
+      Posted in #{link_to @forum_post.forum_category.title, @forum_post.forum_category} 
+      on #{dt(@forum_post.created_at)}
+      by #{user_link @forum_post.user} 
+      -if owner? @forum_post
+        %small
+          &nbsp;
+          =icon_link 'wrench', "edit", edit_forum_post_path(@forum_post, return: here)
+    .rich=rich @forum_post.contents

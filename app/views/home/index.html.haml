@@ -1,8 +1,8 @@
 .row
   .span8
 
-    %h1.title Welcome to Lit Social
-    %p This is a place to read and share your stories
+    %h1.title Welcome
+    %p Lit Social is a place to read and share your stories
 
     %p Here's some stories that other people are sharing:
     %ul.unstyled
@@ -19,7 +19,7 @@
         %li #{link_to post.title, post} by #{user_link post.user}
 
     %h3.title.hidden-phone The Forum
-    %h3.title=link_to "The Forum", forum_posts_path
+    %h3.title.visible-phone=link_to "The Forum", forum_posts_path
     %ul.unstyled
       -@forum_posts.each do |post|
         %li #{link_to post.title, post} by #{user_link post.user}

@@ -1,4 +1,9 @@
 ActiveAdmin.register Story do
+  scope :all
+  scope :visible
+  scope :locked
+  scope :deleted
+
   controller do
     with_role :admin
 

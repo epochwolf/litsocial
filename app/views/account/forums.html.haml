@@ -1,0 +1,18 @@
+=render 'nav'
+%table.table
+  %tr
+    %th Title
+    %th Category
+    %th.hidden-phone Last Updated
+    %th
+  -@forum_posts.each do |post|
+    %tr
+      %td=link_to post.title, post
+      %td=link_to post.forum_category.try(:title)
+      %td.hidden-phone=post.bumped_at
+      %td
+        %small.pull-right
+          =icon_link "wrench", "edit", edit_forum_post_path(post, return:here)
+          &nbsp;
+          =icon_link "remove", "delete", forum_post_path(post, return:here), method: :delete, confirm: "Are you sure?"
+=paginate @forum_posts

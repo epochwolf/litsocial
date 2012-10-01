@@ -1,0 +1,8 @@
+-if user_signed_in?
+  .pull-right.hidden-phone
+    =link_to "New Post", new_forum_post_path(return: here), class: 'btn btn-success btn-mini'
+
+%ul.nav.nav-tabs
+  %li{class: active == "all" ? "active" : ""}=link_to "All Catergories", forum_posts_path
+  -ForumCategory.scoped.each do |cat|
+    %li{class: active == cat.title ? "active" : ""}=link_to cat.title, cat

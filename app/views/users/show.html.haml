@@ -16,8 +16,8 @@
       %h3.title User Biography
       =rich @user.biography
   .span6
-    -@user.series.visible.where(:stories_count.gte => 1).includes(:stories).each do |series|
-      -next if series.stories_count == 0
+    -@user.series.visible.includes(:stories).each do |series|
+      -#next if series.stories_count == 0
       %h3
         %small Series: 
         =link_to series.title, series

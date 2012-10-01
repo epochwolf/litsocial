@@ -1,4 +1,9 @@
 ActiveAdmin.register User do
+  scope :all
+  scope :admins
+  scope :members
+  scope :banned
+
   controller do
     with_role :admin
   end

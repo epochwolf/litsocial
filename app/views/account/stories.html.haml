@@ -15,18 +15,16 @@
       =icon_link "plus", "add a story", new_story_path(series: series.id, return: here)
       &nbsp;
       =icon_link "wrench", "edit", edit_series_path(series, return: here)
-      &nbsp;
-      =icon_link "remove", "remove", series_path(series, return: here), method: :delete, confirm: "Are you sure?"
   %table.table.table-striped
     -series.stories.each do |story|
       %tr
         %td=story.series_position
-        %td=link_to story.title, story
         %td
-          %small.pull-right
+          =link_to story.title, story
+          &nbsp;
+          %small
             =icon_link "wrench", "edit", edit_story_path(story, return:here)
-            &nbsp;
-            =icon_link "remove", "delete", story_path(story, return:here), method: :delete, confirm: "Are you sure?"
+
 
 -unless @stories.empty?
   %h2 
@@ -38,5 +36,3 @@
         %td
           .pull-right
             =icon_link "wrench", "edit", edit_story_path(story, return:here)
-            &nbsp;
-            =icon_link "remove", "delete", story_path(story, return:here), method: :delete, confirm: "Are you sure?"

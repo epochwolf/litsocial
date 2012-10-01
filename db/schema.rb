@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(:version => 20120923054136) do
 
   create_table "pages", :force => true do |t|
     t.string   "title",      :null => false
-    t.string   "contents",   :null => false
+    t.text     "contents",   :null => false
     t.string   "url"
     t.integer  "user_id",    :null => false
     t.boolean  "published"
@@ -83,19 +83,25 @@ ActiveRecord::Schema.define(:version => 20120923054136) do
     t.datetime "updated_at",                   :null => false
   end
 
+  add_index "series", ["user_id"], :name => "index_series_on_user_id"
+
   create_table "stories", :force => true do |t|
-    t.string   "title",                              :null => false
-    t.text     "contents",                           :null => false
-    t.integer  "user_id",                            :null => false
+    t.string   "title",           :null => false
+    t.text     "contents",        :null => false
+    t.integer  "user_id",         :null => false
     t.integer  "series_id"
     t.integer  "series_position"
     t.datetime "locked_at"
     t.text     "locked_reason"
-    t.datetime "deleted_at"
-    t.boolean  "deleted",         :default => false, :null => false
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.boolean  "deleted"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
+
+  add_index "stories", ["deleted"], :name => "index_stories_on_deleted"
+  add_index "stories", ["locked_at", "deleted"], :name => "index_stories_on_locked_at_and_deleted"
+  add_index "stories", ["series_id"], :name => "index_stories_on_series_id"
+  add_index "stories", ["user_id"], :name => "index_stories_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name",                                   :null => false

@@ -1,4 +1,7 @@
 ActiveAdmin.register NewsPost do
+  scope :all
+  scope "Published", :visible
+  scope :draft
 
   controller do
     with_role :admin

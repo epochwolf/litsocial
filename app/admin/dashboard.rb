@@ -63,7 +63,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Recently Locked Stories" do
           ul do 
             Story.where{locked_at != nil }.order(:locked_at.desc).limit(5).map do |u|
-              li link_to(u.name, [:admin, u]) + " / #{u.locked_at}"
+              li link_to(u.title, [:admin, u]) + " / #{u.locked_at}"
             end
           end
         end
@@ -82,10 +82,10 @@ ActiveAdmin.register_page "Dashboard" do
           end
         end
 
-        panel "Pending News Posts Users" do
+        panel "Pending News Posts" do
           ul do 
             NewsPost.where(published_at: nil).order(:id.desc).limit(5).map do |u|
-              li link_to(u.name, [:admin, u])
+              li link_to(u.title, [:admin, u])
             end
           end
         end

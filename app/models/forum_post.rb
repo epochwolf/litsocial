@@ -2,10 +2,14 @@ class ForumPost < ActiveRecord::Base
   attr_accessible :contents, :forum_category_id, :title
   attr_protected :user_id, as: :admin
 
-  scope :visible, where(deleted: nil)
+  scope :visible, where{ (deleted == false) | (deleted == nil) }
+  scope :deleted, where(deleted: true)
   scope :sorted, order(:bumped_at.desc)
 
   belongs_to :forum_category
+  belongs_to :user
+
+  validates :title, :contents, :user_id, :forum_category_id, presence: true
 
   before_create :bump
 

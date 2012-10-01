@@ -5,8 +5,12 @@ class AccountController < ApplicationController
   end
 
   def stories
-    @series = @user.series.includes(:stories)
+    @series = @user.series.where(deleted: false).includes(:stories)
     @stories = @user.stories.where(series_id: nil)
+  end
+
+  def forums
+    @forum_posts = paged(@user.forum_posts)
   end
 
   def edit
@@ -31,6 +35,6 @@ class AccountController < ApplicationController
 
   private
   def find_model
-    redirect_to user_sign_in_path unless @user = current_user 
+    redirect_to new_user_session_path unless @user = current_user 
   end
 end

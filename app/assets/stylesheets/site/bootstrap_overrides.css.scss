@@ -35,6 +35,16 @@ html .navbar p{
   color: $navbarText;
 }
 
+html .navbar.navbar-static-top{
+  width: auto;
+}
+@media (max-width: 480px){
+  html .navbar-inner{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
 /* For when the default hr styling it too tall */
 html hr.slim {
   margin-top: 0px;

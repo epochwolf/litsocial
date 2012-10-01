@@ -1,1 +1,9 @@
-_form.html.haml
+=simple_form_for @forum_post, html:{class:'form-horizontal'}  do |f|
+  =f.input :title
+  =f.input :contents, input_html:{class: 'redactor'}
+  =f.association :forum_category
+  .form-actions
+    =f.submit class: 'btn btn-primary'
+    =link_to "Cancel", return_path(account_path(current_user)), class: 'btn'
+    -unless @forum_post.new_record?
+      =link_to "Delete", forum_post_path(@forum_post, return: return_path(account_path)), method: :delete, confirm: "Are you sure you want to delete this forum post?",class: 'pull-right btn btn-danger'

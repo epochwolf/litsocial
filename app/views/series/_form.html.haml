@@ -1,19 +1,12 @@
 =simple_form_for @series, html:{class:'form-horizontal'}  do |f|
   =f.input :title
-
-  -unless @series.new_record?
-    .control-group
-      %label.control-label Stories
-      .controls
-        %ol
-          -@series.stories.each do |story|
-            %li
-              
-              =story.title
-              &nbsp;
-              =link_to "edit", edit_story_path(story, return:here), class:'btn btn-mini'
-              &nbsp;
-              =link_to "X", story_path(story, return:here), class: 'btn btn-mini btn-danger', method: :delete, confirm: "Are you sure?"
+  %h3.title Stories in this Series
+  =f.fields_for :stories do |ff|
+    %h4=ff.object.title
+    =ff.input :series_position, label: "Chapter Number"
+    =ff.input :remove_from_series, as: :boolean, label: "Remove from Series"
   .form-actions
     =f.submit class: 'btn btn-primary'
-    =link_to "Cancel", return_path(account_path(current_user)), class: 'btn'
+    =link_to "Cancel", return_path(account_path), class: 'btn'
+    -unless @series.new_record?
+      =link_to "Delete", series_path(@series, return: return_path(account_path)), method: :delete, confirm: "Are you sure you want to delete this series? (The stories won't be deleted)",class: 'pull-right btn btn-danger'

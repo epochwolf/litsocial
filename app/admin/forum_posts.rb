@@ -1,4 +1,7 @@
 ActiveAdmin.register ForumPost do
+  scope :all
+  scope :visible
+  scope :deleted
 
   controller do
     with_role :admin

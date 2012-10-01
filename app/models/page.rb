@@ -3,6 +3,7 @@ class Page < ActiveRecord::Base
   attr_protected as: :admin
 
   scope :visible, where(published: true)
+  scope :draft, where{ (published == false) | (published == nil) }
   scope :sorted, order(:id.desc)
 
   belongs_to :user

@@ -4,6 +4,6 @@ class NewsPostsController < ApplicationController
   end
 
   def show
-    @news_post = NewsPost..visible.find(params[:id])
+    @news_post = NewsPost.visible.find(params[:id])
   end
 end

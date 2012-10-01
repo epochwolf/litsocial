@@ -1,1 +1,13 @@
-category.html.haml
+%h1 The Forum
+=render 'nav', active: @forum_category.title
+
+%table.table
+  %tr
+    %th Title
+    %th Author
+    %th Last Updated
+  -@forum_posts.each do |post|
+    %tr
+      %td=link_to post.title, post
+      %td=user_link post.user
+      %td=post.bumped_at

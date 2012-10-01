@@ -47,6 +47,6 @@ class ForumPostsController < ApplicationController
   end
 
   def find_forum_post
-    @forum_post = ForumPosts.visible.find(params[:id])
+    @forum_post = ForumPost.visible.find(params[:id])
   end
 end

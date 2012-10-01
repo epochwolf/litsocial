@@ -1,4 +1,7 @@
 ActiveAdmin.register Page do
+  scope :all
+  scope "Published", :visible
+  scope :draft
 
   controller do
     defaults :finder => :find_by_id_or_url

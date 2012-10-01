@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  scope :admins, where{ admin == true }
+  scope :members, where{ (banned_at == nil) & (admin == false) }
+  scope :banned, where{ banned_at != nil }
+
   has_many :series
   has_many :stories
   has_many :news_posts

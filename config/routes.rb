@@ -39,12 +39,13 @@ Litsocial::Application.routes.draw do
   resources :news_posts, only: [:index, :show], path: 'news'
   resources :users, only: [:index, :show]
 
-  get 'forums/categories/:id' => 'forum_posts#category', as: :forum_categories
+  get 'forums/categories/:id' => 'forum_posts#category', as: :forum_category
   resources :forum_posts, path: 'forums'
 
 
   get 'account'         => 'account#show',    as: :account
   get 'account/stories' => 'account#stories', as: :stories_account
+  get 'account/forums'  => 'account#forums', as: :forums_account
   get 'account/edit'    => 'account#edit',    as: :edit_account
   put 'account'         => 'account#update'
   get 'account/cancel'  => 'account#cancel',  as: :cancel_account

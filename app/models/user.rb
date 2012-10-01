@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   has_many :news_posts
   has_many :pages
   has_many :forum_posts
+  has_many :messages, foreign_key: 'to_id'
+  has_many :sent_messages, class_name: 'Message', foreign_key: 'from_id'
 
   NAME_REGEX = /([a-z][a-z0-9_]{2,12}[a-z0-9])/
 

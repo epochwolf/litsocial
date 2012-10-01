@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120923054136) do
+ActiveRecord::Schema.define(:version => 20121001035921) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -50,6 +50,20 @@ ActiveRecord::Schema.define(:version => 20120923054136) do
   add_index "forum_posts", ["deleted"], :name => "index_forum_posts_on_deleted"
   add_index "forum_posts", ["forum_category_id"], :name => "index_forum_posts_on_forum_category_id"
   add_index "forum_posts", ["user_id"], :name => "index_forum_posts_on_user_id"
+
+  create_table "messages", :force => true do |t|
+    t.integer  "to_id",      :null => false
+    t.integer  "from_id",    :null => false
+    t.text     "message",    :null => false
+    t.boolean  "read"
+    t.boolean  "reported"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "messages", ["from_id"], :name => "index_messages_on_from_id"
+  add_index "messages", ["reported"], :name => "index_messages_on_reported"
+  add_index "messages", ["to_id"], :name => "index_messages_on_to_id"
 
   create_table "news_posts", :force => true do |t|
     t.string   "title",        :null => false

@@ -50,6 +50,14 @@ Litsocial::Application.routes.draw do
   put 'account'         => 'account#update'
   get 'account/cancel'  => 'account#cancel',  as: :cancel_account
   delete 'account'      => 'account#destroy'
+  resources :messages, :path => "/account/messages", except: [:edit, :update] do
+    member do 
+      put :report
+    end
+    collection do 
+      get :sent
+    end
+  end
 
 
 

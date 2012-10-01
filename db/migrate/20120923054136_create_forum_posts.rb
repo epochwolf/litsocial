@@ -1,10 +1,10 @@
 class CreateForumPosts < ActiveRecord::Migration
   def change
     create_table :forum_posts do |t|
-      t.string :title
-      t.text :contents
+      t.string :title,                null: false
+      t.text :contents,               null: false
       t.integer :forum_category_id
-      t.integer :user_id
+      t.integer :user_id,             null: false
       t.datetime :bumped_at
       t.boolean :deleted
       t.boolean :sunk

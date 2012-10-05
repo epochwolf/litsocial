@@ -5,7 +5,7 @@ class AccountController < ApplicationController
   end
 
   def stories
-    @series = @user.series.where(deleted: false).includes(:stories)
+    @series = @user.series.includes(:stories)
     @stories = @user.stories.where(series_id: nil)
   end
 

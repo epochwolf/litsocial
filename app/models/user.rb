@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_paper_trail only: [:name, :tagline, :biography, :email, :banned, :banned_reason, :admin]
   attr_accessible :name, :tagline, :biography, :email, :password, :password_confirmation, :remember_me
   attr_accessible :name, :tagline, :biography, :email, :banned, :banned_reason, as: :admin
 

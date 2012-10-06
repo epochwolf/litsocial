@@ -1,0 +1,21 @@
+panel "Versions" do
+  table_for assigns[:versions] do
+    column :created_at do |v|
+      link_to v.created_at, [:admin, v]
+    end
+    column :whodunnit do |v|
+      if v.whodunnit =~ /^\d+$/
+        if u = User.find_by_id(v.whodunnit)
+          link_to u.name, [:admin, u]
+        else
+          "Unknown"
+        end
+      else
+         v.whodunnit
+      end
+    end
+    column :event
+    column :ip_address
+    column :user_agent
+  end
+end

@@ -1,4 +1,5 @@
 class Story < ActiveRecord::Base
+  has_paper_trail
   attr_accessible :contents, :series_id, :series_position, :title, :remove_from_series
   attr_protected :user_id, :created_at, :updated_at, as: :admin
 

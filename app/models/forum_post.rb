@@ -1,4 +1,5 @@
 class ForumPost < ActiveRecord::Base
+  has_paper_trail
   attr_accessible :contents, :forum_category_id, :title
   attr_protected :user_id, as: :admin
 

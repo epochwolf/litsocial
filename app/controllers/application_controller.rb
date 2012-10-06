@@ -45,6 +45,14 @@ class ApplicationController < ActionController::Base
       object.user && object.user == current_user
     end
   end
+
+  def user_for_paper_trail
+    user_signed_in? && current_user
+  end
+
+  def info_for_paper_trail
+    { :ip_address => request.remote_ip, :user_agent => request.user_agent }
+  end
   
   def authenticate_admin!
     unless admin?

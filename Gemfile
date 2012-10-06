@@ -36,7 +36,7 @@ gem "omniauth-facebook"
 gem 'acts_as_list'
 gem 'acts_as_tree'
 gem 'squeel'
-gem 'paper_trail'
+gem 'paper_trail', '~> 2'
 gem 'pg_search'
 
 

@@ -274,7 +274,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   omniauth-facebook
-  paper_trail
+  paper_trail (~> 2)
   pg
   pg_search
   rails (= 3.2.6)

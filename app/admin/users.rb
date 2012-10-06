@@ -39,4 +39,26 @@ ActiveAdmin.register User do
     f.buttons
   end
   # TODO: Limit fields that are allowed. 
+
+  action_item :only => [:show, :edit] do
+    link_to "Versions", [:versions, :admin, resource]
+  end
+
+  action_item :only => [:versions] do
+    link_to "Detailed Report", [:versions_detailed, :admin, resource]
+  end
+  
+  
+  member_action :versions do
+    @object = User.find(params[:id])
+    @versions = @object.versions.select('id, created_at, event, whodunnit, ip_address, user_agent')
+    render 'admin/paper_trail.arb'
+  end
+
+
+  member_action :versions_detailed do
+    @object = User.find(params[:id])
+    @versions = @object.versions
+    render 'admin/paper_trail_detailed.arb'
+  end
 end

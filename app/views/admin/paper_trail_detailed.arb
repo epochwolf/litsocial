@@ -1,0 +1,12 @@
+assigns[:versions].each do |v|
+  title = (v.whodunnit() =~ /^\d+$/ ? User.find_by_id(v.whodunnit).try(:name) || "Unknown" :  v.whodunnit.to_s) +
+    " on #{v.created_at}".html_safe
+
+  panel title do
+      attrs = v.object && YAML.load(v.object)
+      attributes_table_for(v, :event, :ip_address, :user_agent)
+      if attrs 
+        attributes_table_for OpenStruct.new(attrs), *attrs.keys
+      end
+  end
+end

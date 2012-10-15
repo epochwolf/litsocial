@@ -25,79 +25,15 @@ class AdminTest < ActionDispatch::IntegrationTest
     post_via_redirect "/sign_in", :user => {:name => users(:one).name, :password => "Password"}
     assert_equal "/", path
     
-    get "/admin"
-    assert_response :success
-    
-    get "/admin/stories"
-    assert_response :success
-    
-    get "/admin/stories/1"
-    assert_response :success
-    
-    get "/admin/stories/1/edit"
-    assert_response :success
-
-    get "/admin/series"
-    assert_response :success
-    
-    get "/admin/series/1"
-    assert_response :success
-    
-    get "/admin/series/1/edit"
-    assert_response :success
-    
-    get "/admin/forum_categories"
-    assert_response :success
-    
-    get "/admin/forum_categories/1"
-    assert_response :success
-    
-    get "/admin/forum_categories/1/edit"
-    assert_response :success
-
-    get "/admin/forum_posts"
-    assert_response :success
-    
-    get "/admin/forum_posts/1"
-    assert_response :success
-    
-    get "/admin/forum_posts/1/edit"
-    assert_response :success
-    
-    get "/admin/news_posts"
-    assert_response :success
-    
-    get "/admin/news_posts/new"
-    assert_response :success
-    
-    get "/admin/news_posts/1"
-    assert_response :success
-    
-    get "/admin/news_posts/1/edit"
-    assert_response :success
-    
-    get "/admin/pages"
-    assert_response :success
-    
-    get "/admin/pages/new"
-    assert_response :success
-    
-    get "/admin/pages/1"
-    assert_response :success
-    
-    get "/admin/pages/1/edit"
-    assert_response :success
-    
-    get "/admin/users"
-    assert_response :success
-    
-    get "/admin/users/new"
-    assert_response :success
-    
-    get "/admin/users/1"
-    assert_response :success
-    
-    get "/admin/users/1/edit"
-    assert_response :success
+    ["/admin", "/admin/stories", "/admin/stories/1", "/admin/stories/1/edit",
+    "/admin/series", "/admin/series/1", "/admin/series/1/edit", "/admin/forum_categories",
+    "/admin/forum_categories/1", "/admin/forum_categories/1/edit", "/admin/forum_posts",
+    "/admin/forum_posts/1", "/admin/forum_posts/1/edit", "/admin/news_posts",
+    "/admin/news_posts/new", "/admin/news_posts/1", "/admin/news_posts/1/edit",
+    "/admin/pages", "/admin/pages/new", "/admin/pages/1", "/admin/pages/1/edit",
+    "/admin/users", "/admin/users/new", "/admin/users/1", "/admin/users/1/edit"].each do |path|
+      get path
+      assert_response :success
+    end
   end
 end

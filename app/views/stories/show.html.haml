@@ -5,10 +5,8 @@
     .meta-data.vbottom
       Created on #{dt(@story.created_at)}
       by #{link_to @story.user.name, @story.user} 
-      -if owner? @story
-        %small
-          &nbsp;
-          =icon_link 'wrench', "edit", edit_story_path(@story, return: here)
+      =edit_links(@story)
+
       -if @story.deleted?
         .alert.alert-warning
           This submission has been deleted

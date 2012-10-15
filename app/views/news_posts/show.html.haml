@@ -6,4 +6,5 @@
     .meta-data.vbottom
       Last updated on #{dt(@news_post.created_at)}
       by #{user_link @news_post.user} 
+      =admin_link(@news_post)
     .rich=rich @news_post.contents

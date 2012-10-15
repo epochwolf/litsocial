@@ -72,4 +72,30 @@ module ApplicationHelper
     dt(datetime)
   end
 
+  def edit_links(object)
+    return unless owner?(object) || admin?
+    content_tag :small do
+      str = "".html_safe
+      if owner?(object)
+        str << raw("&nbsp;")
+        str << icon_link('wrench', "edit", polymorphic_path([:edit, object], return: here))
+      end
+      if admin?
+        str << raw("&nbsp;")
+        str << icon_link('qrcode', "admin", [:admin, object]) 
+      end
+      str
+    end
+  end
+
+  def admin_link(object)
+    content_tag :small do
+      return unless admin?
+      str = "".html_safe
+      str << raw("&nbsp;")
+      str << icon_link('qrcode', "admin", [:admin, object]) 
+      str
+    end
+  end
+
 end

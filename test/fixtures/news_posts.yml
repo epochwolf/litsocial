@@ -2,14 +2,14 @@
 
 one:
   id: 1
-  title: MyString
+  title: MyPublishedPost
   contents: MyText
   user_id: 1
   published_at: 2012-09-22 17:32:35
 
 two:
   id: 2
-  title: MyString
+  title: MyHiddenPost
   contents: MyText
   user_id: 1
   published_at: 

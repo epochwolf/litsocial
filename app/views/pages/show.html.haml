@@ -4,4 +4,5 @@
     .meta-data.vbottom
       Last updated on #{dt(@page.created_at)}
       by #{user_link @page.user} 
+      =admin_link @page
     .rich=rich @page.contents

@@ -57,7 +57,7 @@ class ApplicationController < ActionController::Base
   def authenticate_admin!
     unless admin?
       if user_signed_in?
-        redirect_to account_path(current_user), :notice => "You don't have permission to access the admin panel."
+        redirect_to account_path, :notice => "You don't have permission to access the admin panel."
       else
         redirect_to new_user_session_path, :notice => "Please log in to access the admin panel."
       end

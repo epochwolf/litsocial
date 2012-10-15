@@ -1,15 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
+  id: 1
   title: MyString
   contents: MyString
-  url: MyString
+  url: one
   user_id: 1
-  published: false
+  published: true
 
 two:
+  id: 2
   title: MyString
   contents: MyString
-  url: MyString
+  url: hidden
   user_id: 1
   published: false

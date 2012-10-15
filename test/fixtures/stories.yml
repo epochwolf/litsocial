@@ -1,23 +1,44 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
+  id: 1
   title: MyString
   contents: MyString
-  user_id: MyString
+  user_id: 1
   series_id: 1
   series_position: 1
-  locked_at: MyString
-  datetime: MyString
-  locked_reason: MyText
-  deleted: false
+  created_at: <%=Time.now %>
+  updated_at: <%=Time.now %>
 
 two:
+  id: 2
   title: MyString
   contents: MyString
-  user_id: MyString
+  user_id: 1
   series_id: 1
-  series_position: 1
-  locked_at: MyString
-  datetime: MyString
-  locked_reason: MyText
+  series_position: 2
   deleted: false
+  created_at: <%=Time.now %>
+  updated_at: <%=Time.now %>
+
+
+three:
+  id: 3
+  title: MyString
+  contents: MyString
+  user_id: 2
+  created_at: <%=Time.now %>
+  updated_at: <%=Time.now %>
+
+
+
+locked:
+  id: 4
+  title: MyString
+  contents: MyString
+  user_id: 3
+  deleted: true
+  locked_at: <%=Time.now %>
+  locked_reason: Meh
+  created_at: <%=Time.now %>
+  updated_at: <%=Time.now %>

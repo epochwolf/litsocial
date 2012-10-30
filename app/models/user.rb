@@ -20,6 +20,19 @@ class User < ActiveRecord::Base
   has_many :forum_posts
   has_many :messages, foreign_key: 'to_id'
   has_many :sent_messages, class_name: 'Message', foreign_key: 'from_id'
+  has_many :favs
+  has_many :reports
+  # This is a list of things I have watched.
+  has_many :watches
+  # I am watching these users
+  has_many :user_watches, :class_name => 'Watch', :foreign_key => "user_id", :conditions => {:watchable_type => 'User'}
+  has_many :watching, :class_name => 'User', :through => :user_watches, :foreign_key => "watchable_id"
+  # These peope are watching me
+  has_many :watcher_watches, :class_name => "Watch", :as => :watchable
+  has_many :watchers, :class_name => 'User', :through => :watcher_watches
+
+
+
 
   NAME_REGEX = /([a-z][a-z0-9_]{2,12}[a-z0-9])/
 
@@ -27,9 +40,28 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
 
+  def title
+    name
+  end
 
   def self.valid_name?(name)
     name =~ /\A#{NAME_REGEX}\Z/
+  end
+
+  def watching?(object)
+    return nil unless object
+    watches.where(:watchable_type => object.class.name, :watchable_id => object.id).first
+  end
+
+
+  def faving?(object)
+    return nil unless object
+    favs.where(:favable_type => object.class.name, :favable_id => object.id).first
+  end
+
+  def reporting?(object)
+    return nil unless object
+    reports.where(:reportable_type => object.class.name, :reportable_id => object.id).first
   end
 
   def banned?

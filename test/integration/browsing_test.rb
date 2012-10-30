@@ -1,9 +1,9 @@
 require 'test_helper'
 
-class AdminTest < ActionDispatch::IntegrationTest
+class BrowsingTest < ActionDispatch::IntegrationTest
   fixtures :all
 
-  test "Member can't access the admin panel" do
+  test "User can't access the admin panel" do
     sign_in(:two)
     
     get_via_redirect "/admin"
@@ -17,8 +17,6 @@ class AdminTest < ActionDispatch::IntegrationTest
     get_via_redirect "/admin"
     assert_equal "/sign_in", path
   end
-
-  []
   
   test "Admin can access the admin panel and browse around" do
     get "/sign_in"
@@ -102,4 +100,3 @@ class AdminTest < ActionDispatch::IntegrationTest
     get "/admin/users/1/edit"
     assert_response :success
   end
-end

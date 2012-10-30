@@ -10,7 +10,10 @@ ActiveAdmin.register Message do
     end
   end
 
-  batch_action(:unreport,     priority: 1){|selection| selection.update_column :reported,    false }
+  batch_action(:unreport,     priority: 1) do |selection| 
+    Message.where(id: selection).update_all  reported: false 
+    redirect_to collection_path, notice: "Selected rows unreported"
+  end
 
   form do |f|
     f.inputs "Publishing" do

@@ -23,3 +23,9 @@
       .series-list
         =render 'series_list', story: @story
     .rich=rich @story.contents
+    .story-buttons.centered-buttons
+      .button-wrapper=render 'shared/watch_link', watchable: @story.user
+      -if @story.series?
+        .button-wrapper=render 'shared/watch_link', watchable: @story.series
+      .button-wrapper=render 'shared/fav_link', favable: @story
+      .button-wrapper=render 'shared/report_link', reportable: @story

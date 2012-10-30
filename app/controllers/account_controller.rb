@@ -13,6 +13,14 @@ class AccountController < ApplicationController
     @forum_posts = paged(@user.forum_posts)
   end
 
+  def watches
+    @watches = paged(@user.watches)
+  end
+
+  def favs
+    @favs = paged(@user.favs)
+  end
+
   def edit
   end
 

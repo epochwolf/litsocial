@@ -8,3 +8,6 @@
       by #{user_link @forum_post.user} 
       =edit_links @forum_post
     .rich=rich @forum_post.contents
+    .story-buttons.centered-buttons
+      .button-wrapper=render 'shared/fav_link', favable: @forum_post
+      .button-wrapper=render 'shared/report_link', reportable: @forum_post

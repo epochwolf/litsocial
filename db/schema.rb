@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121013041045) do
+ActiveRecord::Schema.define(:version => 20121029191007) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -44,6 +44,17 @@ ActiveRecord::Schema.define(:version => 20121013041045) do
 
   add_index "comments", ["commentable_type", "commentable_id"], :name => "index_comments_on_commentable"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
+  create_table "favs", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "favable_id"
+    t.string   "favable_type"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "favs", ["favable_type", "favable_id", "user_id"], :name => "index_favs_on_favable_type_and_favable_id_and_user_id", :unique => true
+  add_index "favs", ["user_id"], :name => "index_favs_on_user_id"
 
   create_table "forum_categories", :force => true do |t|
     t.string   "title"
@@ -93,6 +104,20 @@ ActiveRecord::Schema.define(:version => 20121013041045) do
 
   add_index "news_posts", ["published_at"], :name => "index_news_posts_on_published_at"
 
+  create_table "notifications", :force => true do |t|
+    t.integer  "notifiable_id"
+    t.string   "notifiable_type"
+    t.integer  "user_id",         :null => false
+    t.boolean  "read"
+    t.string   "template",        :null => false
+    t.text     "data",            :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "notifications", ["notifiable_type", "notifiable_id"], :name => "index_notifications_on_notifiable_type_and_notifiable_id"
+  add_index "notifications", ["user_id"], :name => "index_notifications_on_user_id"
+
   create_table "pages", :force => true do |t|
     t.string   "title",      :null => false
     t.text     "contents",   :null => false
@@ -105,6 +130,19 @@ ActiveRecord::Schema.define(:version => 20121013041045) do
 
   add_index "pages", ["published"], :name => "index_pages_on_published"
   add_index "pages", ["url"], :name => "index_pages_on_url"
+
+  create_table "reports", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "reportable_id"
+    t.string   "reportable_type"
+    t.text     "reason"
+    t.boolean  "resolved"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "reports", ["reportable_type", "reportable_id", "user_id"], :name => "index_reports_on_reportable_type_and_reportable_id_and_user_id", :unique => true
+  add_index "reports", ["user_id"], :name => "index_reports_on_user_id"
 
   create_table "series", :force => true do |t|
     t.string   "title"
@@ -171,5 +209,16 @@ ActiveRecord::Schema.define(:version => 20121013041045) do
   end
 
   add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"
+
+  create_table "watches", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "watchable_id"
+    t.string   "watchable_type"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "watches", ["user_id"], :name => "index_watches_on_user_id"
+  add_index "watches", ["watchable_type", "watchable_id", "user_id"], :name => "index_watches_on_watchable_type_and_watchable_id_and_user_id", :unique => true
 
 end

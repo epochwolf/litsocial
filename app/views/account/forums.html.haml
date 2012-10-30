@@ -13,6 +13,4 @@
       %td
         %small.pull-right
           =icon_link "wrench", "edit", edit_forum_post_path(post, return:here)
-          &nbsp;
-          =icon_link "remove", "delete", forum_post_path(post, return:here), method: :delete, confirm: "Are you sure?"
 =paginate @forum_posts

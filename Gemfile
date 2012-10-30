@@ -29,6 +29,7 @@ gem 'haml'
 gem 'sanitize'
 gem 'devise'
 gem "omniauth-facebook"
+gem 'liquid'
 #gem "rack-mini-profiler"
 
 

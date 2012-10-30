@@ -42,6 +42,12 @@ function dismiss_modal_message(){
   $('#modal_message').modal('hide').remove();
 }
 
+function replace_callback(selector){
+  return function(data, status, xhr){ 
+    $(selector).replaceWith(data["html"]);
+  }
+}
+
 function copy_text_from_iframe(target, text_to_copy){
   dismiss_modal_message();
   $(target).setCode(text_to_copy);

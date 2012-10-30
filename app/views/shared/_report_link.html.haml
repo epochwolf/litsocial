@@ -1,0 +1,20 @@
+:ruby
+  #required: favable or (@report and @reportable)
+  #optional: small
+  small ||= false
+  report = if @report # In watchescontroller
+    reportable = @reportable
+    @report.persisted? ? @report : nil
+  elsif user_signed_in?
+    current_user.reporting?(reportable)
+  end
+  js_id = String.random
+  css = "btn btn-danger btn-mini"
+%span{id:js_id}
+  -if user_signed_in? 
+    -if report
+      =icon_link "flag icon-white", "Reported", '#', class:"#{css} disabled"
+    -else
+      =icon_link "flag icon-white", "Report", '#', class:css, data:{widget:"report-link", replace:"##{js_id}", class:reportable.class.name, id:reportable.id}
+  -else
+    Sign in to report

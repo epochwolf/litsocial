@@ -44,11 +44,11 @@ Litsocial::Application.routes.draw do
 
 
   get 'account'         => 'account#show',    as: :account
-  get 'account/stories' => 'account#stories', as: :stories_account
-  get 'account/forums'  => 'account#forums', as: :forums_account
-  get 'account/edit'    => 'account#edit',    as: :edit_account
+
+  %w[stories forums watches favs edit cancel].each do |name|
+    get "account/#{name}" => "account##{name}", as: "#{name}_account"
+  end
   put 'account'         => 'account#update'
-  get 'account/cancel'  => 'account#cancel',  as: :cancel_account
   delete 'account'      => 'account#destroy'
   resources :messages, :path => "/account/messages", except: [:edit, :update] do
     member do 
@@ -58,6 +58,9 @@ Litsocial::Application.routes.draw do
       get :sent
     end
   end
+  resources :watches, only: [:create, :destroy]
+  resources :favs, only: [:create, :destroy]
+  resources :reports, only: [:create]
 
 
 

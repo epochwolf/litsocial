@@ -129,6 +129,7 @@ GEM
       addressable (~> 2.3)
     libwebsocket (0.1.5)
       addressable
+    liquid (2.4.1)
     macaddr (1.6.1)
       systemu (~> 2.5.0)
     mail (2.4.4)
@@ -273,6 +274,7 @@ DEPENDENCIES
   haml
   jquery-rails
   launchy
+  liquid
   omniauth-facebook
   paper_trail (~> 2)
   pg

@@ -12,10 +12,25 @@ ActiveAdmin.register Story do
     end
   end
 
-  batch_action(:lock,     priority: 1){|selection| selection.update_column :locked_at, DateTime.now }
-  batch_action(:unlock,   priority: 2){|selection| selection.update_column :locked_at, nil          }
-  batch_action(:destroy,  priority: 3){|selection| selection.update_column :deleted, true           }
-  batch_action(:undelete, priority: 4){|selection| selection.update_column :deleted, false          }
+  batch_action(:lock,     priority: 1) do |selection| 
+    Story.update(id: selection).update_all locked_at: DateTime.now 
+    redirect_to collection_path, notice: "Selected rows locked."
+  end
+
+  batch_action(:unlock,   priority: 2) do |selection| 
+    Story.update(id: selection).update_all  locked_at: nil
+    redirect_to collection_path, notice: "Selected rows unlocked."
+  end
+
+  batch_action(:destroy,  priority: 3) do |selection| 
+    Story.update(id: selection).update_all  deleted: true
+    redirect_to collection_path, notice: "Selected rows deleted."
+  end
+
+  batch_action(:undelete, priority: 4) do |selection| 
+    Story.update(id: selection).update_all  deleted: false
+    redirect_to collection_path, notice: "Selected rows undeleted."
+  end
 
 
   index do

@@ -11,10 +11,22 @@ ActiveAdmin.register ForumPost do
     end
   end
 
-  batch_action(:sink,     priority: 1){|selection| selection.update_column :sunk,    true  }
-  batch_action(:unsink,   priority: 2){|selection| selection.update_column :sunk,    false }
-  batch_action(:destroy,  priority: 3){|selection| selection.update_column :deleted, true  }
-  batch_action(:undelete, priority: 4){|selection| selection.update_column :deleted, false }
+  batch_action(:sink,     priority: 1) do |selection| 
+    ForumPost.where(id: selection).update_all  sunk: true
+    redirect_to collection_path, notice: "Selected rows sunk."
+  end
+  batch_action(:unsink,   priority: 2) do |selection| 
+    ForumPost.where(id: selection).update_all  sunk: false
+    redirect_to collection_path, notice: "Selected rows raised."
+  end
+  batch_action(:destroy,  priority: 3) do |selection| 
+    ForumPost.where(id: selection).update_all  deleted: true
+    redirect_to collection_path, notice: "Selected rows deleted."
+  end
+  batch_action(:undelete, priority: 4) do |selection| 
+    ForumPost.where(id: selection).update_all  deleted: false
+    redirect_to collection_path, notice: "Selected rows undeleted."
+  end
 
   index do
     selectable_column

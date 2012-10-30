@@ -12,8 +12,16 @@ ActiveAdmin.register Page do
     end
   end
 
-  batch_action(:publish,     priority: 1){|selection| selection.update_column :published, true }
-  batch_action(:hide,   priority: 2){|selection| selection.update_column :published, false }
+  batch_action(:publish,  priority: 1) do |selection| 
+    Page.where(id: selection).update_all  published: true 
+    redirect_to collection_path, notice: "Selected rows published."
+  end
+
+  batch_action(:hide,     priority: 2) do |selection| 
+    Page.where(id: selection).update_all  published: false
+    redirect_to collection_path, notice: "Selected rows hidden."
+  end
+  
   batch_action :destroy, false # remove batch operations on users
 
   # set the user for this model

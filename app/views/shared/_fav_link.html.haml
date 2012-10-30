@@ -1,0 +1,20 @@
+:ruby
+  #required: favable or (@fav and @favable)
+  #optional: small
+  small ||= false
+  fav = if @fav # In watchescontroller
+    favable = @favable
+    @fav.persisted? ? @fav : nil
+  elsif user_signed_in?
+    current_user.faving?(favable)
+  end
+  js_id = String.random
+  css = "btn btn-warning btn-mini"
+%span{id:js_id}
+  -if user_signed_in? 
+    -if fav
+      =icon_link "remove icon-white", "Unfav", '#', class:css, data:{widget:"unfav-link", replace:"##{js_id}", id:fav.id}
+    -else
+      =icon_link "heart icon-white", "Fav", '#', class:css, data:{widget:"fav-link", replace:"##{js_id}", class:favable.class.name, id:favable.id}
+  -else
+    Sign in to fav

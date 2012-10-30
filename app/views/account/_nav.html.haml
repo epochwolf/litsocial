@@ -7,5 +7,7 @@
   %li{class: active_for_action("show")}=link_to "Overview", account_path
   %li{class: active_for_action("stories")}=link_to "Series & Stories", stories_account_path
   %li{class: active_for_action("forums")}=link_to "Forum Posts", forums_account_path
+  %li{class: active_for_action("watches")}=link_to "Watches", watches_account_path
+  %li{class: active_for_action("favs")}=link_to "Favs", favs_account_path
   %li{class: params[:controller] == "messages" ? "active" : ""}=link_to "Messages", messages_path
   %li{class: active_for_action("edit", "update")}=link_to "Edit Profile", edit_account_path

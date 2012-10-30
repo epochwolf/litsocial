@@ -1,0 +1,10 @@
+=render 'nav'
+%table.table
+  %tr
+    %th Title
+    %th
+  -@watches.each do |watch|
+    %tr
+      %td #{watch.watchable_type}: #{link_to(watch.watchable.title, watch.watchable)}
+      %td=render 'shared/watch_link', watchable: watch.watchable
+=paginate @watches

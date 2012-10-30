@@ -1,0 +1,11 @@
+=render 'nav'
+%table.table
+  %tr
+    %th Type
+    %th Title
+    %th
+  -@favs.each do |fav|
+    %tr
+      %td #{fav.favable_type}: #{link_to(fav.favable.title, fav.favable)}
+      %td=render 'shared/fav_link', favable: fav.favable
+=paginate @favs

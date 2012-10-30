@@ -19,3 +19,10 @@
       %td=s.series_position
       %td=link_to s.title, s
       %td=dt s.created_at
+
+
+.story-buttons
+  .button-wrapper=render 'shared/watch_link', watchable: @series.user
+  .button-wrapper=render 'shared/watch_link', watchable: @series
+  .button-wrapper=render 'shared/fav_link', favable: @series
+  .button-wrapper=render 'shared/report_link', reportable: @series

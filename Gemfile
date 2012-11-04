@@ -69,6 +69,7 @@ group :test do
   gem "capybara-webkit"
   gem 'database_cleaner'
   gem "launchy"
+  gem "factory_girl_rails", "~> 4.0"
 end
 
 group :production do

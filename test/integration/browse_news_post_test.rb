@@ -4,7 +4,7 @@ class BrowseNewsPostTest < ActionDispatch::IntegrationTest
   fixtures :all
 
   setup do 
-    sign_in(:two)
+    sign_in(create(:user))
   end
 
   test "Member sees published post on index" do

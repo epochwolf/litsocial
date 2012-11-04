@@ -4,7 +4,7 @@ class AdminTest < ActionDispatch::IntegrationTest
   fixtures :all
 
   test "Member can't access the admin panel" do
-    sign_in(:two)
+    sign_in(create(:user))
     
     get_via_redirect "/admin"
     assert_equal "/account", path
@@ -17,14 +17,14 @@ class AdminTest < ActionDispatch::IntegrationTest
     get_via_redirect "/admin"
     assert_equal "/sign_in", path
   end
-
-  []
   
   test "Admin can access the admin panel and browse around" do
     get "/sign_in"
     assert_response :success
     
-    post_via_redirect "/sign_in", :user => {:name => users(:one).name, :password => "Password"}
+    user = create(:admin)
+
+    post_via_redirect "/sign_in", user: {:name => user.name, :password => "Password"}
     assert_equal "/", path
     
     get "/admin"

@@ -19,8 +19,9 @@ class CapyTest < ActionDispatch::IntegrationTest
     logout(:user)
   end
   
-  def sign_in(fixture_id)
-    login_as(users(fixture_id), :scope => :user)
+  def sign_in(user)
+
+    login_as(user, :scope => :user)
   end
   
   teardown do

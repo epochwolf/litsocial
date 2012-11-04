@@ -16,6 +16,11 @@ class ActionController::TestCase
   include Devise::TestHelpers
 end
 
+# Test::Unit
+class Test::Unit::TestCase
+  include FactoryGirl::Syntax::Methods
+end
+
 
 class ActionDispatch::IntegrationTest
   def sign_out
@@ -23,12 +28,12 @@ class ActionDispatch::IntegrationTest
     assert_equal '/', path
   end
   
-  def sign_in(fixture_id)
-   get "/sign_in"
-   assert_response :success
+  def sign_in(user)
+    get "/sign_in"
+    assert_response :success
    
-   post_via_redirect "/sign_in", :user => {:name => users(fixture_id).name, :password => "Password"}
-   #assert_equal "/users/#{users(fixture_id).id}", path
-   assert_equal '/', path
+    post_via_redirect "/sign_in", :user => {:name => user.name, :password => "Password"}
+    #assert_equal "/users/#{users(fixture_id).id}", path
+    assert_equal '/', path
   end
 end

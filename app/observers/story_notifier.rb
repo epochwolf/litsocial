@@ -15,9 +15,9 @@ class StoryNotifier < Notifier
       targets += series.watchers.all
       data["series_id"] = series.id
       data["series_title"] = series.title
-      notify(targets, "series_update", data)
+      notify(targets, "series_update", story, data)
     else
-      notify(targets, "story_create", data)
+      notify(targets, "story_create", story, data)
     end
   end
 
@@ -33,7 +33,7 @@ class StoryNotifier < Notifier
         "series_id" => series.id,
         "series_title" => series.title,
       }
-      notify(targets, "series_update", data)
+      notify(targets, "series_update", story, data)
     end
   end
 end

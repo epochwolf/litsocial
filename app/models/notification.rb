@@ -37,21 +37,6 @@ class Notification < ActiveRecord::Base
     end.flatten
   ]
 
-  class << self
-    def create_notice(user, event, data)
-      create({
-            notifiable: object,
-            user: user, 
-            data: data,
-            template: event,
-          })
-    end
-
-    def event_to_template(object, action)
-      "#{object.class.name.underscore}_#{action}"
-    end
-  end
-
   def to_html
     liquid_template.render(data).html_safe
   end

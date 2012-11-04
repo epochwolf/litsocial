@@ -14,7 +14,8 @@ Litsocial::Application.routes.draw do
   #   edit_user_registration GET    /users/edit(.:format)                  devise/registrations#edit
   #                          PUT    /users(.:format)                       devise/registrations#update
   #                          DELETE /users(.:format)                       devise/registrations#destroy
-  devise_for :users, :only => [] do
+  devise_for :users, :only => []
+  devise_scope :user do
     get     '/sign_in'             => 'devise/sessions#new',          as: :new_user_session
     post    '/sign_in'             => 'devise/sessions#create',       as: :user_session
     delete  '/sign_out'            => 'devise/sessions#destroy',      as: :destroy_user_session

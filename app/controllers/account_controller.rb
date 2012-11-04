@@ -21,6 +21,10 @@ class AccountController < ApplicationController
     @favs = paged(@user.favs)
   end
 
+  def notifications
+    @notifications = paged(@user.notifications)
+  end
+
   def edit
   end
 

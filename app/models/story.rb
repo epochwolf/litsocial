@@ -21,6 +21,7 @@ class Story < ActiveRecord::Base
 
   attr_accessor :series_title
   before_save :save_series_title, if: ->(o){ o.series_id.blank? && o.series_title }
+  before_create :fix_acts_as_list
   before_update :fix_acts_as_list, if: :series_id_changed?
 
   def visible?
@@ -43,7 +44,7 @@ class Story < ActiveRecord::Base
   protected  
   def fix_acts_as_list
     if series_id
-      bottom_position_in_list
+      self.series_position = bottom_position_in_list.to_i + 1
     else
       self.series_position = nil
     end

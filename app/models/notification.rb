@@ -4,6 +4,8 @@ class Notification < ActiveRecord::Base
   belongs_to :user
   belongs_to :notifiable, polymorphic: true
 
+  scope :sorted, order(:id.desc)
+
   NOTIFY_ON = %w[
     Comment
     ForumPost
@@ -15,10 +17,10 @@ class Notification < ActiveRecord::Base
   TEMPLATES_AVAILABLE = [
     "comment_create",
     # "comment_update",
-    "forum_post_create",
+    # "forum_post_create",
     # "forum_post_update",
     "message_create",
-    "series_create",
+    # "series_create",
     "series_update",
     "story_create",
     # "story_update",
@@ -36,21 +38,13 @@ class Notification < ActiveRecord::Base
   ]
 
   class << self
-    def create_notice(user, object, action)
-      new({
+    def create_notice(user, event, data)
+      create({
             notifiable: object,
             user: user, 
-            data: extract_data_for_template(object, action),
-            template: event_to_template(object, action),
+            data: data,
+            template: event,
           })
-    end
-
-    # TODO: fix this
-    def extract_data_for_template(object, action)
-      user = object.user
-      attributes = object.attributes
-      attributes["username"] = user.try(name)
-      attributes
     end
 
     def event_to_template(object, action)
@@ -59,7 +53,7 @@ class Notification < ActiveRecord::Base
   end
 
   def to_html
-    liquid_template.render(data)
+    liquid_template.render(data).html_safe
   end
 
   protected

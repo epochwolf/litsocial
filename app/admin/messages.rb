@@ -1,5 +1,5 @@
 ActiveAdmin.register Message do
-
+  menu parent: "Users"
   actions :index, :show, :edit, :update, :destroy
 
   controller do

@@ -1,4 +1,5 @@
 ActiveAdmin.register Series do
+  menu :priority => 3, parent: "Users"
   controller do
     with_role :admin
 
@@ -8,9 +9,10 @@ ActiveAdmin.register Series do
   end
 
   index do 
-    link_column :title
+    column :title do |s|
+      "#{link_to s.title, [:admin, s] } (#{s.stories_count} stories)".html_safe
+    end
     column :user
-    column :stories_count
     column :created_at
     column :updated_at
     edit_links

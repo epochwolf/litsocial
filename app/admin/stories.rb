@@ -1,4 +1,5 @@
 ActiveAdmin.register Story do
+  menu :priority => 2, parent: "Users"
   scope :all
   scope :visible
   scope :locked
@@ -8,27 +9,27 @@ ActiveAdmin.register Story do
     with_role :admin
 
     def scoped_collection
-      Story.includes(:user)
+      Story.includes(:series, :user)
     end
   end
 
   batch_action(:lock,     priority: 1) do |selection| 
-    Story.update(id: selection).update_all locked_at: DateTime.now 
+    Story.where(id: selection).update_all locked_at: DateTime.now 
     redirect_to collection_path, notice: "Selected rows locked."
   end
 
   batch_action(:unlock,   priority: 2) do |selection| 
-    Story.update(id: selection).update_all  locked_at: nil
+    Story.where(id: selection).update_all  locked_at: nil
     redirect_to collection_path, notice: "Selected rows unlocked."
   end
 
   batch_action(:destroy,  priority: 3) do |selection| 
-    Story.update(id: selection).update_all  deleted: true
+    Story.where(id: selection).update_all  deleted: true
     redirect_to collection_path, notice: "Selected rows deleted."
   end
 
   batch_action(:undelete, priority: 4) do |selection| 
-    Story.update(id: selection).update_all  deleted: false
+    Story.where(id: selection).update_all  deleted: false
     redirect_to collection_path, notice: "Selected rows undeleted."
   end
 
@@ -37,8 +38,11 @@ ActiveAdmin.register Story do
     selectable_column
     link_column :title
     column :user
-    column :series_id
-    column :series_position
+    column :series do |s|
+      if s.series?
+        "##{s.series_position} of #{link_to(s.series.title, [:admin, s.series])}".html_safe
+      end
+    end
     column :deleted?
     column :locked?
     column :created_at

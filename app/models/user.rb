@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   scope :admins, where{ admin == true }
   scope :members, where{ (banned_at == nil) & (admin == false) }
   scope :banned, where{ banned_at != nil }
+  scope :sorted, order(:id.desc)
 
   has_many :series
   has_many :stories
@@ -22,17 +23,19 @@ class User < ActiveRecord::Base
   has_many :sent_messages, class_name: 'Message', foreign_key: 'from_id'
   has_many :favs
   has_many :reports
-  # This is a list of things I have watched.
+  has_many :notifications
+    # This is a list of things I have watched.
   has_many :watches
-  # I am watching these users
-  has_many :user_watches, :class_name => 'Watch', :foreign_key => "user_id", :conditions => {:watchable_type => 'User'}
-  has_many :watching, :class_name => 'User', :through => :user_watches, :foreign_key => "watchable_id"
-  # These peope are watching me
-  has_many :watcher_watches, :class_name => "Watch", :as => :watchable
-  has_many :watchers, :class_name => 'User', :through => :watcher_watches
 
+  # People this user is watching
+  def watching
+    User.joins("join watches on watches.watchable_type = 'User' and watches.watchable_id = users.id").where(watches: {user_id: id})
+  end
 
-
+  # People watching this user
+  def watchers
+    User.joins(:watches).where(watches:{watchable_type: 'User', watchable_id: id})
+  end
 
   NAME_REGEX = /([a-z][a-z0-9_]{2,12}[a-z0-9])/
 

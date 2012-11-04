@@ -45,7 +45,7 @@ Litsocial::Application.routes.draw do
 
   get 'account'         => 'account#show',    as: :account
 
-  %w[stories forums watches favs edit cancel].each do |name|
+  %w[stories forums watches favs notifications edit cancel].each do |name|
     get "account/#{name}" => "account##{name}", as: "#{name}_account"
   end
   put 'account'         => 'account#update'
@@ -58,6 +58,7 @@ Litsocial::Application.routes.draw do
       get :sent
     end
   end
+  resources :notifications, :path => '/account/notifications', only: [:destroy]
   resources :watches, only: [:create, :destroy]
   resources :favs, only: [:create, :destroy]
   resources :reports, only: [:create]

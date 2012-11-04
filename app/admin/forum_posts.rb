@@ -1,4 +1,6 @@
 ActiveAdmin.register ForumPost do
+  menu :priority => 5, parent: "The Forum"
+
   scope :all
   scope :visible
   scope :deleted

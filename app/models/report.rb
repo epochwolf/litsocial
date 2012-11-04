@@ -3,6 +3,7 @@ class Report < ActiveRecord::Base
 
   scope :resolved, where(resolved: true)
   scope :not_resolved, where{ (resolved == false) | (resolved == nil) }
+  scope :sorted, order(:id.desc)
 
   belongs_to :user
   belongs_to :reportable, polymorphic: true

@@ -16,7 +16,7 @@
       &nbsp;
       =icon_link "wrench", "edit", edit_series_path(series, return: here)
   %table.table.table-striped
-    -series.stories.each do |story|
+    -series.stories.visible.each do |story|
       %tr
         %td=story.series_position
         %td

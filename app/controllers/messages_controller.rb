@@ -28,12 +28,12 @@ class MessagesController < ApplicationController
 
   def report
     @message.report!
-    redirect_to messages_path, notice: "Message reported."
+    redirect_to return_path(messages_path), notice: "Message reported."
   end
 
   def destroy
     @message.destory
-    redirect_to messages_path, notice: "Message deleted."
+    redirect_to return_path(messages_path), notice: "Message deleted."
   end
 
   protected

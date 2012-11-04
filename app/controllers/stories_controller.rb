@@ -38,7 +38,7 @@ class StoriesController < ApplicationController
   end
 
   def destroy
-    @story.update_column :deleted_at, Time.now.utc
+    @story.update_column :deleted, true
     redirect_to return_path(account_path), alert: "Story deleted"
   end
 

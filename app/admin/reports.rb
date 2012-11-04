@@ -1,4 +1,5 @@
 ActiveAdmin.register Report do
+  menu parent: "Users"
   scope :all
   scope "Not Resolved", :not_resolved
   scope :resolved

@@ -1,4 +1,6 @@
 ActiveAdmin.register Page do
+  menu :priority => 7, parent: "Admin"
+  
   scope :all
   scope "Published", :visible
   scope :draft

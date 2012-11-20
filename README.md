@@ -3,6 +3,8 @@ Lit Social is a literature website that integrates with facebook.
 
 [Previous Version of the Code](https://github.com/epochwolf/litsocial/tree/f33cd05128d7a416d595392d7c404dbfd6edfcb8) 
 
+[Screenshots of Active Admin pages taken Nov 19, 2012](http://imgur.com/a/XZBUY#0)
+
 # Running this Code
 This application is set up to use Postgres in all modes. Future development may use Postgres specific features.
 

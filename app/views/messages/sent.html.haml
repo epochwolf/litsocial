@@ -1,7 +1,10 @@
 =render 'account/nav'
-%p 
-  Show #{link_to "Received Messages", messages_path}
-  =link_to "New Message", new_message_path(return: here), class:'btn btn-mini btn-success pull-right'
+
+=link_to "New Message", new_message_path(return: here), class:'btn btn-mini btn-success pull-right'
+%ul.nav.nav-tabs
+  %li=link_to "Received Messages", messages_path
+  %li.active=link_to "Sent Messages", sent_messages_path
+  
 %table.table
   %tr
     %th To

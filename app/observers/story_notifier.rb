@@ -12,10 +12,10 @@ class StoryNotifier < Notifier
     }
 
     if series = story.series
-      targets += series.watchers.all
+      targets |= series.watchers.all
       data["series_id"] = series.id
       data["series_title"] = series.title
-      notify(targets, "series_update", story, data)
+      notify(targets, "series_update", series, data)
     else
       notify(targets, "story_create", story, data)
     end
@@ -24,7 +24,7 @@ class StoryNotifier < Notifier
   def after_update(story)
     if story.series_id_changed? && (series = story.series)
       user = story.user
-      targets = user.watchers.all
+      targets = (user.watchers.all | series.watchers.all)
       data = {
         "user_id" => user.id,
         "username" => user.name,
@@ -33,7 +33,7 @@ class StoryNotifier < Notifier
         "series_id" => series.id,
         "series_title" => series.title,
       }
-      notify(targets, "series_update", story, data)
+      notify(targets, "series_update", story.series, data)
     end
   end
 end

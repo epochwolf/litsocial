@@ -53,9 +53,9 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Deploy with Capistrano
 gem 'exception_notification'
-gem 'rvm'
 gem 'capistrano'
-gem 'capistrano-ext'
+gem 'rvm-capistrano', require: false
+gem 'capistrano-unicorn', require: false
 
 group :development, :test do
   #gem 'ruby-debug19', :require => 'ruby-debug'

@@ -46,7 +46,7 @@ namespace :deploy do
     end
 
     desc "Link dir from shared to common."
-    task :symlink do
+    task :create_symlink do
       (folders + files).each do |folder|
         run "rm -rf #{current_path}/#{folder}; ln -s #{shared_path}/#{folder} #{current_path}/#{folder}"
       end
@@ -56,4 +56,4 @@ namespace :deploy do
 end
 
 after "deploy:setup", "deploy:shared:setup"
-after "deploy:symlink", "deploy:shared:symlink"
+after "deploy:create_symlink", "deploy:create_symlink"

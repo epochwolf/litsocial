@@ -214,6 +214,7 @@ GEM
     responders (0.9.2)
       railties (~> 3.1)
     rubyzip (0.9.9)
+    rvm (1.11.3.5)
     rvm-capistrano (1.2.7)
       capistrano (>= 2.0.0)
     sanitize (2.0.3)
@@ -288,6 +289,7 @@ DEPENDENCIES
   pg_search
   rails (= 3.2.6)
   redactor-rails
+  rvm
   rvm-capistrano
   sanitize
   sass-rails (~> 3.2.3)

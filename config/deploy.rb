@@ -24,6 +24,7 @@ ssh_options[:compression] = false
 set :rails_env, "production"
 server "kazan.epochwolf.com", :app, :web, :db, :primary => true
 
+load "deploy/assets"
 
 require 'capistrano-unicorn'
 
@@ -46,9 +47,9 @@ namespace :deploy do
     end
 
     desc "Link dir from shared to common."
-    task :create_symlink do
+    task :symlink do
       (folders + files).each do |folder|
-        run "rm -rf #{current_path}/#{folder}; ln -s #{shared_path}/#{folder} #{current_path}/#{folder}"
+        run "rm -rf #{release_path}/#{folder}; ln -s #{shared_path}/#{folder} #{release_path}/#{folder}"
       end
     end
 
@@ -56,4 +57,4 @@ namespace :deploy do
 end
 
 after "deploy:setup", "deploy:shared:setup"
-after "deploy:create_symlink", "deploy:create_symlink"
+after "deploy:assets:symlink", "deploy:shared:symlink"

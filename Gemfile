@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.6'
+gem 'rails', '3.2.11'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -53,7 +53,7 @@ gem 'exception_notification'
 gem "rvm"
 
 group :development do
-  gem 'capistrano'
+  gem 'capistrano', "~> 2.13.2"
   gem 'rvm-capistrano', require: false
   gem 'capistrano-unicorn', require: false
   #gem 'ruby-debug19', :require => 'ruby-debug'

@@ -1,21 +1,6 @@
 .row
-  .span12
-    %h2
-      =@user.name
-      -if @user.tagline.present?
-        %small=@user.tagline
-        .pull-right=icon_link 'envelope', "Send message", '#', class:'btn btn-small'
-    %p 
-      -if @user.admin?
-        %span.label.label-inverse Administrator 
-      Joined LitSocial on #{@user.created_at} and has submitted #{@user.series.visible.count} series and #{@user.stories.visible.count} stories.
-    %hr.slim
-.row
-  -if @user.biography.present?
-    .span6.rich
-      %h3.title User Biography
-      =rich @user.biography
-  .span6
+  .span3=render 'users/sidebar', :user => @user
+  .span9
     -@user.series.visible.includes(:stories).each do |series|
       -#next if series.stories_count == 0
       %h3
@@ -27,8 +12,6 @@
             %td=story.series_position
             %td=link_to story.title, story
             %td=story.created_at
-
-  .span6
     -unless (stories = @user.stories.visible.where(series_id: nil)).count == 0
       %h3 Stories not in a series
       %table.table

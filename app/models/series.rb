@@ -16,6 +16,18 @@ class Series < ActiveRecord::Base
 
   validates :title, :user_id, presence: true
 
+  # Returns the next and previous stories for a given story in this series. 
+  def next_prev(story)
+    if story.series_id == id
+      [
+        stories.visible.where(:series_position.gt => story.id).order(:id.desc).first,
+        stories.visible.where(:series_position.lt => story.id).order(:id.desc).first
+      ]
+    else
+      []
+    end
+  end
+
   def visible?
     true
   end

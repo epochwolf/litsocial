@@ -17,7 +17,7 @@
   -@series.stories.visible.each do |s|
     %tr
       %td=s.series_position
-      %td=link_to s.title, s
+      %td=sicon_link :story, s.title, s
       %td=dt s.created_at
 
 

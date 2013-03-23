@@ -12,7 +12,7 @@
   -series.stories.visible.each do |story|
     %li
       -if current_story == story
-        %strong=link_to story.title, story
+        %strong=sicon_link :story, story.title, story
       -else
-        =link_to story.title, story
+        =sicon_link :story,  story.title, story
 

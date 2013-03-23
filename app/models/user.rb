@@ -41,7 +41,10 @@ class User < ActiveRecord::Base
 
   validates :name, uniqueness: true, format:{with: /\A#{NAME_REGEX}\Z/, on: :create}
 
-  # Setup accessible (or protected) attributes for your model
+  def gravatar_url(size=32)
+    gravatar_id = Digest::MD5::hexdigest(email).downcase
+    "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}"
+  end
 
   def title
     name

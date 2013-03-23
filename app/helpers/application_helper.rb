@@ -29,8 +29,12 @@ module ApplicationHelper
     end
   end
 
+  def gravatar(user, size)
+    image_tag(user.gravatar_url(size), class: 'gravatar', size: "#{size}x#{size}")
+  end
+
   def user_link(user)
-    content_tag(:small, '^ ') + link_to(user.name, user)
+    link_to gravatar(user, 16) + h(user.name), user, class:'user-link'
   end
   
   # def user_link(user)

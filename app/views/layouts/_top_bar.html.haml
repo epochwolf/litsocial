@@ -3,7 +3,7 @@
     controllers.any?{|controller| params[:controller] == controller } ? "active" : nil
   end
 
-.navbar.navbar-static-top
+.navbar.navbar-static-top.navbar-inverse
   .navbar-inner
     .container-fluid
       =link_to "Lit Social", root_url, :class => 'brand'

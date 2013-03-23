@@ -22,3 +22,19 @@
   border-top: 2px $hrBorder solid;
   padding: 0.5em 0;
 }
+
+article.story{
+  background-color: #fff;
+  padding: 1em 3em;
+  border: 3px solid #666;
+
+  p.meta{
+    margin-bottom: 1.6em
+  }
+}
+
+table.stories{
+  background-color: #fff;
+  border: 2px solid #666;
+  
+}

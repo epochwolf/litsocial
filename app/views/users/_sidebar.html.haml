@@ -1,0 +1,24 @@
+%h2
+  =gravatar user, 48
+  =user.name
+-if user.admin?
+  %p.muted
+    %span.label.label-inverse
+      =sicon :user_admin
+      Admin
+-if current_user
+  %p=render 'shared/watch_link', watchable: user
+=rich user.biography
+%ul.nav.nav-tabs.nav-stacked
+  %li=link_to "Stories", '#'
+  %li=link_to "Series", '#'
+  %li=link_to "Journal", '#'
+  %li=link_to "Comments", '#'
+%hr.slim
+%h4 Some Stats
+%ul
+  -if user.admin?
+    %li Member of the Administration Team.
+  %li Joined on #{user.created_at}.
+  %li Submitted #{user.series.visible.count} series.
+  %li Submitted #{user.stories.visible.count} stories.

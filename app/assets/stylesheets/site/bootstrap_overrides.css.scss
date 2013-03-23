@@ -1,12 +1,3 @@
-body {
-  //background-color: @successBackground;
-}
-
-
-html body {
-  /*padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
-}
-
 /* Fix placeholders in chrome */
 html textarea, html input {
   -webkit-transform-style: flat;
@@ -17,10 +8,9 @@ html input, html textarea, html select, html .uneditable-input {
   color: #444;
 }
 
-/* Prevent topbar from staying on the top when the user scrolls. */
-html .topbar {
-  position: static;
-  padding-bottom: 10px;
+/* Shove the navbar down a bit. */
+html .navbar {
+  margin-bottom: 2em;
 }
 
 /* Add site icon to the topbar title */

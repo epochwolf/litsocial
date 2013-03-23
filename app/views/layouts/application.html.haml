@@ -2,7 +2,7 @@
 %html{lang: "en"}
   %head=render 'layouts/head'
   
-  %body{class: (params[:controller] =~ /^forem\// ? "forem" : "")}
+  %body
     #header=render 'layouts/top_bar'
     #contents.container
       .row

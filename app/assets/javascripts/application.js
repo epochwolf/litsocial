@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui-1.8.23.custom.min
-//= require twitter/bootstrap
+//= require bootstrap
 //= require redactor-rails
 //= require redactor-rails/fix_config_not_working
 //= require_tree ./site

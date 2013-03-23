@@ -12,7 +12,7 @@ gem 'pg'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
+  #gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
@@ -21,9 +21,12 @@ gem 'jquery-rails'
 gem 'redactor-rails'
 
 
+
 # View stuff.
 gem 'uuid'
-gem 'anjlab-bootstrap-rails', '= 2.1.1.1', :require => 'bootstrap-rails'
+#gem 'anjlab-bootstrap-rails', '= 2.1.1.1', :require => 'bootstrap-rails'
+gem 'bootstrap-sass'
+gem 'sass-rails'
 gem 'simple_form'
 gem 'haml'
 gem 'sanitize'

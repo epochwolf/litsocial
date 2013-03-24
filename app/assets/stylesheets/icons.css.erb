@@ -1,6 +1,3 @@
-/*
- *= require_self
-*/
 <%
 # This is in a seperate file so site css changes won't wipe the icons from the user's cache.
 
@@ -9,14 +6,14 @@ def asset_data_uri(path)
   if File.exists? path
     Base64.encode64(File.open(path, "rb") { |f| f.read }) 
   else
-    Base64.encode64(File.open(File.join(Rails.root, "app/assets/images", "icons/na.png"), "rb") { |f| f.read }) 
+    Base64.encode64(File.open(File.join(Rails.root, "public", "icons/na.png"), "rb") { |f| f.read }) 
   end.gsub("\n", "")
 end
 %>
 
 <% IconHelper::ICONS.each do |symbol, file| %>
 .sicon-<%=file %>{
-  background-image: url("data:image/png;base64,<%= asset_data_uri File.join(Rails.root, "app/assets/images", "icons/#{file}.png") %>");
+  background-image: url("data:image/png;base64,<%= asset_data_uri File.join(Rails.root, "public", "icons/#{file}.png") %>");
 }
 
 <% end %>

@@ -1,0 +1,23 @@
+!!!
+%html{lang: "en"}
+  %head=render 'layouts/head'
+  
+  %body
+    #header=render 'layouts/top_bar'
+    #notices=render 'layouts/notices'
+    #contents.messages.container
+      .row
+        .sidebar.span3
+          %ul.nav.nav-list
+            %li.nav-header Messages
+            =nav_li('messages#index'){ link_to "Inbox", messages_path }
+            =nav_li('messages#sent'){ link_to "Sent", sent_messages_path }
+            =nav_li('messages#new', 'messages#create'){ link_to "Compose", new_message_path }
+            %li.nav-header Notifications
+            =nav_li('account#notifications'){ link_to "Notifications", notifications_account_path }
+            =nav_li('account#watches'){       link_to "Watches", watches_account_path }
+            %li.nav-header Site News
+            =nav_li('news_posts'){ link_to "Latest News", news_posts_path } 
+        .span9
+          #message-contents=yield
+    #footer=render 'layouts/footer'

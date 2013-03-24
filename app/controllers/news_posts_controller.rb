@@ -1,4 +1,6 @@
 class NewsPostsController < ApplicationController
+  layout 'messages'
+
   def index
     @news_posts = paged(NewsPost.visible)
   end

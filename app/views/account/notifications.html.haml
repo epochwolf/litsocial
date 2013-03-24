@@ -1,5 +1,4 @@
-=render 'nav'
-%table.table.table-striped
+%table{style: 'width: 100%'}
   -@notifications.each do |notification|
     %tr
       %td.notification{class: notification.template}=notification.to_html

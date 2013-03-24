@@ -1,9 +1,9 @@
 -@news_posts.each do |news_post|
-  %h1
-    %small News
-    =news_post.title
-  .meta-data.vbottom
-    Last updated on #{dt(news_post.created_at)}
-    by #{user_link news_post.user} 
-  .rich=rich news_post.contents
+  %article.news_post
+    %h1
+      =news_post.title
+    %p.meta
+      Last updated on #{dt(news_post.created_at)}
+      by #{user_link news_post.user} 
+    .rich=rich news_post.contents
 =paginate @news_posts

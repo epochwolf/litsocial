@@ -1,5 +1,5 @@
 .row
-  .span8
+  .span7
 
     %h1.title Welcome
     %p Lit Social is a place to read and share your stories
@@ -11,7 +11,7 @@
       -if @stories.count > 30
         %li #{link_to "More Stories", stories_path(per_page: 30, page: 2)}
 
-  .span4
+  .span3
     %h3.title.hidden-phone Latest News
     %h3.title.visible-phone=link_to "Latest News", news_posts_path
     %ul.unstyled

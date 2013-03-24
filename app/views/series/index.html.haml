@@ -1,21 +1,19 @@
-%h2 
-  Series
-  -if user_signed_in?
-    .pull-right.hidden-phone
-      =link_to "New Series", new_series_path, class:'btn btn-success btn-mini'
+%h2 Series
 -if @series
   %table.table.stories
-    %tr
-      %th Title
-      %th.hidden-phone # of Stories
-      %th Author
-      %th.hidden-phone Created
-    -@series.each do |s|
+    %thead
       %tr
-        %td=sicon_link :series, s.title, s
-        %td.hidden-phone=s.stories_count
-        %td=user_link s.user
-        %td.hidden-phone=dt s.created_at
+        %th Title
+        %th.hidden-phone # of Stories
+        %th Author
+        %th.hidden-phone Created
+    %tbody
+      -@series.each do |s|
+        %tr
+          %td=sicon_link :series, s.title, s
+          %td.hidden-phone=s.stories_count
+          %td=user_link s.user
+          %td.hidden-phone=dt s.created_at
 
   =paginate @series
 -else

@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  layout 'pages'
   def index
     @stories = Story.includes(:user, :series).visible.sorted.limit(30)
     @news_posts = NewsPost.includes(:user).visible.sorted.limit(4)

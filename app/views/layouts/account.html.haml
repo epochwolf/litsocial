@@ -1,0 +1,16 @@
+!!!
+%html{lang: "en"}
+  %head=render 'layouts/head'
+  
+  %body
+    #header=render 'layouts/top_bar'
+    #notices=render 'layouts/notices'
+    #contents.account.container
+      %ul.nav.nav-tabs.nav-account
+        =nav_li('account#show'){          link_to "Overview", account_path } 
+        =nav_li('account#stories'){       link_to "Series & Stories", stories_account_path }
+        =nav_li('account#forums'){        link_to "Forum Posts", forums_account_path }
+        =nav_li('account#favs'){          link_to "Favorites", favs_account_path }
+        =nav_li('account#edit', 'accounts#update'){ link_to "Edit Profile", edit_account_path }
+      .contents=yield
+    #footer=render 'layouts/footer'

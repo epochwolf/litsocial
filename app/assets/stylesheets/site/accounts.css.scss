@@ -1,0 +1,27 @@
+#contents.account > .contents{
+  background-color: #fff;
+  padding: 1em 3em;
+  border: 1px solid #ddd;
+  border-top: 0;
+}
+
+#contents.pages > .contents{
+  background-color: #fff;
+  padding: 1em 3em;
+  border: 1px solid #ddd;
+}
+
+ul.nav-account{
+  padding-bottom: 0;
+  margin-bottom: 0;
+   &> li.active > a{
+    background-color: #fff;
+  }
+}
+
+
+#contents.messages #message-contents {
+  background-color: #fff;
+  padding: 1em 3em;
+  border: 1px solid #ddd;
+}

@@ -1,17 +1,22 @@
 %h2 
   Stories
-  -if user_signed_in?
+  -if false #user_signed_in?
     .pull-right.hidden-phone
       =link_to "New Story", new_story_path, class:'btn btn-success btn-mini'
 -if @stories
   %table.table.stories
-    -@stories.each do |story|
-      %tr
-        %td
-          %strong=sicon_link :story, story.title, story
-        %td=user_link story.user
-        %td
-          %span.muted=dt(story.created_at)
+    %thead
+      %th Title
+      %th Author
+      %th Posted At
+    %tbody
+      -@stories.each do |story|
+        %tr
+          %td
+            %strong=sicon_link :story, story.title, story
+          %td=user_link story.user
+          %td
+            %span.muted=dt(story.created_at)
   =paginate @stories
 -else
   %p Nothing has been submitted yet.

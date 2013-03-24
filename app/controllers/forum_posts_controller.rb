@@ -1,6 +1,7 @@
 class ForumPostsController < ApplicationController
   before_filter :find_forum_post, only: [:show, :edit, :update, :destroy]
   before_filter :new_forum_post, only: [:new, :create]
+  layout "forums"
 
   def index
     @forum_posts = paged(ForumPost.visible)
@@ -48,5 +49,6 @@ class ForumPostsController < ApplicationController
 
   def find_forum_post
     @forum_post = ForumPost.visible.find(params[:id])
+    @forum_category = @forum_post.forum_category
   end
 end

@@ -1,4 +1,3 @@
-=render 'nav'
 %p
   %strong Userame:
   =@user.name
@@ -11,8 +10,3 @@
 %p
   %strong Story Count:
   =@user.stories.count
-
-%p 
-  =link_to "Edit Series and Stories", stories_account_path, class: 'btn btn-mini'
-  =link_to "New Series", new_series_path, class: 'btn btn-mini btn-success'
-  =link_to "New Story", new_story_path, class: 'btn btn-mini btn-success'

@@ -1,5 +1,3 @@
-=render 'nav'
-
 =simple_form_for(@user, url: account_path,  html:{class:'form-horizontal'}) do |f|
   =f.input :name
   =f.input :email, hint: "Used to reset your password."

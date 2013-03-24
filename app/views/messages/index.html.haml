@@ -1,18 +1,14 @@
-=render 'account/nav'
-
 =link_to "New Message", new_message_path(return: here), class:'btn btn-mini btn-success pull-right'
 
-%ul.nav.nav-tabs
-  %li.active=link_to "Received Messages", messages_path
-  %li=link_to "Sent Messages", sent_messages_path
-
 %table.table
-  %tr
-    %th From
-    %th On
-    %th Message
-  -@messages.each do |message|
+  %thead
     %tr
-      %td=user_link message.from
-      %td=dt message.created_at
-      %td=rich message.message
+      %th From
+      %th On
+      %th Message
+  %tbody
+    -@messages.each do |message|
+      %tr
+        %td=user_link message.from
+        %td=dt message.created_at
+        %td=rich message.message

@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  layout 'pages'
+
   def index
     @pages = paged(Page.visible)
   end

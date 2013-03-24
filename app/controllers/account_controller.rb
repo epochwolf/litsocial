@@ -1,5 +1,6 @@
 class AccountController < ApplicationController
   before_filter :find_model
+  layout 'account'
 
   def show
   end
@@ -15,6 +16,7 @@ class AccountController < ApplicationController
 
   def watches
     @watches = paged(@user.watches)
+    render layout: 'messages'
   end
 
   def favs
@@ -23,6 +25,7 @@ class AccountController < ApplicationController
 
   def notifications
     @notifications = paged(@user.notifications)
+    render layout: 'messages'
   end
 
   def edit

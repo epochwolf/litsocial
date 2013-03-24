@@ -2,6 +2,7 @@ class MessagesController < ApplicationController
   before_filter :find_user
   before_filter :find_message, only: [:show, :report, :destroy]
   before_filter :new_message, only: [:new, :create]
+  layout "messages"
 
   def index
     @messages = paged(current_user.messages.visible.includes(:from))

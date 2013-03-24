@@ -1,8 +1,7 @@
-.article.row
-  .span10.offset1
-    %h1=@page.title
-    .meta-data.vbottom
-      Last updated on #{dt(@page.created_at)}
-      by #{user_link @page.user} 
-      =admin_link @page
-    .rich=rich @page.contents
+%article.page
+  %h2=@page.title
+  %p.meta
+    Last updated on #{dt(@page.created_at)}
+    by #{user_link @page.user} 
+    =admin_link @page
+  .rich=rich @page.contents

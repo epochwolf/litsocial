@@ -1,0 +1,8 @@
+.well
+  %ul.nav.nav-list
+    %li.nav-header The Forum
+    %li=link_to "All Forums", forum_posts_path
+    -ForumCategory.all.each do |fc|
+      %li=link_to fc.title, fc
+    %li.nav-header Site News
+    %li.active=link_to "Latest News", news_posts_path

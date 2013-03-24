@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include Controllers::OverrideDevise
   #include Controllers::SaveRecord
   include Controllers::Paged
+  layout 'application'
   protect_from_forgery
   #rescue_from ActiveRecord::RecordNotFound, ActionController::RoutingError, :with => :handle_record_not_found
 

@@ -15,10 +15,12 @@
         %ul.nav
           %li{class: active_for_controller("stories")}=link_to "Stories", stories_path
           %li{class: active_for_controller("series")}=link_to "Series", series_index_path
-          %li{class: active_for_controller("news_posts")}=link_to "Site News", news_posts_path
           %li{class: active_for_controller("forum_posts")}=link_to "The Forum", forum_posts_path
           -if user_signed_in?
+            %li{class: active_for_controller("news_posts", "messages")}=link_to "Message Center", messages_path
             %li{:class => active_for_controller("account")}=link_to "My Account", account_path
+          -else
+            %li{class: active_for_controller("news_posts")}=link_to "Site News", news_posts_path
           -if admin?
             %li=link_to "Admin Panel", "/admin"
 

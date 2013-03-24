@@ -62,5 +62,10 @@ module Litsocial
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.middleware.use ExceptionNotifier, 
+        email_prefix: "[LitSocail] ", 
+        sender_address: %{"Error" <mailferret@litsocial.com>}, 
+        exception_recipients: %w{epochwolf@litsocial.com}
   end
 end

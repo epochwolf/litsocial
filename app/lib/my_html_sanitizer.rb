@@ -1,10 +1,12 @@
 class MyHtmlSanitizer
 
   def self.clean(str)
+    str ||= ""
     strip_leading_space_from_paragraph( remove_nbsp( basic_cleansing(str) ) ).html_safe
   end
   
   def self.basic_cleansing(str)
+    str ||= ""
     Sanitize.clean(str, CONFIG).html_safe
   end
   

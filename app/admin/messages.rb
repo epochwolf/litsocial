@@ -1,5 +1,5 @@
 ActiveAdmin.register Message do
-  menu parent: "Users"
+  menu priority: 6
   actions :index, :show, :edit, :update, :destroy
 
   controller do

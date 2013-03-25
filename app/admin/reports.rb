@@ -1,10 +1,18 @@
 ActiveAdmin.register Report do
-  menu parent: "Users"
   scope :all
   scope "Not Resolved", :not_resolved
   scope :resolved
 
   actions :index, :show, :edit, :update, :destroy
+  
+  controller do
+    with_role :admin
+
+    def scoped_collection
+      Report.includes(:reportable, :user)
+    end
+  end
+
 
   batch_action(:resolve,   priority: 1) do |selection| 
     Report.where(id: selection).update_all  resolve: true
@@ -19,17 +27,13 @@ ActiveAdmin.register Report do
   index do
     selectable_column
     link_column :id
+    column "Type", :reportable_type
     column :reportable
-    column :resolved?
+    column :user
+    column :reason do |report|
+      report.resolved? ? "[Resolved]" : report.reason
+    end 
     edit_links
-  end
-
-  controller do
-    with_role :admin
-
-    def scoped_collection
-      Report.includes(:reportable)
-    end
   end
 
   form do |f|

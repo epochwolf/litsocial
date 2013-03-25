@@ -7,17 +7,28 @@
         %small Series: 
         =link_to series.title, series
       %table.table
-        -series.stories.visible.each do |story|
+        %thead
           %tr
-            %td=story.series_position
-            %td=link_to story.title, story
-            %td=story.created_at
+            %th
+            %th Title
+            %th Posted At
+        %tbody
+          -series.stories.visible.each do |story|
+            %tr
+              %td=story.series_position
+              %td=link_to story.title, story
+              %td=story.created_at
     -unless (stories = @user.stories.visible.where(series_id: nil)).count == 0
       %h3 Stories not in a series
       %table.table
-        -stories.each do |story|
+        %thead
           %tr
-            %td=link_to story.title, story
-            %td=story.created_at
+            %th Title
+            %th Posted At
+        %tbody
+          -stories.each do |story|
+            %tr
+              %td=link_to story.title, story
+              %td=story.created_at
   
 

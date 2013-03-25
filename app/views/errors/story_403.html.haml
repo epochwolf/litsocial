@@ -7,5 +7,5 @@
       %p Since you are the owner, you may delete this story. It won't hide it from the administrators but it will remove it from your account. 
       %p=link_to "Delete story", @story, class: 'btn btn-danger', method: :delete, confirm: "Are you sure you want to delete this story?"
   -else
-    %p The story was removed by the owner on #{@story.deleted_at}. You'll have to ask them why.
+    %p The story was removed by the owner. You'll have to ask them why.
     %p Last known title: #{@story.title} 

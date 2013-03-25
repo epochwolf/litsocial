@@ -9,3 +9,8 @@ two:
   id: 2
   title: MyString
   user_id: 2
+
+three:
+  id: 3
+  title: EpochsSeries
+  user_id: 1

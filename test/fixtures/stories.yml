@@ -1,8 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
+epochs_story:
   id: 1
-  title: MyString
+  title: EpochsStory
   contents: MyString
   user_id: 1
   series_id: 1
@@ -21,24 +21,96 @@ two:
   created_at: <%=Time.now %>
   updated_at: <%=Time.now %>
 
-
-three:
+members_story:
   id: 3
-  title: MyString
+  title: MembersStory
   contents: MyString
   user_id: 2
   created_at: <%=Time.now %>
   updated_at: <%=Time.now %>
 
-
+story:
+  id: 8
+  title: BannedsStory
+  contents: MyString
+  user_id: 3
+  created_at: <%=Time.now %>
+  updated_at: <%=Time.now %>
 
 locked:
   id: 4
-  title: MyString
+  title: BannedsLockedStory
+  contents: MyString
+  user_id: 3
+  deleted: false
+  locked_at: <%=Time.now %>
+  locked_reason: Meh
+  created_at: <%=Time.now %>
+  updated_at: <%=Time.now %>
+
+deleted:
+  id: 5
+  title: BannedsDeletedStory
   contents: MyString
   user_id: 3
   deleted: true
+  created_at: <%=Time.now %>
+  updated_at: <%=Time.now %>
+
+epochs_locked:
+  id: 6
+  title: EpochsLockedStory
+  contents: MyString
+  user_id: 1
+  series_id: 1
+  series_position: 3
+  deleted: false
   locked_at: <%=Time.now %>
-  locked_reason: Meh
+  locked_reason: "I'm cranky"
+  created_at: <%=Time.now %>
+  updated_at: <%=Time.now %>
+
+epochs_deleted:
+  id: 7
+  title: EpochsDeletedStory
+  contents: MyString
+  user_id: 1
+  series_id: 1
+  series_position: 4
+  deleted: true
+  created_at: <%=Time.now %>
+  updated_at: <%=Time.now %>
+
+epochs_story_series:
+  id: 9
+  title: EpochsStory
+  contents: MyString
+  user_id: 1
+  series_id: 1
+  series_position: 1
+  created_at: <%=Time.now %>
+  updated_at: <%=Time.now %>
+
+epochs_locked_series:
+  id: 10
+  title: EpochsLockedStory
+  contents: MyString
+  user_id: 1
+  series_id: 1
+  series_position: 2
+  deleted: false
+  locked_at: <%=Time.now %>
+  locked_reason: "I'm cranky"
+  created_at: <%=Time.now %>
+  updated_at: <%=Time.now %>
+
+epochs_deleted_series:
+  id: 11
+  title: EpochsDeletedStory
+  contents: MyString
+  user_id: 1
+  series_id: 1
+  series_position: 3
+  deleted: true
   created_at: <%=Time.now %>
   updated_at: <%=Time.now %>

@@ -7,6 +7,7 @@
   %table.table.stories
     %thead
       %th Title
+      %th Word Count
       %th Author
       %th Posted At
     %tbody
@@ -14,6 +15,7 @@
         %tr
           %td
             %strong=sicon_link :story, story.title, story
+          %td=story.word_count
           %td=user_link story.user
           %td
             %span.muted=dt(story.created_at)

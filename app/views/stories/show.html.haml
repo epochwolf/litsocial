@@ -16,6 +16,7 @@
         %span.muted
           Posted 
           =dt(@story.created_at)
+          =edit_links @story
         -#@story.tags.each do |tag|
           %span.label=link_to tag.name, tag
 

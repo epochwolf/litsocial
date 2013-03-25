@@ -21,6 +21,7 @@ class Story < ActiveRecord::Base
 
   attr_accessor :series_title
   before_save :save_series_title, if: ->(o){ o.series_id.blank? && o.series_title }
+  before_save :update_word_count
   before_create :fix_acts_as_list
   before_update :fix_acts_as_list, if: :series_id_changed?
 
@@ -42,6 +43,10 @@ class Story < ActiveRecord::Base
   end
 
   protected  
+  def update_word_count
+    self.word_count = HTML::FullSanitizer.new.sanitize(self.contents || "").scan(/\w+(-\w+)?/).length
+  end
+
   def fix_acts_as_list
     if series_id
       self.series_position = bottom_position_in_list.to_i + 1

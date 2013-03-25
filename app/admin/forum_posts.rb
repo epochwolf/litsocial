@@ -56,6 +56,11 @@ ActiveAdmin.register ForumPost do
     link_to "Versions", [:versions, :admin, resource]
   end
 
+  action_item :only => [:show, :edit] do
+    link_to "View on Site", resource
+  end
+
+
   action_item :only => [:versions] do
     link_to "Detailed Report", [:versions_detailed, :admin, resource]
   end

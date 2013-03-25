@@ -8,6 +8,11 @@ ActiveAdmin.register Series do
     end
   end
 
+  action_item :only => [:show, :edit] do
+    link_to "View on Site", resource
+  end
+
+
   index do 
     column :title do |s|
       "#{link_to s.title, [:admin, s] } (#{s.stories_count} stories)".html_safe

@@ -19,10 +19,10 @@ Litsocial::Application.routes.draw do
     get     '/sign_in'             => 'devise/sessions#new',          as: :new_user_session
     post    '/sign_in'             => 'devise/sessions#create',       as: :user_session
     delete  '/sign_out'            => 'devise/sessions#destroy',      as: :destroy_user_session
-    post    '/reset_password'      => 'devise/passwords#create',      as: :user_password
-    get     '/reset_password/new'  => 'devise/passwords#new',         as: :new_user_password
-    get     '/reset_password/edit' => 'devise/passwords#edit',        as: :edit_user_password
-    put     '/reset_password'      => 'devise/passwords#update'
+    post    '/forgot_password'     => 'devise/passwords#create',      as: :user_password
+    get     '/forgot_password'     => 'devise/passwords#new',         as: :new_user_password
+    get     '/change_password'     => 'devise/passwords#edit',        as: :edit_user_password
+    put     '/change_password'     => 'devise/passwords#update'
     post    '/sign_up'             => 'devise/registrations#create',  as: :user_registration
     get     '/sign_up'             => 'devise/registrations#new',     as: :new_user_registration
 

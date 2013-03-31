@@ -3,8 +3,9 @@
   %head=render 'layouts/head'
   
   %body
-    #header=render 'layouts/top_bar'
-    #notices=render 'layouts/notices'
-    #contents.container.pages
-      .contents=yield
+    #wrap
+      #header=render 'layouts/top_bar'
+      #notices=render 'layouts/notices'
+      #contents.container.pages=yield
+      #push
     #footer=render 'layouts/footer'

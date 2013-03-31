@@ -1,7 +1,6 @@
 .row
-  .span3=render 'users/sidebar', :user => @story.user
-
-  .span9  
+  .span3.visible-desktop=render 'users/sidebar', :user => @story.user
+  .span9.span12-tablet 
     -if @story.deleted?
       .alert.alert-warning
         This submission has been deleted
@@ -17,6 +16,7 @@
           Posted 
           =dt(@story.created_at)
           =edit_links @story
+          %span.hidden-desktop by #{user_link @story.user}
         -#@story.tags.each do |tag|
           %span.label=link_to tag.name, tag
 

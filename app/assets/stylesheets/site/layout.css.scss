@@ -1,0 +1,80 @@
+$footer_height: 60px;
+
+html, body{
+  height: 100%;
+}
+
+#contents.account > .contents{
+  background-color: #fff;
+  padding: 1em 3em;
+  border: 1px solid #ddd;
+  border-top: 0;
+}
+
+#contents.messages #message-contents {
+  background-color: #fff;
+  padding: 1em 3em;
+  border: 1px solid #ddd;
+}
+
+#contents.pages{
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 1em 3em;
+}
+
+#contents.devise{
+  background-color: #fff;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+
+  #devise_contents{
+    h2.title{
+      margin-left: 1em;
+    }
+    .form-actions{
+      background-color: transparent;
+      border-top: 0px;
+    }
+  }
+
+  #devise_sidebar {
+  }
+}
+
+#wrap{
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto (-$footer_height);
+}
+
+#push{
+  height: $footer_height;
+}
+
+#footer{
+  clear: both;
+  height: $footer_height;
+  border-top: 1px solid $hrBorder;
+  background-color: white;
+  overflow: hidden;
+
+  #footer-copyright{
+    @extend .pull-left;
+    width: 50%;
+    p{
+      padding: 1em;
+      text-align: left;
+    }
+  }
+  #footer-source{
+    @extend .pull-right;
+    width: 50%;
+    p{
+      padding: 1em;
+      text-align: right;
+    }
+  }
+}

@@ -2,8 +2,8 @@ class ApplicationController < ActionController::Base
   include Controllers::RedirectProtection
   include Controllers::OverrideDevise
   #include Controllers::SaveRecord
-  include Controllers::Paged
-  layout 'application'
+  include Controllers::Paged  
+  layout :layout_by_resource
   protect_from_forgery
   #rescue_from ActiveRecord::RecordNotFound, ActionController::RoutingError, :with => :handle_record_not_found
 
@@ -62,6 +62,14 @@ class ApplicationController < ActionController::Base
       else
         redirect_to new_user_session_path, :notice => "Please log in to access the admin panel."
       end
+    end
+  end
+
+  def layout_by_resource
+    if devise_controller?
+      "pages"
+    else
+      "application"
     end
   end
 end

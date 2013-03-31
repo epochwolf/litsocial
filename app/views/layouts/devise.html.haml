@@ -6,6 +6,9 @@
     #wrap
       #header=render 'layouts/top_bar'
       #notices=render 'layouts/notices'
-      #contents.container=yield
+      #contents.container.devise
+        .row
+          .span8#devise_contents=yield
+          .span4#devise_sidebar=render "devise/shared/links"
       #push
     #footer=render 'layouts/footer'

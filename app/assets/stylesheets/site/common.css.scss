@@ -34,7 +34,12 @@ article{
   &.article{
     background-color: #fff;
     padding: 1em 3em;
-    border: 3px solid #666;
+    border: 1px solid #666;
+      
+    @media(max-width: $lgPhone){
+      padding: 1em;
+      border: 0px;
+    }
   }
 
   p.meta{

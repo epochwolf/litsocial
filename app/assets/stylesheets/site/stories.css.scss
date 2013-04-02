@@ -30,6 +30,11 @@ article.story{
   p.meta{
     margin-bottom: 1.6em
   }
+
+  @media(max-width: $lgPhone){
+    padding: 1em;
+    border: 0px;
+  }
 }
 
 table.stories{

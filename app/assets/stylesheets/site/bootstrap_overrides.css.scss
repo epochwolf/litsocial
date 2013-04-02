@@ -26,6 +26,9 @@ html {
   /* Shove the navbar down a bit. */
   .navbar {
     margin-bottom: 2em;
+    @media(max-width: $lgPhone){
+      margin-bottom: 0em;
+    }
   }
 
   /* Add site icon to the topbar title */
@@ -44,12 +47,6 @@ html {
   .navbar.navbar-static-top{
     width: auto;
   }
-  @media (max-width: 480px){
-    .navbar-inner{
-      padding-left: 10px;
-      padding-right: 10px;
-    }
-  }
 
   /* For when the default hr styling it too tall */
   hr.slim {
@@ -63,15 +60,18 @@ html {
 
 }
 
-
-
-/* Make the margin on comment bodies smaller */
-.well.comment_body.parent{
-  margin-bottom: 3px;
+@media (max-width: $lgPhone){
+  html{
+    // Fix padding on iphone. We don't need no padding!
+    body {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+  }
 }
 
 // This allows us to use span9 for main content with a sidebar and have the sidebar collapse on tablets
-@media (max-width: 979px) {
+@media (max-width: $lgPhone) {
   .span12-tablet {
     width: auto !important;
     *width: auto !important;

@@ -25,6 +25,7 @@ gem 'redactor-rails'
 # View stuff.
 gem 'uuid'
 gem 'bootstrap-sass'
+gem 'font-awesome-sass-rails'
 gem 'simple_form'
 gem 'haml'
 gem 'sanitize'

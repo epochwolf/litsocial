@@ -9,6 +9,12 @@ html, body{
   padding: 1em 3em;
   border: 1px solid #ddd;
   border-top: 0;
+
+  // Fix iphone padding
+  @media(max-width: $lgPhone){
+    padding: 1em 1em;
+    border: 0px;
+  }
 }
 
 #contents.messages #message-contents {
@@ -21,6 +27,13 @@ html, body{
   background-color: #fff;
   border: 1px solid #ddd;
   padding: 1em 3em;
+
+  // Fix iphone padding
+  @media(max-width: $lgPhone){
+    padding: 1em 1em;
+    border: 0px;
+  }
+
 }
 
 #contents.devise{

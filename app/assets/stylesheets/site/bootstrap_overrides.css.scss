@@ -60,6 +60,10 @@ html {
 
 }
 
+.alert.alert-tight{
+  margin: 0;
+}
+
 @media (max-width: $lgPhone){
   html{
     // Fix padding on iphone. We don't need no padding!
@@ -71,7 +75,7 @@ html {
 }
 
 // This allows us to use span9 for main content with a sidebar and have the sidebar collapse on tablets
-@media (max-width: $lgPhone) {
+@media (max-width: $smDesktopMax) {
   .span12-tablet {
     width: auto !important;
     *width: auto !important;

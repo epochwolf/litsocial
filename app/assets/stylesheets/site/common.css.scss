@@ -17,8 +17,14 @@ h1, h2, h3, h4, h5, h6{
   vertical-align: bottom;
 }
 
-.centered-buttons{
+.text-center{
   text-align: center;
+}
+
+.centered-ul-wrapper{
+  text-align: center;
+  ul{ display: inline-block; }
+  li{ float: left; }
 }
 
 .button-wrapper{
@@ -34,7 +40,7 @@ article{
   &.article{
     background-color: #fff;
     padding: 1em 3em;
-    border: 1px solid #666;
+    border: 1px solid #eee;
       
     @media(max-width: $lgPhone){
       padding: 1em;
@@ -49,9 +55,24 @@ article{
 
 }
 
+.white-box{
+  background-color: #fff;
+  padding: 1em 3em;
+  border: 1px solid #eee;
+    
+  @media(max-width: $lgPhone){
+    padding: 1em;
+    border: 0px;
+  }
+}
+
+
 table.index{
   background-color: #fff;
   border: 2px solid #666;
   
 }
 
+%ul.centered-inline{
+  
+}

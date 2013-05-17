@@ -6,6 +6,7 @@ class ForumPost < ActiveRecord::Base
   has_many :comments, :as => :commentable, :conditions => {:parent_id => nil}, :order => :id.asc
 
   scope :visible, where{ (deleted == false) | (deleted == nil) }
+
   scope :deleted, where(deleted: true)
   scope :sorted, order(:bumped_at.desc)
 

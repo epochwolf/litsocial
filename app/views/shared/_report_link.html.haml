@@ -1,7 +1,7 @@
 :ruby
   #required: favable or (@report and @reportable)
-  #optional: small
-  small ||= false
+  #optional: button_size
+  button_size ||= "mini"
   report = if @report # In watchescontroller
     reportable = @reportable
     @report.persisted? ? @report : nil
@@ -9,7 +9,7 @@
     current_user.reporting?(reportable)
   end
   js_id = String.random
-  css = "btn btn-danger btn-mini"
+  css = "btn btn-danger btn-#{button_size}"
 %span{id:js_id}
   -if user_signed_in? 
     -if report

@@ -41,6 +41,7 @@ gem 'acts_as_tree'
 gem 'squeel'
 gem 'paper_trail', '~> 2'
 gem 'pg_search'
+gem 'postgres_ext'
 
 
 #Engines

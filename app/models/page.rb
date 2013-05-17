@@ -4,6 +4,7 @@ class Page < ActiveRecord::Base
   attr_protected as: :admin
 
   scope :visible, where(published: true)
+
   scope :draft, where{ (published == false) | (published == nil) }
   scope :sorted, order(:id.desc)
 
@@ -12,9 +13,8 @@ class Page < ActiveRecord::Base
   validates :title, :contents, :user_id, presence: true
 
   def self.find_by_id_or_url(id_or_url)
-    id_or_url = id_or_url.to_s.gsub(%r[/$], '')
-    field = id_or_url =~ /^\d+$/ ? :id : :url
-    where(field => id_or_url).first
+    field = id_or_url =~ /^\d+\/?$/ ? :id : :url
+    where(field => id_or_url.to_s.chomp('/')).first
   end
 
   def url=(str)

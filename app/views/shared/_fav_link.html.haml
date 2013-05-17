@@ -1,7 +1,7 @@
 :ruby
   #required: favable or (@fav and @favable)
-  #optional: small
-  small ||= false
+  #optional: button_size
+  button_size ||= "mini"
   fav = if @fav # In watchescontroller
     favable = @favable
     @fav.persisted? ? @fav : nil
@@ -9,7 +9,7 @@
     current_user.faving?(favable)
   end
   js_id = String.random
-  css = "btn btn-warning btn-mini"
+  css = "btn btn-warning btn-#{button_size}"
 %span{id:js_id}
   -if user_signed_in? 
     -if fav

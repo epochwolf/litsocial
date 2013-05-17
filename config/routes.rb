@@ -16,15 +16,15 @@ Litsocial::Application.routes.draw do
   #                          DELETE /users(.:format)                       devise/registrations#destroy
   devise_for :users, :only => []
   devise_scope :user do
-    get     '/sign_in'             => 'devise/sessions#new',          as: :new_user_session
-    post    '/sign_in'             => 'devise/sessions#create',       as: :user_session
-    delete  '/sign_out'            => 'devise/sessions#destroy',      as: :destroy_user_session
-    post    '/forgot_password'     => 'devise/passwords#create',      as: :user_password
-    get     '/forgot_password'     => 'devise/passwords#new',         as: :new_user_password
-    get     '/change_password'     => 'devise/passwords#edit',        as: :edit_user_password
-    put     '/change_password'     => 'devise/passwords#update'
-    post    '/sign_up'             => 'devise/registrations#create',  as: :user_registration
-    get     '/sign_up'             => 'devise/registrations#new',     as: :new_user_registration
+    get     '/sign_in'         => 'devise/sessions#new',          as: :new_user_session
+    post    '/sign_in'         => 'devise/sessions#create',       as: :user_session
+    delete  '/sign_out'        => 'devise/sessions#destroy',      as: :destroy_user_session
+    post    '/forgot_password' => 'devise/passwords#create',      as: :user_password
+    get     '/forgot_password' => 'devise/passwords#new',         as: :new_user_password
+    get     '/reset_password'  => 'devise/passwords#edit',        as: :edit_user_password
+    put     '/reset_password'  => 'devise/passwords#update'
+    post    '/sign_up'         => 'devise/registrations#create',  as: :user_registration
+    get     '/sign_up'         => 'devise/registrations#new',     as: :new_user_registration
 
     # Not Routing:
     # devise/registrations#cancel
@@ -36,9 +36,16 @@ Litsocial::Application.routes.draw do
 
   resources :stories
   resources :series
+  resources :journals
   resources :pages, only: [:index, :show]
   resources :news_posts, only: [:index, :show], path: 'news'
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show] do 
+    member do 
+      get :stories
+      get :series
+      get :journals
+    end
+  end
 
   get 'forums/categories/:id' => 'forum_posts#category', as: :forum_category
   resources :forum_posts, path: 'forums'
@@ -46,7 +53,7 @@ Litsocial::Application.routes.draw do
 
   get 'account'         => 'account#show',    as: :account
 
-  %w[stories forums watches favs notifications edit cancel].each do |name|
+  %w[stories journals forums watches favs notifications edit cancel].each do |name|
     get "account/#{name}" => "account##{name}", as: "#{name}_account"
   end
   put 'account'         => 'account#update'

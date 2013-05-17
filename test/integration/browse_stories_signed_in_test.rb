@@ -20,7 +20,7 @@ class BrowseStoriesSignedInTest < ActionDispatch::IntegrationTest
   test "Member sees other user's published story on other user's homepage" do
     story = stories(:members_story)
     user = story.user
-    get "/users/#{user.id}"
+    get "/users/#{user.id}/stories"
     assert_response 200
     assert response.body =~ /MembersStory/ 
   end
@@ -51,7 +51,7 @@ class BrowseStoriesSignedInTest < ActionDispatch::IntegrationTest
   test "Member doesn't see other user's locked story on other user's homepage" do
     story = stories(:locked)
     user = story.user
-    get "/users/#{user.id}"
+    get "/users/#{user.id}/stories"
     assert_response 200
     assert response.body !~ /BannedsLockedStory/ 
   end
@@ -75,7 +75,7 @@ class BrowseStoriesSignedInTest < ActionDispatch::IntegrationTest
   test "Member doesn't see other user's deleted story on other user's homepage" do
     story = stories(:deleted)
     user = story.user
-    get "/users/#{user.id}"
+    get "/users/#{user.id}/stories"
     assert_response 200
     assert response.body !~ /BannedsDeletedStory/ 
   end
@@ -99,7 +99,7 @@ class BrowseStoriesSignedInTest < ActionDispatch::IntegrationTest
   test "Member sees own published story on own homepage" do
     story = stories(:epochs_story)
     user = story.user
-    get "/users/#{user.id}"
+    get "/users/#{user.id}/stories"
     assert_response 200
     assert response.body =~ /EpochsStory/ 
   end
@@ -143,7 +143,7 @@ class BrowseStoriesSignedInTest < ActionDispatch::IntegrationTest
   test "Member doesn't see own deleted story on their homepage" do
     story = stories(:epochs_deleted)
     user = story.user
-    get "/users/#{user.id}"
+    get "/users/#{user.id}/stories"
     assert_response 200
     assert response.body !~ /EpochsDeletedStory/ 
   end
@@ -182,7 +182,7 @@ class BrowseStoriesSignedInTest < ActionDispatch::IntegrationTest
   test "Member doesn't see own locked story on their homepage" do
     story = stories(:epochs_locked)
     user = story.user
-    get "/users/#{user.id}"
+    get "/users/#{user.id}/stories"
     assert_response 200
     assert response.body !~ /EpochsLockedStory/ 
   end
@@ -191,7 +191,7 @@ class BrowseStoriesSignedInTest < ActionDispatch::IntegrationTest
     story = stories(:epochs_locked)
     get "/stories/#{story.id}"
     assert_response 200
-    assert response.body =~ /This submission has been locked/ 
+    assert response.body =~ /This story has been locked/ 
     assert response.body =~ /I\'m cranky/ 
     assert response.body =~ /EpochsLockedStory/ 
   end

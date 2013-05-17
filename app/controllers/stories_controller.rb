@@ -10,6 +10,9 @@ class StoriesController < ApplicationController
   def show
     if !@story.visible? && !owner?(@story)
       render 'errors/story_403', status: 403
+    else
+      @user = @story.user
+      render layout: 'users'
     end
   end
 

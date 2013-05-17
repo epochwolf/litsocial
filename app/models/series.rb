@@ -2,8 +2,8 @@ class Series < ActiveRecord::Base
   attr_accessible :title
   attr_protected :user_id, :created_at, :updated_at, as: :admin
 
-
   scope :visible, scoped
+
   scope :sorted, order(:id.desc)
 
   belongs_to :user
@@ -20,8 +20,8 @@ class Series < ActiveRecord::Base
   def next_prev(story)
     if story.series_id == id
       [
-        stories.visible.where(:series_position.gt => story.id).order(:id.desc).first,
-        stories.visible.where(:series_position.lt => story.id).order(:id.desc).first
+        stories.visible.where(:series_position.gt => story.series_position).first,
+        stories.visible.where(:series_position.lt => story.series_position).reorder(:series_position.desc).first
       ]
     else
       []

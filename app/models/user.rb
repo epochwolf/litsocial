@@ -10,12 +10,13 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   scope :admins, where{ admin == true }
-  scope :members, where{ (banned_at == nil) & (admin == false) }
+  scope :members, where{ (banned_at == nil) & ((admin == false) | (admin == nil)) }
   scope :banned, where{ banned_at != nil }
   scope :sorted, order(:id.desc)
 
   has_many :series
   has_many :stories
+  has_many :journals
   has_many :news_posts
   has_many :pages
   has_many :forum_posts

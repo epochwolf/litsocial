@@ -1,4 +1,5 @@
 class Story < ActiveRecord::Base
+  include Mixins::Taggable
   has_paper_trail
   attr_accessible :contents, :series_id, :series_position, :title, :remove_from_series
   attr_protected :user_id, :created_at, :updated_at, as: :admin
@@ -6,9 +7,12 @@ class Story < ActiveRecord::Base
   acts_as_list column: :series_position, scope: :series
   include Mixins::Lockable
 
+
+  scope :visible, where{ ((deleted == false) | (deleted == nil))  & (locked_at == nil) }
+  scope :owner_visible, where{ (deleted == false) | (deleted == nil) } # Postgres doesn't select nulls if deleted != true
+
   scope :sorted, order(:id.desc)
-  scope :visible, where{ ((deleted == false) | (deleted == nil)) & (locked_at == nil) }
-  scope :locked, where{ locked_at != nil }
+  scope :locked, where{ locked_at == nil }
   scope :deleted, where{ deleted == true }
 
   belongs_to :series, counter_cache: true
@@ -21,7 +25,7 @@ class Story < ActiveRecord::Base
 
   attr_accessor :series_title
   before_save :save_series_title, if: ->(o){ o.series_id.blank? && o.series_title }
-  before_save :update_word_count
+  before_save :update_word_count, if: :contents_changed?
   before_create :fix_acts_as_list
   before_update :fix_acts_as_list, if: :series_id_changed?
 

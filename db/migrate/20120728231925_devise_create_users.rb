@@ -4,7 +4,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :name,               :null => false
       t.text :sidebar_bio
       t.text :profile_page
-      t.boolean :admin
+      t.boolean :admin, :null => false, :default => false
       t.datetime :banned_at
       t.text :banned_reason
       

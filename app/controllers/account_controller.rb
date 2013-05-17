@@ -10,6 +10,10 @@ class AccountController < ApplicationController
     @stories = @user.stories.where(series_id: nil)
   end
 
+  def journals
+    @journals = paged(@user.journals)
+  end
+
   def forums
     @forum_posts = paged(@user.forum_posts)
   end

@@ -10,6 +10,9 @@ class SeriesController < ApplicationController
     @series = Series.find(params[:id])
     if !@series.visible? && !owner?(@series)
       show403 "Series not available"
+    else
+      @user = @series.user
+      render layout: 'users'
     end  
   end
 

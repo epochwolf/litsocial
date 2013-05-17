@@ -1,41 +1,26 @@
-.row
-  .span3.hidden-phone=render 'users/sidebar', :user => @story.user
-  .span9.span12-tablet 
-    -if @story.deleted?
-      .alert.alert-warning
-        This submission has been deleted
-    -if @story.locked?
-      .alert.alert-warning
-        %p
-          %strong This submission has been locked
-        =rich @story.locked_reason
-    %article.story
-      %h1=h @story.title
-      %p.meta
-        %span.muted
-          Posted 
-          =dt(@story.created_at)
-          =edit_links @story
-          %span.visible-phone by #{user_link @story.user}
-        -#@story.tags.each do |tag|
-          %span.label=link_to tag.name, tag
+=render 'shared/banners', record: @story
+%article.story
 
-      .rich=rich @story.contents  
+  =render 'series_next_prev', story: @story
+  
+  %h1.text-center=h @story.title
+  %p.meta.text-center
+    %span.muted
+      Posted 
+      =dt(@story.created_at)
+      by #{user_link @story.user}
 
-    .story-buttons.centered-buttons
-      .button-wrapper=render 'shared/watch_link', watchable: @story.user
+  .rich=rich @story.contents  
+
+  =render 'series_next_prev', story: @story
+
+-if current_user
+  .centered-ul-wrapper{style: "margin: 1em 0;"}
+    %ul.inline
+      %li=render 'shared/watch_link', watchable: @story.user, button_size: "small"
       -if @story.series?
-        .button-wrapper=render 'shared/watch_link', watchable: @story.series
-      .button-wrapper=render 'shared/fav_link', favable: @story
-      .button-wrapper=render 'shared/report_link', reportable: @story
+        %li=render 'shared/watch_link', watchable: @story.series, button_size: "small"
+      %li=render 'shared/fav_link', favable: @story, button_size: "small"
+      %li=render 'shared/report_link', reportable: @story, button_size: "small"
 
-    -if series = @story.series
-      - next_story, prev_story = series.next_prev(@story)
-      %ul.inline
-        -if prev_story
-          %li=sicon_link :story, "<< #{prev_story.title}", prev_story
-          %li &mdash;
-        %li=sicon_link :series, series.title, series
-        -if next_story
-          %li &mdash;
-          %li=sicon_link :story, "#{next_story.title} >>", next_story
+.comments

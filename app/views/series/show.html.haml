@@ -1,28 +1,28 @@
-%h1
-  %small Series:
-  =h @series.title
-%div 
-  By #{link_to @series.user.name, @series.user}
+=render 'shared/banners', record: @series
+%section.white-box
+  %h3=@series.title
+  %p.meta
+    %span.muted
+      Posted 
+      =dt(@series.created_at)
+      %span.visible-phone by #{user_link @series.user}
+  %table.table.stories
+    %thead
+      %th Chapter
+      %th Title
+      %th Word Count
+      %th Posted At
+    %tbody
+      -@series.stories.visible.each do |s|
+        %tr
+          %td=s.series_position
+          %td
+            %strong=sicon_link :story, s.title, s
+          %td=s.word_count
+          %td
+            %span.muted=dt s.created_at
 
-  -if owner? @series
-    .pull-right
-      =link_to "add a story", new_story_path(series: @series.id, return: here)
-      &nbsp;
-      =link_to "edit series", edit_series_path(@series, return: here)
-%table.table.table-striped
-  %tr
-    %th
-    %th Title
-    %th Created
-  -@series.stories.visible.each do |s|
-    %tr
-      %td=s.series_position
-      %td=sicon_link :story, s.title, s
-      %td=dt s.created_at
-
-
-.story-buttons
-  .button-wrapper=render 'shared/watch_link', watchable: @series.user
-  .button-wrapper=render 'shared/watch_link', watchable: @series
-  .button-wrapper=render 'shared/fav_link', favable: @series
-  .button-wrapper=render 'shared/report_link', reportable: @series
+  %ul.inline
+    %li=render 'shared/watch_link', watchable: @series
+    %li=render 'shared/fav_link', favable: @series
+    %li=render 'shared/report_link', reportable: @series

@@ -19,7 +19,7 @@ class BrowseStoriesSignedOutTest < ActionDispatch::IntegrationTest
   test "Guest sees other user's published story on other user's homepage" do
     story = stories(:members_story)
     user = story.user
-    get "/users/#{user.id}"
+    get "/users/#{user.id}/stories"
     assert_response 200
     assert response.body =~ /MembersStory/ 
   end
@@ -74,7 +74,7 @@ class BrowseStoriesSignedOutTest < ActionDispatch::IntegrationTest
   test "Guest doesn't see user's deleted story on user's homepage" do
     story = stories(:deleted)
     user = story.user
-    get "/users/#{user.id}"
+    get "/users/#{user.id}/stories"
     assert_response 200
     assert response.body !~ /BannedsDeletedStory/ 
   end

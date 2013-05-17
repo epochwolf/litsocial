@@ -1,7 +1,7 @@
 :ruby
   #required: watchable or (@watch and @watchable)
-  #optional: small
-  small ||= false
+  #optional: button_size
+  button_size ||= "mini"
   watch = if @watch # In watchescontroller
     watchable = @watchable
     @watch.persisted? ? @watch : nil
@@ -9,7 +9,7 @@
     current_user.watching?(watchable)
   end
   js_id = String.random
-  css = "btn btn-info btn-mini"
+  css = "btn btn-info btn-#{button_size}"
 %span{id:js_id}
   -if user_signed_in? 
     -if watch

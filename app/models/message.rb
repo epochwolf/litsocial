@@ -7,6 +7,7 @@ class Message < ActiveRecord::Base
 
   scope :visible, where{ (reported == false) | (reported == nil) }
   scope :admin_visible, where{ reported == true }
+
   scope :unread, where{ (read == false) | (read == nil) }
   scope :read, where{ read == true }
   scope :sorted, order(:id.desc)

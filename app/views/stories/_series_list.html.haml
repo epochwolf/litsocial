@@ -3,6 +3,8 @@
   if @story
     series = @story.series
     current_story = story
+  else 
+    current_story ||= nil
   end
 
 %h3
@@ -10,7 +12,7 @@
   =link_to series.title, series
 %ol
   -series.stories.visible.each do |story|
-    %li
+    %li{value: story.series_position}
       -if current_story == story
         %strong=sicon_link :story, story.title, story
       -else

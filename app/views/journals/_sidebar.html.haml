@@ -1,0 +1,5 @@
+%ul.nav.nav-stacked 
+  %li{:class => @journal.try(:new_record?) ? "active" : ""}=sicon_link :new_journal, "New Journal", new_journal_path
+  -current_user.journals.each do |journal|
+    -next if journal.new_record?
+    %li{:class => journal == @journal ? "active" : ""}=sicon_link :edit_journal, journal.title, edit_journal_path(journal)

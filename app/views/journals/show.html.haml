@@ -1,0 +1,25 @@
+-if @journal.deleted?
+  .alert.alert-warning
+    This submission has been deleted
+-if @journal.locked?
+  .alert.alert-warning
+    %p
+      %strong This submission has been locked
+    =rich @journal.locked_reason
+%article.story
+  %h1=h @journal.title
+  %p.meta
+    %span.muted
+      Posted 
+      =dt(@journal.created_at)
+      %span.visible-phone by #{user_link @journal.user}
+      =edit_links @journal
+    -@journal.tags.each do |tag|
+      %span.label=tag
+
+  .rich=rich @journal.contents
+
+.story-buttons.centered-buttons
+  .button-wrapper=render 'shared/watch_link', watchable: @journal.user
+  .button-wrapper=render 'shared/fav_link', favable: @journal
+  .button-wrapper=render 'shared/report_link', reportable: @journal

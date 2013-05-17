@@ -1,0 +1,17 @@
+-if @stories.present?
+  %table.table.stories
+    %thead
+      %th Title
+      %th Word Count
+      %th Posted At
+    %tbody
+      -@stories.each do |story|
+        %tr
+          %td
+            %strong=sicon_link :story, story.title, story
+          %td=story.word_count
+          %td
+            %span.muted=dt(story.created_at)
+  =paginate @stories
+-else
+  %p Nothing has been submitted yet.

@@ -1,0 +1,17 @@
+%table.table
+  %thead
+    %tr
+      %th Title
+      %th Tags
+      %th Draft?
+      %th.hidden-phone Last Updated
+      %th=link_to "New Journal", new_journal_path, class: 'btn btn-mini btn-success'
+  %tbody
+    -@journals.each do |journal|
+      %tr
+        %td=link_to journal.title, journal
+        %td=journal.tag_list
+        %td=b journal.draft?
+        %td.hidden-phone=journal.updated_at
+        %td=icon_link "wrench", "edit", edit_journal_path(journal, return:here), class: 'btn btn-mini'
+=paginate @journals

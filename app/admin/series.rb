@@ -13,6 +13,26 @@ ActiveAdmin.register Series do
     link_to "View on Site", resource
   end
 
+  show do |series|
+    attributes_table do
+      row :id
+      row :title
+      row :user
+      row :stories_count
+      row "Stories" do 
+        ol do
+          series.stories.each do |story|
+            li do 
+              link_to(story.title, [:admin, story]) + raw(story.locked? ? " (Locked)" : "") + raw(story.deleted? ? " (Deleted)" : " ")
+            end
+          end
+        end
+      end
+      row :created_at
+      row :updated_at
+    end
+    active_admin_comments
+  end
 
   index do 
     column :title do |s|

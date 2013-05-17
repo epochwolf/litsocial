@@ -1,0 +1,10 @@
+.white-box
+  -if @journals.present?
+    %ul
+      -@journals.each do |journal|
+        %li
+          =link_to journal.title, journal
+          %small.gray=dt journal.updated_at
+    =paginate @journals
+  -else
+    %p User hasn't posted a journal entry yet.

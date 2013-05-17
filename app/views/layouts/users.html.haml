@@ -1,0 +1,22 @@
+!!!
+%html{lang: "en"}
+  %head=render 'layouts/head'
+  
+  %body
+    #wrap
+      #header=render 'layouts/top_bar'
+      #notices=render 'layouts/notices'
+      #contents.container.users
+        .row
+          .span3.visible-desktop=render 'users/sidebar', :user => @user
+          .span9.span12-tablet
+            -if true #params[:controller] == "users"
+              .hidden-desktop
+                %h2.text-center
+                  =gravatar @user, 48
+                  =@user.name
+                .centered-ul-wrapper
+                  %ul.nav.nav-pills=render 'users/nav', user: @user
+            #user-contents=yield
+      #push
+    #footer=render 'layouts/footer'

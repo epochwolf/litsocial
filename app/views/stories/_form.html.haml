@@ -6,6 +6,7 @@
 =simple_form_for @story, html:{class:'form-horizontal'}  do |f|
   =f.input :title
   =f.input :contents, input_html:{class: 'redactor'}
+  =f.input :tag_list, hint: "Comma seperated. All tags converted to dashed-lower-case "
   =f.association :series, label: "Add to Series", include_blank: "(None or New Series)"
   =f.input :series_title, label: "Title for New Series", hint: "Leave blank if you don't want to add the story to a series"
   .form-actions

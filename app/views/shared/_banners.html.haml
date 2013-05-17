@@ -1,0 +1,26 @@
+:ruby 
+  # Required: record
+  type_name = record.class.name.humanize.downcase
+
+-if record.respond_to?(:deleted?) && record.deleted?
+  .alert.alert-warning.alert-tight
+    %p
+      %strong This #{type_name} has been deleted
+-elsif record.respond_to?(:locked?) && record.locked?
+  .alert.alert-warning.alert-tight
+    %p
+      %strong This #{type_name} has been locked
+    =rich record.locked_reason if record.respond_to? :locked_reason
+-elsif owner?(record)
+  .alert.alert-info.alert-tight
+    %p
+      You are the owner, so you may
+      -if Series === record
+        #{link_to "edit this #{type_name}", [:edit, record]}
+        or #{link_to "add a story", new_story_path(:series => record.id)}
+      -elsif Story === record && record.series?
+        #{link_to "edit this #{type_name}", [:edit, record]},
+        #{link_to "edit this series", edit_series_path(record.series_id)},
+        or #{link_to "add a story", new_story_path(:series => record.series_id)} to it
+      -else
+        =link_to "edit this #{type_name}", [:edit, record]

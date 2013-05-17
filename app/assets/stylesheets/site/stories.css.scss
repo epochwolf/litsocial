@@ -41,3 +41,11 @@ table.stories{
   background-color: #fff;
   border: 1px solid #ddd;
 }
+
+article.story .rich {
+  font-size: 16px;
+  line-height: 1.67em;
+  p {
+    margin: 0 0 1.5em;
+  }
+}

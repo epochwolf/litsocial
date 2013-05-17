@@ -83,6 +83,10 @@ module ApplicationHelper
       if owner?(object)
         str << raw("&nbsp;")
         str << icon_link('wrench', "edit", polymorphic_path([:edit, object], return: here))
+        if Series === object
+          str << raw("&nbsp;")
+          str << icon_link("plus", "add a story", new_story_path(series: object.id, return: here))
+        end
       end
       if admin?
         str << raw("&nbsp;")

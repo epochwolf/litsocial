@@ -1,0 +1,9 @@
+=simple_form_for(@journal, html:{class:'form-horizontal'} ) do |f|
+  =f.input :title
+  =f.input :contents, input_html:{class: 'redactor'}
+  =f.input :draft
+  .form-actions
+    =f.submit class: 'btn btn-primary'
+    =link_to "Cancel", return_path(journals_account_path), class: 'btn'
+    -unless @journal.new_record?
+      =link_to "Delete", journal_path(@journal, return: return_path(journals_account_path)), method: :delete, confirm: "Are you sure you want to delete this journal?", class: 'pull-right btn btn-danger'

@@ -178,12 +178,16 @@ GEM
       activerecord (~> 3.0)
       railties (~> 3.0)
     pg (0.14.1)
+    pg_array_parser (0.0.8)
     pg_search (0.5.4)
       activerecord (>= 3)
       activesupport (>= 3)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
+    postgres_ext (0.3.0)
+      activerecord (~> 3.2.0)
+      pg_array_parser (~> 0.0.8)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -291,6 +295,7 @@ DEPENDENCIES
   paper_trail (~> 2)
   pg
   pg_search
+  postgres_ext
   rails (= 3.2.12)
   redactor-rails
   rvm

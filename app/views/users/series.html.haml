@@ -1,1 +1,7 @@
-series.html.haml
+-@series.each do |series|
+  %section.white-box
+    %h3
+      =link_to series.title, series
+    %ol
+      -series.stories.visible.each do |story|
+        %li{value: story.series_position}=sicon_link :story,  story.title, story

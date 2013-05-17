@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  contents: MyText
+  tags: ['MyString', 'MyString2'] 
+  user: 
+  draft: false
+
+two:
+  title: MyString
+  contents: MyText
+  tags: ['MyString', 'MyString2']
+  user: 
+  draft: false

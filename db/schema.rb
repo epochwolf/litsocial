@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130325020815) do
+ActiveRecord::Schema.define(:version => 20130406204025) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -78,6 +78,21 @@ ActiveRecord::Schema.define(:version => 20130325020815) do
   add_index "forum_posts", ["deleted"], :name => "index_forum_posts_on_deleted"
   add_index "forum_posts", ["forum_category_id"], :name => "index_forum_posts_on_forum_category_id"
   add_index "forum_posts", ["user_id"], :name => "index_forum_posts_on_user_id"
+
+  create_table "journals", :force => true do |t|
+    t.string   "title"
+    t.text     "contents"
+    t.string   "tags",          :default => [],                 :array => true
+    t.integer  "user_id"
+    t.boolean  "draft"
+    t.datetime "locked_at"
+    t.text     "locked_reason"
+    t.boolean  "deleted"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  add_index "journals", ["user_id"], :name => "index_journals_on_user_id"
 
   create_table "messages", :force => true do |t|
     t.integer  "to_id",      :null => false
@@ -155,22 +170,24 @@ ActiveRecord::Schema.define(:version => 20130325020815) do
   add_index "series", ["user_id"], :name => "index_series_on_user_id"
 
   create_table "stories", :force => true do |t|
-    t.string   "title",                          :null => false
-    t.text     "contents",                       :null => false
-    t.integer  "user_id",                        :null => false
+    t.string   "title",                           :null => false
+    t.text     "contents",                        :null => false
+    t.integer  "user_id",                         :null => false
     t.integer  "series_id"
     t.integer  "series_position"
     t.datetime "locked_at"
     t.text     "locked_reason"
     t.boolean  "deleted"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.integer  "word_count",      :default => 0
+    t.string   "tags",            :default => [],                 :array => true
   end
 
   add_index "stories", ["deleted"], :name => "index_stories_on_deleted"
   add_index "stories", ["locked_at", "deleted"], :name => "index_stories_on_locked_at_and_deleted"
   add_index "stories", ["series_id"], :name => "index_stories_on_series_id"
+  add_index "stories", ["tags"], :name => "index_stories_on_tags"
   add_index "stories", ["user_id"], :name => "index_stories_on_user_id"
   add_index "stories", ["word_count"], :name => "index_stories_on_word_count"
 

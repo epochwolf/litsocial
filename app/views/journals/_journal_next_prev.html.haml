@@ -1,0 +1,18 @@
+:ruby
+  # required: journal
+  next_journal = journal.next
+  prev_journal = journal.prev
+-if next_journal || prev_journal
+  .row-fluid{style: "text-align: center;"}
+    .span6
+      -if next_journal
+        =link_to next_journal.title, next_journal
+        %span.muted=short_date next_journal.updated_at
+      -else
+        &nbsp;
+    .span6
+      -if prev_journal
+        =link_to prev_journal.title, prev_journal
+        %span.muted=short_date prev_journal.updated_at
+      -else
+        &nbsp;

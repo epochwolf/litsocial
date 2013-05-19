@@ -23,5 +23,11 @@ class Journal < ActiveRecord::Base
     !(draft? || deleted? || locked?)
   end
 
+  def next
+    self.class.visible.where(:id.gt => id).reorder(:id.asc).first
+  end
 
+  def prev
+    self.class.visible.where(:id.lt => id).reorder(:id.desc).first
+  end
 end

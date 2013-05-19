@@ -1,10 +1,11 @@
-.white-box
-  -if @journals.present?
-    %ul
-      -@journals.each do |journal|
-        %li
-          =link_to journal.title, journal
-          %small.gray=dt journal.updated_at
-    =paginate @journals
-  -else
-    %p User hasn't posted a journal entry yet.
+-if @journals.present?
+  -@journals.each_with_index do |journal, index|
+    %article.journal{style: 'margin-bottom: 2em'}
+      %h3
+        =link_to journal.title, journal
+        %small=dt(journal.created_at)
+
+      .rich=rich journal.contents
+  =paginate @journals
+-else
+  %p User hasn't posted a journal entry yet.

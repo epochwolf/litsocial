@@ -69,11 +69,11 @@ module ApplicationHelper
   end
   
   def dt(datetime)
-    datetime ? datetime.strftime("%b %d, '%y at %l:%M") : 'Unknown'
+    datetime.respond_to?(:strftime) ? datetime.strftime("%b %d, '%y at %l:%M") : 'Unknown'
   end
   
   def short_date(datetime)
-    dt(datetime)
+    datetime.respond_to?(:strftime) ? datetime.strftime("%b %d, '%y") : 'Unknown'
   end
 
   def edit_links(object)

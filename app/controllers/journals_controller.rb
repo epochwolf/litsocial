@@ -7,6 +7,9 @@ class JournalsController < ApplicationController
   def show
     if !@journal.visible? && !owner?(@journal)
       render 'errors/journal_403', status: 403
+    else 
+      @user = @journal.user
+      render layout:'users'
     end
   end
 

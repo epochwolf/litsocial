@@ -35,6 +35,16 @@ class Story < ActiveRecord::Base
     !(deleted? || locked?)
   end
 
+  def next
+    return unless series?
+    self.class.visible.where(series_id: series_id, :series_position.gt => series_position).reorder(:series_position.asc).first
+  end
+
+  def prev
+    return unless series?
+    self.class.visible.where(series_id: series_id, :series_position.lt => series_position).reorder(:series_position.desc).first
+  end
+
   def series?
     series_id
   end

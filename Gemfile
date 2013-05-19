@@ -59,13 +59,14 @@ group :development do
   gem 'capistrano', "~> 2.13.2"
   gem 'rvm-capistrano', require: false
   gem 'capistrano-unicorn', require: false
-  #gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'debugger'
   #gem 'rails-dev-tweaks', '~> 0.5.1'
 end
 
 group :test do
   # Pretty printed test output
   #gem 'turn', '0.8.2', :require => false
+  gem 'debugger'
   gem "capybara"
   gem "capybara-webkit"
   gem 'database_cleaner'

@@ -1,7 +1,4 @@
 $ ->
-  # This js file requires the user be signed in.
-  return unless Application.signed_in
-
   bookmark_position = $("#story-text").data("position")
   bookmark_paragraph = "paragraph-#{bookmark_position}"
 
@@ -15,8 +12,7 @@ $ ->
       self.remove()
     ).fail(()-> 
       alert("Something went wrong.")
-    ) 
-
+    )
 
   # Story Page
 

@@ -28,8 +28,6 @@ load "deploy/assets"
 
 require 'capistrano-unicorn'
 
-after 'deploy:restart', 'unicorn:restart'
-
 namespace :deploy do
 
   namespace :shared do

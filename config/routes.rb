@@ -75,6 +75,8 @@ Litsocial::Application.routes.draw do
 
   # REST would be more complicated for the UI to handle. 
   # Since we aren't making an api for other people, this is an acceptable tradeoff. 
+  get 'bookmarks/import' => 'bookmarks#import', as: :import_bookmarks
+  post 'bookmarks/import' => 'bookmarks#import'
   put "bookmarks/:story_id/:paragraph" => 'bookmarks#create_or_update', as: :bookmark
   delete "bookmarks/:story_id" => 'bookmarks#destroy', as: :clear_bookmark
 

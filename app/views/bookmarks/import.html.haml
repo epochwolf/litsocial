@@ -1,0 +1,9 @@
+%h2 Import Bookmarks
+%p The following bookmarks were created before you signed in. Would you like to import them?
+%ul
+  -@stories.each do |story|
+    %li #{story.title} by #{story.user.name}
+%hr
+%p
+  =link_to "Import Bookmarks", import_bookmarks_path(return: return_path), class:"btn btn-primary", method: :post
+  =link_to "No Thanks", return_path, class:"btn" 

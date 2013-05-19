@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include Controllers::RedirectProtection
   include Controllers::OverrideDevise
+  include Controllers::ManageBookmarks
   #include Controllers::SaveRecord
   include Controllers::Paged  
   layout :layout_by_resource
@@ -62,6 +63,15 @@ class ApplicationController < ActionController::Base
       else
         redirect_to new_user_session_path, :notice => "Please log in to access the admin panel."
       end
+    end
+  end
+
+  # Devise Stuff
+  def after_sign_in_path_for(resource)
+    if CookieBookmark.has_bookmarks?(cookies)
+      import_bookmarks_path(:return => return_path)
+    else
+      return_path
     end
   end
 

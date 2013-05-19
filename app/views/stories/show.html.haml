@@ -9,8 +9,16 @@
       Posted 
       =dt(@story.created_at)
       by #{user_link @story.user}
+  -if user_signed_in? && (bookmark = current_user.bookmark_for(@story))
+    %p#bookmark-message
+      %strong
+        You've saved your place
+      =icon_link "bookmark", "Continue Reading", "#paragraph-#{bookmark.paragraph}"
+      %strong or
+      =icon_link "remove", "Remove Bookmark", '#', id:"clear_bookmark"
+      %strong ?
 
-  .rich=rich @story.contents  
+  .rich#story-text{data: {story_id: @story.id, position: bookmark.try(:paragraph)}}=rich @story.contents
 
   =render 'series_next_prev', story: @story
 

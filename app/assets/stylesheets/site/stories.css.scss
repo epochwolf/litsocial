@@ -1,6 +1,24 @@
-.series-list, .meta-data {
-  border-bottom: 2px $hrBorder solid;
-}
+#story-text{
+  position: relative;
+
+  p:hover .bookmark{
+    opacity: 0.50;
+    &.bookmark-saved{
+      opacity: 1;
+    }
+  }
+
+  .bookmark{
+    cursor: pointer;
+    opacity: 0.10;
+    position: absolute;
+    left: -20px;
+    &.bookmark-saved{
+      opacity: 0.9;
+    }
+  }
+} 
+
 
 .meta-data {
   margin-bottom: 0.5em;

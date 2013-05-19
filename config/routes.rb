@@ -53,11 +53,13 @@ Litsocial::Application.routes.draw do
 
   get 'account'         => 'account#show',    as: :account
 
-  %w[stories journals forums watches favs notifications edit cancel].each do |name|
+  # Pages under the account tab
+  %w[stories journals forums watches favs bookmarks notifications edit cancel].each do |name|
     get "account/#{name}" => "account##{name}", as: "#{name}_account"
   end
   put 'account'         => 'account#update'
   delete 'account'      => 'account#destroy'
+
   resources :messages, :path => "/account/messages", except: [:edit, :update] do
     member do 
       put :report
@@ -71,6 +73,10 @@ Litsocial::Application.routes.draw do
   resources :favs, only: [:create, :destroy]
   resources :reports, only: [:create]
 
+  # REST would be more complicated for the UI to handle. 
+  # Since we aren't making an api for other people, this is an acceptable tradeoff. 
+  put "bookmarks/:story_id/:paragraph" => 'bookmarks#create_or_update', as: :bookmark
+  delete "bookmarks/:story_id" => 'bookmarks#destroy', as: :clear_bookmark
 
 
   post 'convert_word_doc' => 'home#convert_word_doc', as: :convert_word_doc

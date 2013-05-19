@@ -18,6 +18,10 @@ class AccountController < ApplicationController
     @forum_posts = paged(@user.forum_posts)
   end
 
+  def bookmarks
+    @bookmarks = paged(@user.bookmarks.includes(:story => [:user]))
+  end
+
   def watches
     @watches = paged(@user.watches)
     render layout: 'messages'

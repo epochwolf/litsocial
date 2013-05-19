@@ -1,6 +1,14 @@
 %title Lit Social
--# This gets the site to be responsive on iOS
+-# This gets the site to automatically scale on iOS, instead of displaying the desktop version.
+-# Unfortunately it breaks zooming... perhaps I need an option to flip this off.
 %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
+
+-# Set up global env for JS.
+:javascript
+  Application = {current_user: "#{current_user.try(:name)}"};
+  Application.signed_in = Application.current_user ? true : false;
+
+-# Because the css doesn't always load right away.. this prevent a flash of dropdown menus.
 :css 
   .dropdown-menu{ display: none; }
 =favicon_link_tag 'favicon.png'

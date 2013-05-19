@@ -1,0 +1,19 @@
+%table.table
+  %thead
+    %tr
+      %th Story
+      %th Author 
+      %th Paragraph
+      %th Bookmarked
+  %tbody
+    -@bookmarks.each do |bookmark|
+      -story = bookmark.story
+      %tr
+        %td=sicon_link :story, story.title, story_path(story, :anchor => "paragraph-#{bookmark.paragraph}")
+        %td=user_link story.user
+        %td
+          %i.icon-bookmark
+          #{bookmark.paragraph} of #{story.paragraph_count}
+        %td=bookmark.updated_at
+        %td=icon_link "remove", "Remove", '#', data:{widget:"remove_bookmark", story_id:story.id}
+=paginate @bookmarks

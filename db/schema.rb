@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130406204025) do
+ActiveRecord::Schema.define(:version => 20130518171744) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(:version => 20130406204025) do
   add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
   add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
+
+  create_table "bookmarks", :force => true do |t|
+    t.integer  "story_id",   :null => false
+    t.integer  "user_id",    :null => false
+    t.string   "paragraph",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "bookmarks", ["user_id", "story_id"], :name => "index_bookmarks_on_user_id_and_story_id", :unique => true
 
   create_table "comments", :force => true do |t|
     t.integer  "commentable_id",   :null => false
@@ -182,6 +192,7 @@ ActiveRecord::Schema.define(:version => 20130406204025) do
     t.datetime "updated_at",                      :null => false
     t.integer  "word_count",      :default => 0
     t.string   "tags",            :default => [],                 :array => true
+    t.integer  "paragraph_count", :default => 0
   end
 
   add_index "stories", ["deleted"], :name => "index_stories_on_deleted"

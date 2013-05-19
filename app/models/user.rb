@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   has_many :messages, foreign_key: 'to_id'
   has_many :sent_messages, class_name: 'Message', foreign_key: 'from_id'
   has_many :favs
+  has_many :bookmarks
   has_many :reports
   has_many :notifications
     # This is a list of things I have watched.
@@ -36,6 +37,16 @@ class User < ActiveRecord::Base
   # People watching this user
   def watchers
     User.joins(:watches).where(watches:{watchable_type: 'User', watchable_id: id})
+  end
+
+  def bookmarked_stories
+    Story.select(
+      'stories.*, bookmarks.paragraph as bookmark_paragraph, bookmarks.updated_at as bookmark_updated_at'
+    ).joins(:bookmarks).where(:bookmarks => {:user_id => self}).order("bookmarks.updated_at desc")
+  end
+
+  def bookmark_for(story)
+    Bookmark.for(story, self)
   end
 
   NAME_REGEX = /([a-z][a-z0-9_]{2,12}[a-z0-9])/

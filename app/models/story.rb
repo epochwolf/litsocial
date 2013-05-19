@@ -18,6 +18,7 @@ class Story < ActiveRecord::Base
 
   belongs_to :series, counter_cache: true
   belongs_to :user
+  has_many :bookmarks
 
   validates :title, :contents, :user_id, presence: true
   validates :locked_reason, presence: true, if: :locked?
@@ -49,7 +50,10 @@ class Story < ActiveRecord::Base
 
   protected  
   def update_word_count
+    # TODO: Add paragraph counter
+    # Possible implementation: Load contents into nokogiri to count the number of p nodes?
     self.word_count = HTML::FullSanitizer.new.sanitize(self.contents || "").scan(/\w+(-\w+)?/).length
+    self.paragraph_count = Nokogiri::HTML(MyHtmlSanitizer.basic_cleansing(self.contents)).search("/html/body/p").count
   end
 
   def fix_acts_as_list

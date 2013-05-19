@@ -7,7 +7,7 @@ class MyHtmlSanitizer
   
   def self.basic_cleansing(str)
     str ||= ""
-    Sanitize.clean(str, CONFIG).html_safe
+    Sanitize.clean(str, CONFIG.merge(:p_counter => 0)).html_safe
   end
   
   # Because double spacing and manual indents piss me off. I will win!
@@ -19,6 +19,7 @@ class MyHtmlSanitizer
   def self.strip_leading_space_from_paragraph(str)
     str.gsub /(<p[^>]+>)\s+/, "\\1"
   end
+
   
   def self.convert_node(node_name, new_node_name)
     proc do |env| 
@@ -40,6 +41,17 @@ class MyHtmlSanitizer
       end
     end
   end
+
+  add_id_to_paragraphs = proc do |env|
+    next unless "p" == env[:node_name]
+    node = env[:node]
+    if (parent = node.parent.try(:name)) && parent =~ /^#/
+      counter = env[:config][:p_counter] += 1
+      node.set_attribute("id", "paragraph-#{counter}")
+    else
+      node.remove_attribute("id") if node.attribute("id")
+    end
+  end  
   
   remove_empty_tags = proc do |env|
     node = env[:node]
@@ -64,7 +76,7 @@ class MyHtmlSanitizer
                   "p", "pre", "q", "small", "strike", "strong", "sub", "sup", "table", 
                   "tbody", "td", "tfoot", "th", "thead", "tr", "tt", "u", "ul"],
       :attributes=>{
-        "p"          => ["style"],
+        "p"          => ["id", "style"], # ids are allowed on p tags because we overwrite them.
         "div"        => ["style"], # divs get converted to p
         "abbr"       => ["title"],
         "colgroup"   => ["span", "width"], 
@@ -81,7 +93,7 @@ class MyHtmlSanitizer
       :add_attributes => {
         'a' => {'rel' => 'nofollow'},
       },
-      :transformers => [p_style_attribute, div_to_p, remove_empty_tags]
+      :transformers => [p_style_attribute, div_to_p, remove_empty_tags, add_id_to_paragraphs]
     }
   
 end

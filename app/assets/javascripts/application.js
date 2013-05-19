@@ -18,6 +18,16 @@
 //= require redactor-rails/fix_config_not_working
 //= require_tree ./site
 
+function flash_tooltip(jquery_obj, text){
+  var timeout = 1000;
+  jquery_obj.tooltip({title: text, delay: timeout})
+  jquery_obj.tooltip("show")
+  setTimeout(function(){
+        jquery_obj.tooltip('destroy');
+  }, timeout + 50);
+  return 
+}
+
 function modal_message(title, message){
   var html = $('<div id="modal_message" class="modal hide">' + 
     '<div class="modal-header"><h3>' + title + '</h3></div>'+

@@ -2,7 +2,7 @@ ActiveAdmin.register Story do
   menu :priority => 1 #, parent: "Users"
   scope :all
   scope :visible
-  scope :locked
+  scope :is_locked
   scope :deleted
 
   controller do

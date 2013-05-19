@@ -3,7 +3,7 @@
 epochs_story:
   id: 1
   title: EpochsStory
-  contents: MyString
+  contents: "<p>MyString</p>"
   user_id: 1
   series_id: 1
   series_position: 1
@@ -13,7 +13,7 @@ epochs_story:
 two:
   id: 2
   title: MyString
-  contents: MyString
+  contents: "<p>MyString</p>"
   user_id: 1
   series_id: 1
   series_position: 2
@@ -24,7 +24,7 @@ two:
 members_story:
   id: 3
   title: MembersStory
-  contents: MyString
+  contents: "<p>MyString</p>"
   user_id: 2
   created_at: <%=Time.now %>
   updated_at: <%=Time.now %>
@@ -32,7 +32,7 @@ members_story:
 story:
   id: 8
   title: BannedsStory
-  contents: MyString
+  contents: "<p>MyString</p>"
   user_id: 3
   created_at: <%=Time.now %>
   updated_at: <%=Time.now %>
@@ -40,7 +40,7 @@ story:
 locked:
   id: 4
   title: BannedsLockedStory
-  contents: MyString
+  contents: "<p>MyString</p>"
   user_id: 3
   deleted: false
   locked_at: <%=Time.now %>
@@ -51,7 +51,7 @@ locked:
 deleted:
   id: 5
   title: BannedsDeletedStory
-  contents: MyString
+  contents: "<p>MyString</p>"
   user_id: 3
   deleted: true
   created_at: <%=Time.now %>
@@ -60,7 +60,7 @@ deleted:
 epochs_locked:
   id: 6
   title: EpochsLockedStory
-  contents: MyString
+  contents: "<p>MyString</p>"
   user_id: 1
   series_id: 1
   series_position: 3
@@ -73,7 +73,7 @@ epochs_locked:
 epochs_deleted:
   id: 7
   title: EpochsDeletedStory
-  contents: MyString
+  contents: "<p>MyString</p>"
   user_id: 1
   series_id: 1
   series_position: 4
@@ -84,7 +84,7 @@ epochs_deleted:
 epochs_story_series:
   id: 9
   title: EpochsStory
-  contents: MyString
+  contents: "<p>MyString</p>"
   user_id: 1
   series_id: 1
   series_position: 1
@@ -94,7 +94,7 @@ epochs_story_series:
 epochs_locked_series:
   id: 10
   title: EpochsLockedStory
-  contents: MyString
+  contents: "<p>MyString</p>"
   user_id: 1
   series_id: 1
   series_position: 2
@@ -107,7 +107,7 @@ epochs_locked_series:
 epochs_deleted_series:
   id: 11
   title: EpochsDeletedStory
-  contents: MyString
+  contents: "<p>MyString</p>"
   user_id: 1
   series_id: 1
   series_position: 3

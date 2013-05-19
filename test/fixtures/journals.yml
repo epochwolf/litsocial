@@ -1,6 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
+  id: 1
   title: MyString
   contents: MyText
   tags: ['MyString', 'MyString2'] 
@@ -8,6 +9,7 @@ one:
   draft: false
 
 two:
+  id: 2
   title: MyString
   contents: MyText
   tags: ['MyString', 'MyString2']

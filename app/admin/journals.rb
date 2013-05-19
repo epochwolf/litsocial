@@ -2,7 +2,7 @@ ActiveAdmin.register Journal do
   menu :priority => 3
   scope :all
   scope :visible
-  scope :locked
+  scope :is_locked
   scope :deleted
 
   controller do

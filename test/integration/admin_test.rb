@@ -35,6 +35,12 @@ class AdminTest < ActionDispatch::IntegrationTest
     
     get "/admin/stories/1"
     assert_response :success
+
+    get "/admin/stories/1/versions"
+    assert_response :success
+
+    get "/admin/stories/1/versions_detailed"
+    assert_response :success
     
     get "/admin/stories/1/edit"
     assert_response :success
@@ -47,6 +53,16 @@ class AdminTest < ActionDispatch::IntegrationTest
     
     get "/admin/series/1/edit"
     assert_response :success
+
+    get "/admin/journals"
+    assert_response :success
+    
+    get "/admin/journals/1"
+    assert_response :success
+    
+    get "/admin/journals/1/edit"
+    assert_response :success
+    
     
     get "/admin/forum_categories"
     assert_response :success

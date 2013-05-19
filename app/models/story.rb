@@ -12,7 +12,8 @@ class Story < ActiveRecord::Base
   scope :owner_visible, where{ (deleted == false) | (deleted == nil) } # Postgres doesn't select nulls if deleted != true
 
   scope :sorted, order(:id.desc)
-  scope :locked, where{ locked_at == nil }
+  # Locked is a restricted name, used by AREL internally, see: https://github.com/rails/rails/issues/7421
+  scope :is_locked, where{ locked_at == nil }
   scope :deleted, where{ deleted == true }
 
   belongs_to :series, counter_cache: true

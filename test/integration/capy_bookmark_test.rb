@@ -3,6 +3,9 @@ require 'integration_test_helper'
 class CapyBookmarkTest < CapyTest
   fixtures :all
 
+  # TODO: Check the page url and response codes. 
+  # <elaptics> epochwolf: in rspec with capybara you can do something like:     expect(current_path).to eql(some_path)
+
   test "Epoch can bookmark" do 
     # Login and look for the bookmarks
     sign_in(users(:epoch))
@@ -18,10 +21,10 @@ class CapyBookmarkTest < CapyTest
     assert page.has_selector?("#story-text p[id] i.icon-bookmark.bookmark.bookmark-saved"), "bookmark didn't save"
 
     # Toggle it, for great justice!
-    # bookmark.click
-    # assert page.has_no_selector?("#story-text p[id] i.icon-bookmark.bookmark.bookmark-saved"), "toggling the bookmark didn't work"
-    # bookmark.click
-    # assert page.has_selector?("#story-text p[id] i.icon-bookmark.bookmark.bookmark-saved"), "bookmark didn't save a second time"
+    bookmark.click
+    assert page.has_no_selector?("#story-text p[id] i.icon-bookmark.bookmark.bookmark-saved"), "toggling the bookmark didn't work"
+    bookmark.click
+    assert page.has_selector?("#story-text p[id] i.icon-bookmark.bookmark.bookmark-saved"), "bookmark didn't save a second time"
 
     # Make sure it's in the user's bookmarks.
     visit '/account/bookmarks'
@@ -66,11 +69,13 @@ class CapyBookmarkTest < CapyTest
     assert page.has_selector?("#story-text p[id] i.icon-bookmark.bookmark.bookmark-saved"), "bookmark didn't save"
 
     # Toggle it, for great justice!
-    # bookmark.click
-    # assert page.has_no_selector?("#story-text p[id] i.icon-bookmark.bookmark.bookmark-saved"), "toggling the bookmark didn't work"
-    # bookmark.click
-    # assert page.has_selector?("#story-text p[id] i.icon-bookmark.bookmark.bookmark-saved"), "bookmark didn't save a second time"
+    bookmark.click
+    assert page.has_no_selector?("#story-text p[id] i.icon-bookmark.bookmark.bookmark-saved"), "toggling the bookmark didn't work"
+    bookmark.click
+    assert page.has_selector?("#story-text p[id] i.icon-bookmark.bookmark.bookmark-saved"), "bookmark didn't save a second time"
 
+    # Skip this for guests... for now. I don't know where I want to add a bookmark list to the UI when the user is logged out.
+    # 
     # Make sure it's in the user's bookmarks.
     # visit '/account/bookmarks'
     # assert page.body =~ /EpochsStory/, "Bookmark isn't showing up on the accounts page."

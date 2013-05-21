@@ -5,7 +5,6 @@ module ManageBookmarks
     mod.helper_method :bookmark_for
   end
 
-  # UNTESTED
   def import_bookmarks_from_cookies
     return false unless signed_in?
     if CookieBookmark.has_bookmarks?(cookies)

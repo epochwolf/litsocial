@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   include Controllers::ManageBookmarks
   #include Controllers::SaveRecord
   include Controllers::Paged  
-  layout :layout_by_resource
   protect_from_forgery
   #rescue_from ActiveRecord::RecordNotFound, ActionController::RoutingError, :with => :handle_record_not_found
 
@@ -72,14 +71,6 @@ class ApplicationController < ActionController::Base
       import_bookmarks_path(:return => return_path)
     else
       return_path
-    end
-  end
-
-  def layout_by_resource
-    if devise_controller?
-      "pages"
-    else
-      "application"
     end
   end
 end

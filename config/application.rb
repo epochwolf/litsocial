@@ -70,5 +70,14 @@ module Litsocial
         email_prefix: "[LitSocail] ", 
         sender_address: %{"Error" <mailferret@litsocial.com>}, 
         exception_recipients: %w{epochwolf@litsocial.com}
+
+      # Thanks StackOverflow! http://stackoverflow.com/questions/4982073/different-layout-for-sign-in-action-in-devise
+      config.to_prepare do
+        Devise::SessionsController.layout "pages"
+        Devise::RegistrationsController.layout "pages"
+        #Devise::ConfirmationsController.layout "pages"
+        #Devise::UnlocksController.layout "pages"            
+        Devise::PasswordsController.layout "pages"        
+      end
   end
 end

@@ -48,6 +48,17 @@ html {
     width: auto;
   }
 
+  /* Fix broken navbar styling that causes the view to scroll horizontally. */  
+  @media(max-width: 767px){
+    .navbar{
+      &.navbar-static-top{
+        margin-right: 0;
+        margin-left: 0;
+      }
+    }
+  }
+
+
   /* For when the default hr styling it too tall */
   hr.slim {
     margin-top: 0px;

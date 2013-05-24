@@ -73,4 +73,13 @@ class ApplicationController < ActionController::Base
       return_path
     end
   end
+
+  def after_sign_up_path_for(resource)
+    if CookieBookmark.has_bookmarks?(cookies)
+      import_bookmarks_path(:return => return_path)
+    else
+      return_path
+    end
+  end
+    
 end

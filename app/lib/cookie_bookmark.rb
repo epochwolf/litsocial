@@ -44,6 +44,10 @@ class CookieBookmark
   end
 
   def save_to_cookie
-    @cookies.permanent[:bookmarks_v1] = Marshal.dump(@data)
+    if @data.blank?
+      @cookies.permanent[:bookmarks_v1] = nil
+    else
+      @cookies.permanent[:bookmarks_v1] = Marshal.dump(@data)
+    end
   end
 end

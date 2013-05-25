@@ -1,19 +1,23 @@
-%table.table
-  %thead
-    %tr
-      %th Story
-      %th Author 
-      %th Paragraph
-      %th Bookmarked
-  %tbody
-    -@bookmarks.each do |bookmark|
-      -story = bookmark.story
+-if @bookmarks.blank?
+  %p No bookmarks yet? 
+  %p You can bookmark any story by clicking the little bookmark next to any paragraph in a story so you can save your spot. When you do that, it will show up here so you can continue reading. 
+-else 
+  %table.table
+    %thead
       %tr
-        %td=sicon_link :story, story.title, story_path(story, :anchor => "paragraph-#{bookmark.paragraph}")
-        %td=user_link story.user
-        %td
-          %i.icon-bookmark
-          #{bookmark.paragraph} of #{story.paragraph_count}
-        %td=bookmark.updated_at
-        %td=icon_link "remove", "Remove", '#', data:{widget:"remove_bookmark", story_id:story.id}
-=paginate @bookmarks
+        %th Story
+        %th Author 
+        %th Paragraph
+        %th Bookmarked
+    %tbody
+      -@bookmarks.each do |bookmark|
+        -story = bookmark.story
+        %tr
+          %td=sicon_link :story, story.title, story_path(story, :anchor => "paragraph-#{bookmark.paragraph}")
+          %td=user_link story.user
+          %td
+            %i.icon-bookmark
+            #{bookmark.paragraph} of #{story.paragraph_count}
+          %td=bookmark.updated_at
+          %td=icon_link "remove", "Remove", '#', data:{widget:"remove_bookmark", story_id:story.id}
+  =paginate @bookmarks

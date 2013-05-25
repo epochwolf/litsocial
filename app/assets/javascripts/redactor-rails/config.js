@@ -1,5 +1,4 @@
-$(document).ready(
-  function(){
+$(document).ready(function(){
   var csrf_token = $('meta[name=csrf-token]').attr('content');
   var csrf_param = $('meta[name=csrf-param]').attr('content');
   var params;
@@ -8,6 +7,7 @@ $(document).ready(
   }
   $('.redactor').redactor(
     { "path":"/assets/redactor-rails",
+      "autoresize": false,
       "css":"style.css",
       "buttons": [
         'html', '|', 'formatting', '|', 'bold', 'italic', 'deleted', '|',

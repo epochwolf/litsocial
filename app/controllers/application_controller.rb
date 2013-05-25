@@ -2,12 +2,8 @@ class ApplicationController < ActionController::Base
   include Controllers::RedirectProtection
   include Controllers::OverrideDevise
   include Controllers::ManageBookmarks
-  #include Controllers::SaveRecord
   include Controllers::Paged  
   protect_from_forgery
-  #rescue_from ActiveRecord::RecordNotFound, ActionController::RoutingError, :with => :handle_record_not_found
-
-
   
   helper_method :return_path, :here, :owner?, :admin?
 
@@ -81,5 +77,5 @@ class ApplicationController < ActionController::Base
       return_path
     end
   end
-    
+
 end

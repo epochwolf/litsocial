@@ -34,9 +34,12 @@
               %ul.dropdown-menu
                 %li=icon_link "user", "Public Profile", user_path(current_user)
                 %li=icon_link "cog", "My Stories & Series", stories_account_path
+                %li=icon_link "cog", "My Journal", stories_account_path
+                %li=icon_link "bookmark", "My Bookmarks", bookmarks_account_path
                 %li.hidden-phone.divider
                 %li.hidden-phone=icon_link "book", "New Story", new_story_path
-                -if params[:action] == "show"
+                %li.hidden-phone=icon_link "book", "New Journal", new_journal_path
+                -if admin? && params[:action] == "show"
                   %li=icon_link "qrcode", "Admin This", "/admin#{request.path}"
                 %li=#icon_link "envelope", "New Message", new_account_message_path(current_user)
                 %li.divider

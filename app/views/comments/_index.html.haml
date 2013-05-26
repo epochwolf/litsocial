@@ -1,6 +1,7 @@
 -# required: commentable
 
-.comments-form=render "comments/new", comment: commentable.comments.build
+-if commentable.visible? && signed_in?
+  .comments-form=render "comments/new", comment: commentable.comments.build
 .comments
   -commentable.comments.each do |comment|
     -next if comment.new_record?

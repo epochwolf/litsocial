@@ -7,6 +7,7 @@ class NewsPost < ActiveRecord::Base
   scope :draft, where{ published_at == nil }
   scope :sorted, order(:published_at.desc)
 
+  has_many :comments, :as => :commentable, :order => :id.asc
   belongs_to :user
 
   validates :title, :contents, :user_id, presence: true

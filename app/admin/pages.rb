@@ -1,5 +1,5 @@
 ActiveAdmin.register Page do
-  menu :priority => 2, parent: "Site Config"
+  menu :priority => 4, parent: "Site"
   
   scope :all
   scope "Published", :visible

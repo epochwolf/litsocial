@@ -1,5 +1,5 @@
 ActiveAdmin.register ForumCategory do
-  menu :priority => 1, parent: "Site Config"
+  menu :priority => 2, parent: "Site"
 
   controller do
     with_role :admin

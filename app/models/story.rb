@@ -19,6 +19,7 @@ class Story < ActiveRecord::Base
   belongs_to :series, counter_cache: true
   belongs_to :user
   has_many :bookmarks
+  has_many :comments, :as => :commentable, :order => :id.asc
 
   validates :title, :contents, :user_id, presence: true
   validates :locked_reason, presence: true, if: :locked?

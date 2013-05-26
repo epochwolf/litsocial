@@ -1,5 +1,5 @@
 ActiveAdmin.register Journal do
-  menu :priority => 3
+  menu :priority => 3, parent: "Users"
   scope :all
   scope :visible
   scope :is_locked

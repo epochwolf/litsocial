@@ -80,6 +80,7 @@ Litsocial::Application.routes.draw do
   put "bookmarks/:story_id/:paragraph" => 'bookmarks#create_or_update', as: :bookmark
   delete "bookmarks/:story_id" => 'bookmarks#destroy', as: :clear_bookmark
 
+  resources :comments
 
   post 'convert_word_doc' => 'home#convert_word_doc', as: :convert_word_doc
 

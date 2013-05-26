@@ -76,6 +76,10 @@ module ApplicationHelper
     datetime.respond_to?(:strftime) ? datetime.strftime("%b %d, '%y") : 'Unknown'
   end
 
+  def comments_for(commentable)
+    render "comments/index", commentable: commentable if true #signed_in?
+  end
+
   def edit_links(object)
     return unless owner?(object) || admin?
     content_tag :small do

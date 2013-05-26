@@ -1,5 +1,5 @@
 ActiveAdmin.register NewsPost do
-  menu :priority => 6
+  menu :priority => 1, parent: "Site"
 
   scope :all
   scope "Published", :visible

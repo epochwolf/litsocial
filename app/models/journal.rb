@@ -3,6 +3,7 @@ class Journal < ActiveRecord::Base
   include Mixins::Lockable
   has_paper_trail
   belongs_to :user
+  has_many :comments, :as => :commentable, :order => :id.asc
 
   scope :visible, where{ ((deleted == false) | (deleted == nil)) & (locked_at == nil) & ((draft == false) | (draft == nil)) }
   scope :owner_visible, where{ (deleted == false) | (deleted == nil) }

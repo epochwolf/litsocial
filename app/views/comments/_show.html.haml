@@ -1,0 +1,21 @@
+-# required: comment or @comment
+-comment ||= @comment
+
+.comment{id:"comment-#{comment.id}"}
+  -if comment.visible?
+    %p.meta
+      %span.muted
+        Posted 
+        =dt(comment.created_at)
+        by #{user_link comment.user}
+      -if owner?(comment)
+        =link_to "edit", '#', class: 'btn-mini btn', data:{widget: "edit-comment", comment_id: comment.id}
+        =link_to "delete", '#', class: 'btn-mini btn-danger btn', data:{widget: "delete-comment", comment_id: comment.id}
+      -if admin?
+        =link_to "admin", edit_admin_site_comment_path(comment), class: 'btn-mini btn-warning btn'
+    .well=rich comment.contents
+  -elsif comment.locked?
+    %p.muted Comment by #{comment.user.name} removed by administrator
+
+  -else
+    %p.muted Comment by #{comment.user.name} deleted

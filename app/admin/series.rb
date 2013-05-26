@@ -1,5 +1,5 @@
 ActiveAdmin.register Series do
-  menu :priority => 2
+  menu :priority => 2, parent: "Users"
   
   controller do
     with_role :admin

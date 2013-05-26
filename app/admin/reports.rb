@@ -1,4 +1,6 @@
 ActiveAdmin.register Report do
+  menu :priority => 1, parent: "Abuse"
+
   scope :all
   scope "Not Resolved", :not_resolved
   scope :resolved

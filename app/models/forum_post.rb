@@ -3,7 +3,7 @@ class ForumPost < ActiveRecord::Base
   attr_accessible :contents, :forum_category_id, :title
   attr_protected :user_id, as: :admin
 
-  has_many :comments, :as => :commentable, :conditions => {:parent_id => nil}, :order => :id.asc
+  has_many :comments, :as => :commentable, :order => :id.asc
 
   scope :visible, where{ (deleted == false) | (deleted == nil) }
 

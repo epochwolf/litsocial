@@ -68,7 +68,7 @@ group :test do
   #gem 'turn', '0.8.2', :require => false
   gem 'debugger'
   gem "capybara"
-  gem "capybara-webkit"
+  gem "poltergeist"
   gem 'database_cleaner'
   gem "launchy"
   gem "factory_girl_rails", "~> 4.0"

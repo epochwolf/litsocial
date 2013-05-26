@@ -40,6 +40,7 @@ test:
   pool: 5
   host: localhost
   port: 5432
+  min_messages: warning
 
 production:
   adapter: postgresql

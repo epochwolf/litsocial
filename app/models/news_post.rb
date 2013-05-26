@@ -11,4 +11,8 @@ class NewsPost < ActiveRecord::Base
   belongs_to :user
 
   validates :title, :contents, :user_id, presence: true
+
+  def visible?
+    published_at ? true : false
+  end
 end

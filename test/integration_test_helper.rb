@@ -1,8 +1,9 @@
 require "test_helper"
 require "capybara/rails"
+require 'capybara/poltergeist'
 
 DatabaseCleaner.strategy = :truncation
-Capybara.javascript_driver = :webkit
+Capybara.javascript_driver = :poltergeist
 
 class CapyTest < ActionDispatch::IntegrationTest
   include Capybara::DSL
@@ -21,6 +22,10 @@ class CapyTest < ActionDispatch::IntegrationTest
   
   def sign_in(user)
     login_as(user, :scope => :user)
+  end
+
+  def fill_in_redactor(selector, text)
+    page.execute_script("$(#{selector.to_s.to_json}).val(#{text.to_s.to_json})")
   end
   
   teardown do

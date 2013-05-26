@@ -1,0 +1,34 @@
+visisble:
+  id: 1
+  commentable_id: 2
+  commentable_type: Story
+  user_id: 1
+  contents: "<p>I'm saying a nice thing.</p>"
+
+deleted:
+  id: 2
+  commentable_id: 2
+  commentable_type: Story
+  user_id: 1
+  contents: "I'm saying a stupid thing."
+  deleted: true
+
+locked:
+  id: 3
+  commentable_id: 2
+  commentable_type: Story
+  user_id: 1
+  contents: "I'm saying a mean, nasty thing."
+  locked_at: <%= 0.from_now %>
+  locked_reason: "That wasn't nice."
+  deleted: false
+
+locked_and_deleted:
+  id: 4
+  commentable_id: 2
+  commentable_type: Story
+  user_id: 1
+  contents: "I'm saying a mean, nasty thing but I feel guilty about it."
+  locked_at: <%= 0.from_now %>
+  locked_reason: "My gerbil takes offense to that."
+  deleted: true

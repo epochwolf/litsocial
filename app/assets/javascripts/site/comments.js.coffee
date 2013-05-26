@@ -5,6 +5,8 @@ $ ->
     self = $ this
     comments_div = $ ".comments"
 
+    $("input[type=\"submit\"]", self).prop('disabled', true)
+
     $.post("/comments", self.serialize()).done((data)->
       if data["success"]
         comments_div.append $ data["html"]
@@ -18,6 +20,7 @@ $ ->
         
     ).fail(()-> 
       alert("Something went wrong.")
+      $("input[type=\"submit\"]", self).prop('disabled', false)
     )
 
   # Edit

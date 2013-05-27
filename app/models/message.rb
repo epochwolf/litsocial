@@ -21,4 +21,8 @@ class Message < ActiveRecord::Base
   def to_name=(name)
     self.to = User.find_by_name(name)
   end
+
+  def report!
+    update_column :reported, true
+  end
 end

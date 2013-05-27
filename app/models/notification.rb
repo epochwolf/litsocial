@@ -38,7 +38,7 @@ class Notification < ActiveRecord::Base
   ]
 
   def to_html
-    liquid_template.render(data).html_safe
+    liquid_template.render(data.merge("notification" => self)).html_safe
   end
 
   protected

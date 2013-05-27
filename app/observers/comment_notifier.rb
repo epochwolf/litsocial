@@ -2,10 +2,9 @@ class CommentNotifier <Notifier
   observe :comment 
 
   def after_create(comment)
-    user = comment.user
     commentable = comment.commentable
+    user = comment.user
     target = commentable.user
-
     return if user == target # Don't notify someone commenting on their own stuff. :)
 
     data = {
@@ -19,7 +18,7 @@ class CommentNotifier <Notifier
       "commentable_url" => "/#{comment.commentable_type.underscore.pluralize}/#{comment.commentable_id}",
     }
 
-    notify([target], "comment_create", comment, data)
+    notify(target, "comment_create", comment, data)
   end
 
 end

@@ -22,4 +22,8 @@ class HomeController < ApplicationController
     @text = @text.html_safe
     render :layout => nil
   end
+
+  def user_lookup
+    render json: User.where(:name.like => "%#{params[:query]}%").pluck(:name)
+  end
 end

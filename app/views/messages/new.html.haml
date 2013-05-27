@@ -1,6 +1,7 @@
+%h2 Compose Message
 =simple_form_for @message, html:{class:'form-horizontal'}  do |f|
-  =f.input :to_name
-  =f.input :message, input_html:{class: 'redactor'}
+  =f.input :to_name, label: "Username", input_html:{class: 'typeahead'}, hint: "Just one user please."
+  =f.input :message, input_html:{class: 'redactor', rows: 4}
   .form-actions
     =f.submit class: 'btn btn-primary'
     =link_to "Cancel", return_path(messages_path), class: 'btn'

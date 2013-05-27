@@ -63,9 +63,12 @@ Litsocial::Application.routes.draw do
   resources :messages, :path => "/account/messages", except: [:edit, :update] do
     member do 
       put :report
+      post :toggle
     end
     collection do 
       get :sent
+      get :unread
+      get :read
     end
   end
   resources :notifications, :path => '/account/notifications', only: [:destroy]
@@ -83,6 +86,7 @@ Litsocial::Application.routes.draw do
   resources :comments
 
   post 'convert_word_doc' => 'home#convert_word_doc', as: :convert_word_doc
+  post 'user_lookup' => 'home#user_lookup', as: :user_lookup
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

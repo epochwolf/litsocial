@@ -1,11 +1,21 @@
 class MessagesController < ApplicationController
   before_filter :find_user
-  before_filter :find_message, only: [:show, :report, :destroy]
+  before_filter :find_message, only: [:show, :toggle, :report, :destroy]
   before_filter :new_message, only: [:new, :create]
   layout "messages"
 
   def index
     @messages = paged(current_user.messages.visible.includes(:from))
+  end
+
+  def unread
+    @messages = paged(current_user.messages.visible.unread.includes(:from))
+    render :index
+  end
+
+  def read
+    @messages = paged(current_user.messages.visible.read.includes(:from))
+    render :index
   end
 
   def sent
@@ -25,6 +35,11 @@ class MessagesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def toggle
+    @message.toggle! :read
+    redirect_to return_path(messages_path), notice: "Message #{@message.read ? "read" : "unread"}."
   end
 
   def report

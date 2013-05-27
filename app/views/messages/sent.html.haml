@@ -1,14 +1,9 @@
-=link_to "New Message", new_message_path(return: here), class:'btn btn-mini btn-success pull-right'
+%h3 Sent
 
-%table.table
-  %thead
-    %tr
-      %th To
-      %th On
-      %th Message
-  %tbody
-    -@messages.each do |message|
-      %tr
-        %td=user_link message.to
-        %td=dt message.created_at
-        %td=rich message.message
+-@messages.each do |message|
+  %p.meta
+    %span.muted
+      Sent on  
+      =dt(message)
+      to #{user_link message.to}
+  .well=rich message.message

@@ -3,16 +3,19 @@
 
 .comment{id:"comment-#{comment.id}"}
   -if comment.visible?
-    %p.meta
+    %p.meta.inline-block
       %span.muted
         Posted 
         =dt(comment)
         by #{user_link comment.user}
-      -if owner?(comment)
-        =link_to "edit", '#', class: 'btn-mini btn', data:{widget: "edit-comment", comment_id: comment.id}
-        =link_to "delete", '#', class: 'btn-mini btn-danger btn', data:{widget: "delete-comment", comment_id: comment.id}
-      -if admin?
-        =link_to "admin", edit_admin_site_comment_path(comment), class: 'btn-mini btn-warning btn'
+
+    -if admin? && owner?(comment)
+      %ul.inline.inline-block
+        -if owner?(comment)
+          %li=link_to "edit", '#', class: 'btn-mini btn', data:{widget: "edit-comment", comment_id: comment.id}
+          %li=link_to "delete", '#', class: 'btn-mini btn-danger btn', data:{widget: "delete-comment", comment_id: comment.id}
+        -if admin?
+          %li=link_to "admin", edit_admin_site_comment_path(comment), class: 'btn-mini btn-warning btn'
     .well=rich comment.contents
   -elsif comment.locked?
     %p.muted 

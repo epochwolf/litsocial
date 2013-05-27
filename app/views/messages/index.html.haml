@@ -1,14 +1,13 @@
-=link_to "New Message", new_message_path(return: here), class:'btn btn-mini btn-success pull-right'
+%h3=params[:action].titleize
 
-%table.table
-  %thead
-    %tr
-      %th From
-      %th On
-      %th Message
-  %tbody
-    -@messages.each do |message|
-      %tr
-        %td=user_link message.from
-        %td=dt message.created_at
-        %td=rich message.message
+-@messages.each do |message|
+  %p.meta.inline-block
+    %span.muted
+      Sent on  
+      =dt(message)
+      by #{user_link message.from}
+  %ul.inline.inline-block
+    %li=icon_link 'check', message.read? ? "unread" : "read", toggle_message_path(message, return: here), class: 'btn btn-mini', method: :post
+    %li=icon_link "remove", "delete", message_path(message, return: here), class: 'btn btn-mini btn-danger', method: :delete, confirm: "Delete this message?"
+    %li=icon_link 'flag', "report", report_message_path(message, return: here), class: 'btn btn-mini btn-danger', method: :put, confirm: "Report this message?"
+  .well=rich message.message

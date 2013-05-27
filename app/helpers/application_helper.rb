@@ -69,7 +69,17 @@ module ApplicationHelper
   end
   
   def dt(datetime)
-    datetime.respond_to?(:strftime) ? datetime.strftime("%b %d, '%y at %l:%M") : 'Unknown'
+    if datetime.respond_to?(:strftime) 
+      content_tag :span, datetime.strftime("%b %d, '%y at %l:%M"), class:'datetime'
+    elsif datetime.respond_to?(:created_at) && (created_at = datetime.created_at)
+      if datetime.respond_to?(:updated_at) && (updated_at = datetime.updated_at) && created_at != updated_at
+        content_tag :span, created_at.strftime("%b %d, '%y at %l:%M") + "*", class:'datetime', title: "Updated: #{updated_at.strftime("%b %d, '%y at %l:%M")}"
+      else
+        dt created_at
+      end
+    else
+      'Unknown'
+    end
   end
   
   def short_date(datetime)

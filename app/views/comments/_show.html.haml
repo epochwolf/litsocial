@@ -6,7 +6,7 @@
     %p.meta
       %span.muted
         Posted 
-        =dt(comment.created_at)
+        =dt(comment)
         by #{user_link comment.user}
       -if owner?(comment)
         =link_to "edit", '#', class: 'btn-mini btn', data:{widget: "edit-comment", comment_id: comment.id}
@@ -15,7 +15,13 @@
         =link_to "admin", edit_admin_site_comment_path(comment), class: 'btn-mini btn-warning btn'
     .well=rich comment.contents
   -elsif comment.locked?
-    %p.muted Comment by #{comment.user.name} removed by administrator
+    %p.muted 
+      Comment by #{comment.user.name} removed by administrator
+      -if admin?
+        =link_to "admin", edit_admin_site_comment_path(comment), class: 'btn-mini btn-warning btn'
 
   -else
-    %p.muted Comment by #{comment.user.name} deleted
+    %p.muted 
+      Comment by #{comment.user.name} deleted
+      -if admin?
+        =link_to "admin", edit_admin_site_comment_path(comment), class: 'btn-mini btn-warning btn'

@@ -12,8 +12,8 @@
           =nav_li('account#stories'){                     link_to "Series & Stories", stories_account_path }
           =nav_li('account#journals', 'journals#'){       link_to "Journals", journals_account_path }
           =nav_li('account#forums'){        link_to "Forum Posts", forums_account_path }
-          =nav_li('account#favs'){          link_to "Favorites", favs_account_path }
-          =nav_li('account#bookmarks'){          link_to "Bookmarks", bookmarks_account_path }
+          =#nav_li('account#favs'){          link_to "Favorites", favs_account_path }
+          =#nav_li('account#bookmarks'){          link_to "Bookmarks", bookmarks_account_path }
           =nav_li('account#edit', 'accounts#update'){ link_to "Edit Profile", edit_account_path }
         .contents=yield
       #push

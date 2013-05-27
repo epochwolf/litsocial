@@ -10,17 +10,20 @@
         .row
           .sidebar.span3
             %ul.nav.nav-list
-              %li.nav-header Messages
-              =nav_li('messages#index'){ link_to "Inbox", messages_path }
-              =nav_li('messages#unread'){ link_to "Unread", unread_messages_path }
-              =nav_li('messages#read'){ link_to "Read", read_messages_path }
-              =nav_li('messages#sent'){ link_to "Sent", sent_messages_path }
-              =nav_li('messages#new', 'messages#create'){ link_to "Compose", new_message_path }
-              %li.nav-header Notifications
-              =nav_li('account#notifications'){ link_to "Notifications", notifications_account_path }
-              =nav_li('account#watches'){       link_to "Watching", watches_account_path }
               %li.nav-header Site News
-              =nav_li('news_posts'){ link_to "Latest News", news_posts_path } 
+              =nav_li('news_posts#index', 'news_posts#show'){ icon_link "bullhorn", "Latest News", news_posts_path } 
+              =nav_li('news_posts#archive'){ icon_link "th-list", "Archive", archive_news_posts_path } 
+              %li.nav-header Notifications
+              =nav_li('account#notifications'){ icon_link "signal", "Notifications", notifications_account_path }
+              =nav_li('account#watches'){       icon_link "signal", "Watching", watches_account_path }
+              =nav_li('account#bookmarks'){     icon_link "bookmark", "Bookmarks", bookmarks_account_path }
+              =nav_li('account#favs'){          icon_link "heart", "Favorites", favs_account_path }
+              %li.nav-header Messages
+              =nav_li('messages#index'){  icon_link "inbox", "Inbox", messages_path }
+              =nav_li('messages#unread'){ icon_link "folder-close", "Unread", unread_messages_path }
+              =nav_li('messages#read'){   icon_link "folder-close", "Read", read_messages_path }
+              =nav_li('messages#sent'){   icon_link "envelope", "Sent", sent_messages_path }
+              =nav_li('messages#new', 'messages#create'){ icon_link "pencil", "Compose", new_message_path }
           .span9
             #message-contents=yield
       #push

@@ -3,10 +3,11 @@
 
 .comment{id:"comment-#{comment.id}"}
   -if comment.visible?
-    %p.meta
+    %p.meta.inline-block
       %span.muted
         Posted 
         =dt(comment)
         by #{user_link comment.user}
-      =link_to "cancel edit", '#', class: 'btn btn-mini', data:{widget: "cancel-edit-comment", comment_id: comment.id}
+    %ul.inline.inline-block
+      %li=link_to "cancel edit", '#', class: 'btn btn-mini', data:{widget: "cancel-edit-comment", comment_id: comment.id}
     =render "comments/form", comment: comment

@@ -13,14 +13,16 @@
         %span.icon-bar
       .nav-collapse.collapse
         %ul.nav
-          %li{class: active_for_controller("stories")}=link_to "Stories", stories_path
-          %li{class: active_for_controller("series")}=link_to "Series", series_index_path
-          %li{class: active_for_controller("forum_posts")}=link_to "The Forum", forum_posts_path
+          =nav_li("stories"){     link_to "Stories", stories_path }
+          =nav_li("series"){      link_to "Series", series_index_path }
+          =nav_li("forum_posts"){ link_to "The Forum", forum_posts_path }
           -if user_signed_in?
-            %li{class: active_for_controller("news_posts", "messages")}=link_to "Message Center", messages_path
-            %li{:class => active_for_controller("account")}=link_to "My Account", account_path
+            -active = ["news_posts", "messages", "account#bookmarks", "account#watches", "account#favs", "account#notifications"]
+            =nav_li(*active){ link_to "Message Center", news_posts_path }
+            -active = ["account#show", "account#stories", "account#journals", "account#forums", "account#edit", "account#update",]
+            =nav_li(*active){ link_to "My Account", account_path }
           -else
-            %li{class: active_for_controller("news_posts")}=link_to "Site News", news_posts_path
+            =nav_li("news_posts"){ link_to "Site News", news_posts_path }
           -if admin?
             %li=link_to "Admin Panel", "/admin"
 
@@ -41,6 +43,7 @@
                 %li.hidden-phone=icon_link "book", "New Journal", new_journal_path
                 -if admin? && params[:action] == "show"
                   %li=icon_link "qrcode", "Admin This", "/admin#{request.path}"
+                %li=icon_link "pencil", "Compose Message", new_message_path
                 %li=#icon_link "envelope", "New Message", new_account_message_path(current_user)
                 %li.divider
                 %li=icon_link "remove-circle", "Sign out", destroy_user_session_path, :method => :delete

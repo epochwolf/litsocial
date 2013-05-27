@@ -28,7 +28,7 @@ class CapyCommentsTest < CapyTest
     assert page.has_selector?("#comment-#{comment_id}"), "couldn't find new comment on the page!"
     assert page.find("#comment-#{comment_id} p", :text => 'This is a very special comment. :)'), "couldn't find new comment on the page!"
 
-    within "#comment-#{comment_id} .meta" do 
+    within "#comment-#{comment_id}" do 
       click_link "edit"
     end
     assert page.has_selector?("#comment-#{comment_id} form"), "couldn't find the comment edit form."
@@ -41,7 +41,7 @@ class CapyCommentsTest < CapyTest
     assert page.has_selector?("#comment-#{comment_id}"), "couldn't find the updated comment on the page!"
     assert page.find("#comment-#{comment_id} p", :text => 'This is a very unhappy comment. :('), "couldn't find the updated comment on the page!"
 
-    within "#comment-#{comment_id} .meta" do 
+    within "#comment-#{comment_id}" do 
       click_link "delete"
     end
     assert page.has_selector?("#comment-#{comment_id}"), "couldn't find the deleted comment on the page!"

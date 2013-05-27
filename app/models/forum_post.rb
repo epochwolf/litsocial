@@ -17,6 +17,10 @@ class ForumPost < ActiveRecord::Base
 
   before_create :bump
 
+  def visible?
+    !deleted?
+  end
+
   def bump
     self.bumped_at = DateTime.now unless sunk?
   end

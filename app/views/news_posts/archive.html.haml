@@ -1,0 +1,9 @@
+%h3 Site News Archive
+-@news_posts.each do |news_post|
+  %p.muted
+    =icon_link 'bullhorn', news_post.title, news_post
+    on
+    =dt news_post
+    by
+    =user_link news_post.user
+=paginate @news_posts

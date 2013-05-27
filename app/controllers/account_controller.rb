@@ -20,6 +20,7 @@ class AccountController < ApplicationController
 
   def bookmarks
     @bookmarks = paged(@user.bookmarks.includes(:story => [:user]))
+    render layout: 'messages'
   end
 
   def watches
@@ -29,6 +30,7 @@ class AccountController < ApplicationController
 
   def favs
     @favs = paged(@user.favs)
+    render layout: 'messages'
   end
 
   def notifications

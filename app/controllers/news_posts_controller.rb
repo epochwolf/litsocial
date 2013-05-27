@@ -2,7 +2,11 @@ class NewsPostsController < ApplicationController
   layout :pick_layout
 
   def index
-    @news_posts = paged(NewsPost.visible)
+    @news_posts = paged(NewsPost.visible, :per_page => 5)
+  end
+
+  def archive
+    @news_posts = paged(NewsPost.visible, :per_page => 5)
   end
 
   def show

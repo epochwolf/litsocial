@@ -3,6 +3,9 @@
     controllers.any?{|controller| params[:controller] == controller } ? "active" : nil
   end
 
+  message_center = ["news_posts", "messages", "account#bookmarks", "account#watches", "account#favs", "account#notifications"]
+  my_account = ["account#show", "account#stories", "account#journals", "account#forums", "account#edit", "account#update",]
+
 .navbar.navbar-static-top.navbar-inverse
   .navbar-inner
     .container-fluid
@@ -17,12 +20,10 @@
           =nav_li("series"){      link_to "Series", series_index_path }
           =nav_li("forum_posts"){ link_to "The Forum", forum_posts_path }
           -if user_signed_in?
-            -active = ["news_posts", "messages", "account#bookmarks", "account#watches", "account#favs", "account#notifications"]
-            =nav_li(*active){ link_to "Message Center", news_posts_path }
-            -active = ["account#show", "account#stories", "account#journals", "account#forums", "account#edit", "account#update",]
-            =nav_li(*active){ link_to "My Account", account_path }
+            =nav_li(*message_center){ link_to "Message Center", news_posts_path }
+            =nav_li(*my_account){ link_to "My Account", account_path }
           -else
-            =nav_li("news_posts"){ link_to "Site News", news_posts_path }
+            =nav_li(*message_center){ link_to "Site News", news_posts_path }
           -if admin?
             %li=link_to "Admin Panel", "/admin"
 

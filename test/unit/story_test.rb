@@ -4,10 +4,11 @@ class StoryTest < ActiveSupport::TestCase
 
   test "New story generates proper notifications" do
     poster = create(:user_with_watchers)
-    count = Notification.count
-    story = create(:story, user: poster)
+    story = nil
+    assert_difference "Notification.count", 2 do 
+      story = create(:story, user: poster)
+    end
 
-    assert_equal count + 2, Notification.count
     notifications = Notification.sorted.limit(2)  
 
     assert notifications.all?{|n| n.template == "story_create" }, "Notification has wrong type"
@@ -19,10 +20,11 @@ class StoryTest < ActiveSupport::TestCase
   test "New story in series generates proper notifications" do    
     poster = create(:user_with_watchers)
     series = create(:series, user: poster)
-    count = Notification.count
-    story = create(:story, user: poster, series: series)
+    story = nil
+    assert_difference "Notification.count", 2 do 
+      story = create(:story, user: poster, series: series)
+    end
 
-    assert_equal count + 2, Notification.count
     notifications = Notification.sorted.limit(2)  
 
     assert notifications.all?{|n| n.template == "series_update" }, "Notification has wrong type"
@@ -35,12 +37,12 @@ class StoryTest < ActiveSupport::TestCase
     poster = create(:user_with_watchers)
     series = create(:series, user: poster)
     story = create(:story, user: poster)
-    count = Notification.count
 
-    story.series = series
-    story.save!
+    assert_difference "Notification.count", 2 do
+      story.series = series
+      story.save!
+    end
 
-    assert_equal count + 2, Notification.count
     notifications = Notification.sorted.limit(2)  
 
     assert notifications.all?{|n| n.template == "series_update" }, "Notification has wrong type"

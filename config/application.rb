@@ -26,9 +26,7 @@ module Litsocial
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
 
     # Activate observers that should always be running.
-    config.active_record.observers = [:message_notifier, :story_notifier]
-
-
+    config.active_record.observers = [:comment_notifier, :message_notifier, :story_notifier]
 
     config.action_mailer.default_url_options = { :host => "staging.litsocial.com" }
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.

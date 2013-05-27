@@ -5,7 +5,7 @@ class CommentVisiblityTest < ActionDispatch::IntegrationTest
   fixtures :all
 
   setup do 
-    sign_in(users(:epoch))
+    sign_in(users(:member))
   end
 
   test "All 4 comments are visible" do

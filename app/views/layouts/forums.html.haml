@@ -11,7 +11,7 @@
         -if user_signed_in?
           .pull-right=link_to "New Topic", new_forum_post_path(return: here), class: 'btn btn-success btn-mini'
         %ul.nav.nav-tabs.nav-account
-          %li{class: @forum_category.nil? ? 'active' : nil}=link_to "All Catergories", forum_posts_path
+          %li{class: @forum_category.nil? ? 'active' : nil}=link_to "All Categories", forum_posts_path
           -ForumCategory.scoped.each do |cat|
             %li{class: @forum_category == cat ? 'active' : nil}=link_to cat.title, cat
 

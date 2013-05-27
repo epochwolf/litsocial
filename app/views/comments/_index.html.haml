@@ -1,8 +1,10 @@
 -# required: commentable
 
--if commentable.visible? && signed_in?
-  .comments-form=render "comments/new", comment: commentable.comments.build
 .comments
+  %h3 Comments
   -commentable.comments.each do |comment|
     -next if comment.new_record?
     =render 'comments/show', comment: comment
+
+-if commentable.visible? && signed_in?
+  =render "comments/new", comment: commentable.comments.build

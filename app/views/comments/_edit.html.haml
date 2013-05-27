@@ -1,3 +1,12 @@
 -# required: comment or @comment
 -comment ||= @comment
-.comment{id: "comment-#{comment.id}"}=render "comments/form", comment: comment
+
+.comment{id:"comment-#{comment.id}"}
+  -if comment.visible?
+    %p.meta
+      %span.muted
+        Posted 
+        =dt(comment)
+        by #{user_link comment.user}
+      =link_to "cancel edit", '#', class: 'btn btn-mini', data:{widget: "cancel-edit-comment", comment_id: comment.id}
+    =render "comments/form", comment: comment

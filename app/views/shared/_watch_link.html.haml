@@ -11,7 +11,7 @@
   js_id = String.random
   css = "btn btn-info btn-#{button_size}"
 %span{id:js_id}
-  -if user_signed_in? 
+  -if signed_in? 
     -if watch
       =icon_link "eye-close icon-white", "Unwatch #{watchable.class.name}", '#', class:css, data:{widget:"unwatch-link", replace:"##{js_id}", id:watch.id}
     -else

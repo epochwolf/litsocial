@@ -1,14 +1,17 @@
-.article.row
-  .span10.offset1
-    %h1=@forum_post.title
-    %p.meta
-      Posted in #{link_to @forum_post.forum_category.title, @forum_post.forum_category} 
-      on #{dt(@forum_post.created_at)}
-      by #{user_link @forum_post.user} 
-      =edit_links @forum_post
-    .rich=rich @forum_post.contents
-    .story-buttons.centered-buttons
-      .button-wrapper=render 'shared/fav_link', favable: @forum_post
-      .button-wrapper=render 'shared/report_link', reportable: @forum_post
+%article.form-post
+  %h1=@forum_post.title
+  %p.meta
+    Posted in #{link_to @forum_post.forum_category.title, @forum_post.forum_category} 
+    on #{dt(@forum_post.created_at)}
+    by #{user_link @forum_post.user} 
+    =edit_links @forum_post
+  .rich=rich @forum_post.contents
 
-=comments_for @forum_post
+=content_for :after_post do 
+  -if signed_in?
+    .centered-ul-wrapper{style: "margin: 1em 0;"}
+      %ul.inline
+        %li=render 'shared/watch_link', watchable: @forum_post
+        %li=render 'shared/fav_link', favable: @forum_post
+        %li=render 'shared/report_link', reportable: @forum_post
+  =comments_for @forum_post

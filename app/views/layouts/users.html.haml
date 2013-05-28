@@ -10,7 +10,7 @@
         .row
           .span3.visible-desktop=render 'users/sidebar', :user => @user
           .span9.span12-tablet
-            -if true #params[:controller] == "users"
+            -if params[:controller] =~ /^(users|journals)$/
               .hidden-desktop
                 %h2.text-center
                   =gravatar @user, 48

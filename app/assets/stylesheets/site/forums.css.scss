@@ -1,0 +1,19 @@
+#forum-contents{
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-top: 0;
+  margin-bottom: 2em;
+
+  article{
+    border: 0;
+  }
+
+  form{
+    width: 90%;
+
+    .form-actions{
+      background-color: white;
+      border-top: 0;
+    }
+  }
+}

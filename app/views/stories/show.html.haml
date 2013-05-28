@@ -22,7 +22,7 @@
 
   =render 'series_next_prev', story: @story
 
--if current_user
+-if signed_in?
   .centered-ul-wrapper{style: "margin: 1em 0;"}
     %ul.inline
       %li=render 'shared/watch_link', watchable: @story.user, button_size: "small"

@@ -6,6 +6,6 @@ class PagesController < ApplicationController
   end
 
   def show
-    show404 "Page not available" unless @page = Page.find_by_id_or_url(params[:id])
+    show404 "Didn't find any page named \"#{params[:id]}\"." unless @page = Page.find_by_id_or_url(params[:id])
   end
 end

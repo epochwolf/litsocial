@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   
   def show403(message=nil)
     respond_to do |type| 
-      type.html { render :template => 'errors/403', :status => 403, :locals => {:message => message} }
+      type.html { render :template => 'errors/403', layout: 'application', :status => 403, :locals => {:message => message} }
       type.all  { render :nothing => true, :status => 403 }
     end
     true
@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   def show404(message=nil)
     begin; raise; rescue; @trace = $!.backtrace.join("\n"); end
     respond_to do |type| 
-      type.html { render :template => 'errors/404', :status => 404, :locals => {:message => message} }
+      type.html { render :template => 'errors/404', layout: 'application', :status => 404, :locals => {:message => message} }
       type.all  { render :nothing => true, :status => 404 }
     end
     true

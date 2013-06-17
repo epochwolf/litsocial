@@ -1,7 +1,17 @@
 =simple_form_for(@user, url: account_path,  html:{class:'form-horizontal'}) do |f|
-  =f.input :name
-  =f.input :email, hint: "Used to reset your password."
-  =f.input :tagline, hint: "Shows up next to your name on your profile"
-  =f.input :biography, input_html:{class: 'redactor'}
+  .row
+    .span6
+      =f.input :name
+      =f.input :email, hint: "Used to reset your password."
+      =f.input :kindle_email, label: "Send to Kindle Email", hint: "Used to send stories to your kindle. See sidebar."
+      =f.input :tagline, hint: "Shows up next to your name on your profile"
+    .span5
+      .well
+        %h5 Send to Kindle Email
+        %p 
+          LitSocial allows you to send stories to your kindle via use Amazon's Kindle Personal Documents Service. For this to work you need to add <strong>@litsocial.com</strong> to <em>Your Approved Personal Document E-mail List</em>. You can read about how to do that on <a href="http://www.amazon.com/gp/help/customer/display.html/ref=hp_pdoc_main_short_us?nodeId=200767340">amazon's website</a>.  
+    .span11
+      =f.input :biography, input_html:{class: 'redactor'}
   .form-actions
     =f.button :submit, "Save Changes"
+

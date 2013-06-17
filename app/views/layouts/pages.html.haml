@@ -6,6 +6,8 @@
     #wrap
       #header=render 'layouts/top_bar'
       #notices=render 'layouts/notices'
-      #contents.container.pages=yield
+      #contents.container
+        .row
+          .span12=yield
       #push
     #footer=render 'layouts/footer'

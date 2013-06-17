@@ -34,8 +34,18 @@ Litsocial::Application.routes.draw do
   end
 
 
-  resources :stories
-  resources :series
+  resources :stories do 
+    member do 
+      post :kindle
+      get :kindle_preview
+    end
+  end
+  resources :series do 
+    member do 
+      post :kindle
+      get :kindle_preview
+    end
+  end
   resources :journals
   resources :pages, only: [:index, :show]
   resources :news_posts, only: [:index, :show], path: 'news' do 

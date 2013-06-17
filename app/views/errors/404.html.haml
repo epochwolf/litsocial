@@ -1,5 +1,6 @@
+- thing ||= "Page"
 .hero-unit
-  %h1 Page not found
-  %p=message ||= "The page you were trying to access is not available. It may have been deleted or may have never existed."
+  %h1 #{thing} not found
+  %p=message ||= "The #{thing.downcase} you were trying to access is not available. It may have been deleted or may have never existed."
   -if @trace && Rails.env.development?
     %pre=@trace

@@ -1,4 +1,15 @@
 $ ->
+  $(document).on "click", 'a[data-widget="send-to-kindle"]', (e) ->
+    e.preventDefault()
+    self = $(this)
+    callback = (data)-> 
+      if data["status"] == "ok"
+        alert data["message"]
+      else
+        alert data["error"]
+    $.post self.data("url"), {}, callback, 'json'
+
+
   $(document).on "click", 'a[data-widget="watch-link"]', (e) ->
     e.preventDefault()
     self = $(this)

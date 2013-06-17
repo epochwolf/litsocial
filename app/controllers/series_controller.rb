@@ -1,6 +1,7 @@
 class SeriesController < ApplicationController
   require_login except: [:index, :show]
   before_filter :find_series, except:[:index, :new, :create]
+  before_filter :check_owner, only: [:edit, :update, :destroy]
 
   def index
     @series = paged(Series.includes(:user))
@@ -14,6 +15,25 @@ class SeriesController < ApplicationController
       @user = @series.user
       render layout: 'users'
     end  
+  end
+
+  def kindle
+    if not @series.visible?
+      render json:{status: "error", error: "Series not visible." }
+    elsif not current_user.kindle?
+      render json:{status: "error", error: "You don't have a kindle email configured." }
+    else
+      KindleMailer.series_email(current_user.kindle_email, @series).deliver
+      render json:{status: "ok", message: "Series sent!" }
+    end
+  end
+
+  def kindle_preview
+    if not @series.visible?
+      show403 "Series not available"
+    else
+      render text: KindleHtml::SeriesWriter.new(@series).to_html
+    end
   end
 
   def new
@@ -48,6 +68,9 @@ class SeriesController < ApplicationController
   private
   def find_series
     @series = Series.find(params[:id])
-    redirect_to account_path, alert: "Not your series!" if params[:action] != "show" && !owner?(@series)
+  end
+
+  def check_owner
+    redirect_to account_path, alert: "Not your series!" unless owner?(@series)
   end
 end

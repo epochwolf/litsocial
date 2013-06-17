@@ -32,6 +32,10 @@ class Story < ActiveRecord::Base
   before_create :fix_acts_as_list
   before_update :fix_acts_as_list, if: :series_id_changed?
 
+  def safe_contents
+    MyHtmlSanitizer.clean contents
+  end
+
   def visible?
     !(deleted? || locked?)
   end

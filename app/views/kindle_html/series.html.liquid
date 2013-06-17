@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    <meta name="author" content="{{story_author}} (litsocial.com)">
+    <title>{{series_title}} - litsocial.com</title>
+    <style>
+      h1.title, h2.title, h3.title {
+        text-align: center;
+      }
+      div.new_section_after {
+        page-break-after: always;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="new_section_after">
+      <h1 class="title">{{series_title}}</h1>
+      <h2 class="title">by {{series_author}}</h2>
+      <p>This ebook was prepared by litsocial.com. A free website for authors to share their works with others.</p>
+    </div>
+    <div class="new_section_after">
+      <h2 class="title">Table of Contents</h2>
+      <ol>
+      {% for story in stories %}
+        <li><a href="#chapter-{{story["id"]}}">{{story["title"]}}</a></li>
+      {% endfor %}
+      </ol>
+    </div>    
+    {% for story in stories %}
+    <div id="chapter-{{story["id"]}}" class="new_section_after">
+      <h2 class="title">{{story["title"]}}</h2>
+      {{story["contents"]}}
+    </div>
+    {% endfor %}
+    <div>
+      <h3>Thanks for reading!</h3>
+      <p>
+        This document was prepared at litsocial.com for your reading enjoyment. 
+        LitSocial is a place where writers can post their stories and readers like you can enjoy them. 
+      </p>
+    </div>
+  </body>
+</html>

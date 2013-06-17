@@ -12,6 +12,7 @@ member:
   id: 2
   name: member
   email: member@example.com
+  kindle_email: member@kindle.com
   encrypted_password: <%= ::BCrypt::Password.create("Password",  :cost => 1) %>
   biography: I am the token member
   admin: false

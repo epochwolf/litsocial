@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_paper_trail only: [:name, :tagline, :biography, :email, :banned, :banned_reason, :admin]
-  attr_accessible :name, :tagline, :biography, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :name, :tagline, :biography, :email, :password, :password_confirmation, :remember_me, :kindle_email
   attr_accessible :name, :tagline, :biography, :email, :banned, :banned_reason, as: :admin
 
   # Include default devise modules. Others available are:
@@ -52,6 +52,7 @@ class User < ActiveRecord::Base
   NAME_REGEX = /([a-z][a-z0-9_]{2,12}[a-z0-9])/
 
   validates :name, uniqueness: true, format:{with: /\A#{NAME_REGEX}\Z/, on: :create}
+  validates :kindle_email, format:{with: /\@(free\.)?kindle\.com$/, allow_blank: true, message: "Should end in @kindle.com or @free.kindle.com"}
 
   def gravatar_url(size=32)
     gravatar_id = Digest::MD5::hexdigest(email).downcase
@@ -104,5 +105,9 @@ class User < ActiveRecord::Base
 
   def to_s
     name
+  end
+
+  def kindle?
+    kindle_email.present?
   end
 end

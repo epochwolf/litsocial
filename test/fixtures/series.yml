@@ -2,7 +2,7 @@
 
 one:
   id: 1
-  title: MyString
+  title: EpochsSeries
   user_id: 1
 
 two:
@@ -12,5 +12,5 @@ two:
 
 three:
   id: 3
-  title: EpochsSeries
+  title: MyString
   user_id: 1

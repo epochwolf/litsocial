@@ -83,8 +83,8 @@ epochs_deleted:
 
 epochs_story_series:
   id: 9
-  title: EpochsStory
-  contents: "<p>MyString</p>"
+  title: EpochsStory1
+  contents: "<p>MyString1</p>"
   user_id: 1
   series_id: 1
   series_position: 1
@@ -112,5 +112,15 @@ epochs_deleted_series:
   series_id: 1
   series_position: 3
   deleted: true
+  created_at: <%=Time.now %>
+  updated_at: <%=Time.now %>
+
+epochs_story_series2:
+  id: 12
+  title: EpochsStory2
+  contents: "<p>MyString2</p>"
+  user_id: 1
+  series_id: 1
+  series_position: 4
   created_at: <%=Time.now %>
   updated_at: <%=Time.now %>

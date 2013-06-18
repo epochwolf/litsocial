@@ -2,11 +2,22 @@ $ ->
   $(document).on "click", 'a[data-widget="send-to-kindle"]', (e) ->
     e.preventDefault()
     self = $(this)
+    return if self.hasClass("disabled")
+    
+    self.html("Sending to kindle")
+    self.addClass("disabled")
+
     callback = (data)-> 
+      self.html("Sent")
       if data["status"] == "ok"
-        alert data["message"]
+        self.html("Sent #{self.data("word")} to kindle")
       else
-        alert data["error"]
+        self.html("Error sending #{self.data("word")} to kindle")
+        setTimeout (()-> 
+            self.removeClass("disabled")
+            self.html("Send #{self.data("word")} to kindle")
+          ), 5000
+
     $.post self.data("url"), {}, callback, 'json'
 
 

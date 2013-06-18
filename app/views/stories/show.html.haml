@@ -12,9 +12,9 @@
       -if signed_in? && current_user.kindle?
         |
         -if @story.series
-          =icon_link "book", "Send Series to Kindle", '#', data:{widget: "send-to-kindle", url: kindle_series_path(@story.series)}
+          =icon_link "book", "Send Series to Kindle", '#', class: "btn btn-mini", data:{widget: "send-to-kindle", word:"Series", url: kindle_series_path(@story.series)}
         -else
-          =icon_link "book", "Send Story to Kindle", '#', data:{widget: "send-to-kindle", url: kindle_story_path(@story)}
+          =icon_link "book", "Send Story to Kindle", '#', class: "btn btn-mini", data:{widget: "send-to-kindle", word:"Story", url: kindle_story_path(@story)}
   -if bookmark = bookmark_for(@story)
     %p#bookmark-message
       %strong

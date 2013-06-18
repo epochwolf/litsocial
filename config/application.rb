@@ -71,11 +71,11 @@ module Litsocial
 
       # Thanks StackOverflow! http://stackoverflow.com/questions/4982073/different-layout-for-sign-in-action-in-devise
       config.to_prepare do
-        Devise::SessionsController.layout "pages"
-        Devise::RegistrationsController.layout "pages"
-        #Devise::ConfirmationsController.layout "pages"
-        #Devise::UnlocksController.layout "pages"            
-        Devise::PasswordsController.layout "pages"        
+        Devise::SessionsController.layout "devise"
+        Devise::RegistrationsController.layout "devise"
+        #Devise::ConfirmationsController.layout "devise"
+        #Devise::UnlocksController.layout "devise"            
+        Devise::PasswordsController.layout "devise"        
       end
   end
 end

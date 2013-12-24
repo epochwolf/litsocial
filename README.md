@@ -8,7 +8,7 @@ Lit Social is a literature website that integrates with facebook.
 # Running this Code
 This application is set up to use Postgres in all modes. Future development may use Postgres specific features.
 
-You will need to copy `config/secrets.yml.exmaple` to `config/secrets.yml` before the application will start. Otherwise this is a standard rails application.
+You will need to copy `config/secrets.yml.example` to `config/secrets.yml` before the application will start. Otherwise this is a standard rails application.
 
 # Licensing
 All parts of this application is licensed under the GNU Affero General Public License version 3 

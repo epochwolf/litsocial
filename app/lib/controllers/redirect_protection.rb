@@ -27,7 +27,7 @@ module RedirectProtection
   
   protected
   def protect_from_invalid_redirect
-    regex = /\A(http(s?):\/\/#{request.host_with_port}|\/)/ # address of the current request
+    regex = /\A(http(s?):\/\/#{request.host_with_port}|\/\Z|\/[^\/])/ # address of the current request
     if @invalid_redirect_url = params[:return] # address of redirect
       render("errors/invalid_redirect") unless @invalid_redirect_url.blank? or @invalid_redirect_url =~ regex
     end
